@@ -12,6 +12,7 @@ class Student extends Model
         'middle_name',
         'last_name',
         'guardian_name',
+        'roll_number',
         'gender',
         'dob',
         'is_active',

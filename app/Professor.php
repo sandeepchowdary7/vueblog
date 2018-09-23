@@ -11,6 +11,7 @@ class Professor extends Model
         'first_name',
         'middle_name',
         'last_name',
+        'roll_number',
         'gender',
         'dob',
         'email',
