@@ -15,7 +15,7 @@ class CreateCourseSectionsTable extends Migration
     {
         Schema::create('course_sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('section');
+            $table->string('section_name');
         });
     }
 

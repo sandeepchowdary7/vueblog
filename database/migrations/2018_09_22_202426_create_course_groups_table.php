@@ -15,7 +15,7 @@ class CreateCourseGroupsTable extends Migration
     {
         Schema::create('course_groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('group');
+            $table->string('group_name');
         });
     }
 

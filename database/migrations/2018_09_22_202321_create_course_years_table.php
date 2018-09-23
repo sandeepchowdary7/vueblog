@@ -15,7 +15,7 @@ class CreateCourseYearsTable extends Migration
     {
         Schema::create('course_years', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('year');
+            $table->year('year');
         });
     }
 

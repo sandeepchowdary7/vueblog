@@ -17,4 +17,12 @@ class ProfessorDetail extends Model
         'joined_on',
         'resigned_at'
     ];
+
+    /**
+     * Get the Professor that owns the ProfessorDetail.
+     */
+    public function professor()
+    {
+        return $this->belongsTo('App\Professor');
+    }
 }

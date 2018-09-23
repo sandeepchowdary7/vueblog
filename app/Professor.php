@@ -17,4 +17,12 @@ class Professor extends Model
         'phone_number',
         'address'
     ];
+
+    /**
+     * Get the ProfessorDetail record associated with the Professor.
+     */
+    public function professor_detail()
+    {
+        return $this->hasOne('App\ProfessorDetail');
+    }
 }
