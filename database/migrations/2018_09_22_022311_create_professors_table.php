@@ -22,8 +22,8 @@ class CreateProfessorsTable extends Migration
             $table->enum('gender', array ('Male', 'Female', 'Other'));
             $table->date('dob');
             $table->string('email')->unique();
-            $table->integer('phone_number');
-            $table->string('Address', 300);
+            $table->string('phone_number');
+            $table->string('address', 300);
             $table->timestamps();
         });
     }

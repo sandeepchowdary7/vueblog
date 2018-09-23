@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Professor;
 use Illuminate\Http\Request;
+use Validator;
 
 class ProfessorController extends Controller
 {
@@ -14,7 +14,13 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        //
+        $professors = Professor::all();
+        $result = [ ];
+
+        foreach ($professors as  $professor) {
+            $result [ ] = $this->ResultFormatter($professor);
+        }
+        return $result;
     }
 
     /**
@@ -24,7 +30,7 @@ class ProfessorController extends Controller
      */
     public function create()
     {
-        //
+        //write here
     }
 
     /**
@@ -34,8 +40,30 @@ class ProfessorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    { 
+		$this->validate(request(), [
+            'first_name'            =>  'required|max:20',
+			'middle_name'       =>  'required|max:20',
+			'last_name'            =>   'required|max:20',
+			'roll_number'        =>   'required|unique',
+			'gender'              	 =>   'required',
+			'dob'                     =>   'required|date',
+			'email'                  =>   'required|unique',
+			'phone_number'   =>   'required|digits:15',
+			'address'               =>   'required|max:300'
+        ]);
+		
+		Professor::create([
+			'first_name' => $request('first_name'),
+			'middle_name' => $request('middle_name'),
+			'last_name' => $request('last_name'),
+			'gender' => $request('gender'),
+			'dob' => $request('dob'),
+			'email' => $request('email'),
+			'phone_number' =>$request('phone_number'),
+			'address' => $request('address')
+		]);
+        $professor->save();
     }
 
     /**
@@ -44,20 +72,11 @@ class ProfessorController extends Controller
      * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function show(Professor $professor)
+    public function show($Id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Professor  $professor
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Professor $professor)
-    {
-        //
+	   $professor = Professor::findOrFail($Id);
+	   
+	   return $this->ResultFormatter($professor);
     }
 
     /**
@@ -67,9 +86,22 @@ class ProfessorController extends Controller
      * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Professor $professor)
+    public function update(Request $request, $id)
     {
-        //
+		$professor = Album::findOrFail($id);
+		
+		$professor = new Professor;
+        $professor->first_name = $request['first_name'];
+        $professor->middle_name = $request['middle_name'];
+        $professor->last_name = $request['last_name'];
+        $professor->gender = $request['gender'];
+        $professor->dob = $request('dob');
+        $professor->email = $request('email');
+        $professor->phone_number = $request('phone_number');
+		$professor->address = $request('address');
+		$professor->update();
+		
+		return $this->ResultFormatter($professor);
     }
 
     /**
@@ -78,8 +110,28 @@ class ProfessorController extends Controller
      * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Professor $professor)
+    public function destroy(Id $id)
     {
-        //
+	   $professor = Prefessor::findOrFail($id);
+	   $professor->delete();
+
+		return response()->json([
+			"message" => "Success"
+		]);
     }
+
+    protected function ResultFormatter($professor) {
+		return [
+			'Id' => $professor->id,
+			'First Name' => $professor->first_name,
+			'Middle Name' => $professor->middle_name,
+			'Last Name' => $professor->last_name,
+			'Roll Num' => $professor->roll_number,
+			'Gender' => $professor->gender,
+			'Date of Birth' => $professor->dob,
+			'Email' => $professor->email,
+			'Phone Number' => $professor->phone_number,
+			'Address' => $professor->address
+		];
+	}
 }

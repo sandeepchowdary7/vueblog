@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c564c9e2198d9f1a2819c48ed8640e17",
+    "content-hash": "c7764dcfb7bd99f2e624a38f2ecfd2ba",
     "packages": [
         {
             "name": "bensampo/laravel-enum",
@@ -131,21 +131,22 @@
         },
         {
             "name": "binarytorch/larecipe",
-            "version": "v1.2.3",
+            "version": "v1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saleem-hadad/larecipe.git",
-                "reference": "e3e17ac18289ab7f1f15a6888bb074c14adf519a"
+                "reference": "da14a39b070f8474aaee03b8dbd50ebed78c4e82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saleem-hadad/larecipe/zipball/e3e17ac18289ab7f1f15a6888bb074c14adf519a",
-                "reference": "e3e17ac18289ab7f1f15a6888bb074c14adf519a",
+                "url": "https://api.github.com/repos/saleem-hadad/larecipe/zipball/da14a39b070f8474aaee03b8dbd50ebed78c4e82",
+                "reference": "da14a39b070f8474aaee03b8dbd50ebed78c4e82",
                 "shasum": ""
             },
             "require": {
                 "erusev/parsedown-extra": "^0.7.1",
                 "illuminate/support": "~5.4.0|~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/view": "~5.4.0|~5.5.0|~5.6.0|~5.7.0",
                 "symfony/dom-crawler": "^4.1"
             },
             "require-dev": {
@@ -184,7 +185,7 @@
                 "laravel",
                 "markdown"
             ],
-            "time": "2018-09-22T00:00:11+00:00"
+            "time": "2018-09-23T03:03:48+00:00"
         },
         {
             "name": "chelout/laravel-relationship-events",
@@ -755,6 +756,56 @@
             ],
             "description": "Ajax support of DataTables for Laravel 5.5+",
             "time": "2018-09-22T04:21:46+00:00"
+        },
+        {
+            "name": "fzaninotto/faker",
+            "version": "v1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "f72816b43e74063c8b10357394b6bba8cb1c10de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/f72816b43e74063c8b10357394b6bba8cb1c10de",
+                "reference": "f72816b43e74063c8b10357394b6bba8cb1c10de",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.0"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "phpunit/phpunit": "^4.8.35 || ^5.7",
+                "squizlabs/php_codesniffer": "^1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2018-07-12T10:23:15+00:00"
         },
         {
             "name": "geerlingguy/ping",
@@ -3735,56 +3786,6 @@
                 "whoops"
             ],
             "time": "2018-06-30T13:14:06+00:00"
-        },
-        {
-            "name": "fzaninotto/faker",
-            "version": "v1.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "f72816b43e74063c8b10357394b6bba8cb1c10de"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/f72816b43e74063c8b10357394b6bba8cb1c10de",
-                "reference": "f72816b43e74063c8b10357394b6bba8cb1c10de",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.3 || ^7.0"
-            },
-            "require-dev": {
-                "ext-intl": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "squizlabs/php_codesniffer": "^1.5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.8-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "time": "2018-07-12T10:23:15+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
