@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Professor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Validator;
 
 class ProfessorController extends Controller
 {
@@ -41,6 +42,24 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     { 
+		$validator = Validator::make($request->all(), [
+					'first_name'            =>  'required|max:20',
+					'middle_name'       =>  'required|max:20',
+					'last_name'            =>   'required|max:20',
+					'roll_number'        =>   'required|unique',
+					'gender'              	 =>   'required',
+					'dob'                     =>   'required|date',
+					'email'                  =>   'required|unique',
+					'phone_number'   =>   'required|digits:15',
+					'address'               =>   'required|max:300'
+		]);
+
+		if ($validator->fails()) {
+            return redirect('/professor')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+		
 		$professor = new Professor;
 		$professor->first_name =  Input::get('first_name');
 		$professor->middle_name =  Input::get('middle_name');
@@ -108,6 +127,12 @@ class ProfessorController extends Controller
 		]);
     }
 
+    /**
+     * Give you the specific reponse from resource.
+     *
+     * @param  \App\Professor  $professor
+     * @return \Illuminate\Http\Response
+     */
     protected function ResultFormatter($professor) {
 		return [
 			'Id' => $professor->id,
