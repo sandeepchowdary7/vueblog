@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\ProfessorDetail;
 use App\Professor;
 use Illuminate\Http\Request;
+use Validator;
 
 class ProfessorDetailController extends Controller
 {
@@ -41,8 +42,29 @@ class ProfessorDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'role' => 'required',
+            'salary' => 'required',
+            'is_active' => 'required',
+            'joined_on' => 'timestamp',
+            'resigned_at' => 'timestamp'
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('/professorDetail')
+                    ->withErrors($validator)
+                    ->withInput();
     }
+
+    $professorDetail = new professorDetail;
+    $professorDetail->role = $request['role'];
+    $professorDetail->salary = $request['salary'];
+    $professorDetail->is_active = $request['is_active'];
+    $professorDetail->joined_on = $request['joined_on'];
+    $professorDetail->resigned_at = $request('resigned_at');
+
+    $professor->save();
+        }
 
     /**
      * Display the specified resource.
@@ -58,26 +80,26 @@ class ProfessorDetailController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ProfessorDetail  $professorDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ProfessorDetail $professorDetail)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\ProfessorDetail  $professorDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProfessorDetail $professorDetail)
+    public function update(Request $request, $id)
     {
-        //
+        $professorDetail = ProfessorDetail::findOrFail($id);
+		
+        $professorDetail = new professorDetail;
+        $professorDetail->role = $request['role'];
+        $professorDetail->salary = $request['salary'];
+        $professorDetail->is_active = $request['is_active'];
+        $professorDetail->joined_on = $request['joined_on'];
+        $professorDetail->resigned_at = $request('resigned_at');
+
+		$professorDetail->update();
+		
+		return $this->ResultFormatter($professorDetail);
     }
 
     /**
@@ -86,9 +108,14 @@ class ProfessorDetailController extends Controller
      * @param  \App\ProfessorDetail  $professorDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProfessorDetail $professorDetail)
+    public function destroy($id)
     {
-        //
+        $professorDetail = ProfessorDetail::findOrFail($id);
+        $professorDetail->delete();
+
+        return response()->json([
+			"message" => "Success"
+		]);
     }
 
     /**
