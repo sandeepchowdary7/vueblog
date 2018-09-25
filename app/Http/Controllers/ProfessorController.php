@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Professor;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Input;
 
 class ProfessorController extends Controller
 {
@@ -41,28 +41,16 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     { 
-		$this->validate(request(), [
-            'first_name'            =>  'required|max:20',
-			'middle_name'       =>  'required|max:20',
-			'last_name'            =>   'required|max:20',
-			'roll_number'        =>   'required|unique',
-			'gender'              	 =>   'required',
-			'dob'                     =>   'required|date',
-			'email'                  =>   'required|unique',
-			'phone_number'   =>   'required|digits:15',
-			'address'               =>   'required|max:300'
-        ]);
+		$professor = new Professor;
+		$professor->first_name =  Input::get('first_name');
+		$professor->middle_name =  Input::get('middle_name');
+		$professor->last_name =  Input::get('last_name');
+		$professor->gender =  Input::get('gender');
+		$professor->dob =  Input::get('dob');
+		$professor->email =  Input::get('email');
+		$professor->phone_number = Input::get('phone_number');
+		$professor->address =  Input::get('address');
 		
-		Professor::create([
-			'first_name' => $request('first_name'),
-			'middle_name' => $request('middle_name'),
-			'last_name' => $request('last_name'),
-			'gender' => $request('gender'),
-			'dob' => $request('dob'),
-			'email' => $request('email'),
-			'phone_number' =>$request('phone_number'),
-			'address' => $request('address')
-		]);
         $professor->save();
     }
 
