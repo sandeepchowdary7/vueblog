@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "bensampo/laravel-enum",
-            "version": "1.14.2",
+            "version": "1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenSampo/laravel-enum.git",
-                "reference": "a63d9b39ca33a5ad9f0ee5e668b6b3fdbb22adae"
+                "reference": "ed266d0f44a9eacaac98d4270e6500e37e7fbee9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenSampo/laravel-enum/zipball/a63d9b39ca33a5ad9f0ee5e668b6b3fdbb22adae",
-                "reference": "a63d9b39ca33a5ad9f0ee5e668b6b3fdbb22adae",
+                "url": "https://api.github.com/repos/BenSampo/laravel-enum/zipball/ed266d0f44a9eacaac98d4270e6500e37e7fbee9",
+                "reference": "ed266d0f44a9eacaac98d4270e6500e37e7fbee9",
                 "shasum": ""
             },
             "require": {
@@ -25,9 +25,9 @@
                 "php": "~7.0"
             },
             "require-dev": {
-                "laravel/framework": "~5.1",
-                "orchestra/testbench": "~3.0",
-                "phpunit/phpunit": ">=5.4.3",
+                "laravel/framework": "5.7.*",
+                "orchestra/testbench": "3.7.*",
+                "phpunit/phpunit": "7.3.*",
                 "squizlabs/php_codesniffer": "^2.3"
             },
             "type": "library",
@@ -66,7 +66,7 @@
                 "package",
                 "validation"
             ],
-            "time": "2018-09-19T06:18:38+00:00"
+            "time": "2018-09-25T17:41:57+00:00"
         },
         {
             "name": "beyondcode/laravel-self-diagnosis",
@@ -131,16 +131,16 @@
         },
         {
             "name": "binarytorch/larecipe",
-            "version": "v1.2.4",
+            "version": "v1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saleem-hadad/larecipe.git",
-                "reference": "da14a39b070f8474aaee03b8dbd50ebed78c4e82"
+                "reference": "5db87b4b208ea53e57fe6e335b493af359a5abc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saleem-hadad/larecipe/zipball/da14a39b070f8474aaee03b8dbd50ebed78c4e82",
-                "reference": "da14a39b070f8474aaee03b8dbd50ebed78c4e82",
+                "url": "https://api.github.com/repos/saleem-hadad/larecipe/zipball/5db87b4b208ea53e57fe6e335b493af359a5abc4",
+                "reference": "5db87b4b208ea53e57fe6e335b493af359a5abc4",
                 "shasum": ""
             },
             "require": {
@@ -150,7 +150,7 @@
                 "symfony/dom-crawler": "^4.1"
             },
             "require-dev": {
-                "laravel/framework": "~5.5.0|~5.6.0",
+                "laravel/framework": "~5.4.0|~5.5.0|~5.6.0|~5.7.0",
                 "orchestra/testbench": "~3.4.0|~3.5.0|~3.6.0",
                 "phpunit/phpunit": "~7.0"
             },
@@ -185,7 +185,7 @@
                 "laravel",
                 "markdown"
             ],
-            "time": "2018-09-23T03:03:48+00:00"
+            "time": "2018-09-25T18:50:14+00:00"
         },
         {
             "name": "chelout/laravel-relationship-events",
@@ -511,16 +511,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.5",
+            "version": "2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "54859fabea8b3beecbb1a282888d5c990036b9e3"
+                "reference": "0578b32b30b22de3e8664f797cf846fc9246f786"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/54859fabea8b3beecbb1a282888d5c990036b9e3",
-                "reference": "54859fabea8b3beecbb1a282888d5c990036b9e3",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/0578b32b30b22de3e8664f797cf846fc9246f786",
+                "reference": "0578b32b30b22de3e8664f797cf846fc9246f786",
                 "shasum": ""
             },
             "require": {
@@ -564,7 +564,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2018-08-16T20:49:45+00:00"
+            "time": "2018-09-25T20:47:26+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -929,16 +929,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.5",
+            "version": "v5.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ddb87a87471b452456fbbe1365e1b9ae55483515"
+                "reference": "93e761bb5367166ce98ba908d5eb0edd6be76792"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ddb87a87471b452456fbbe1365e1b9ae55483515",
-                "reference": "ddb87a87471b452456fbbe1365e1b9ae55483515",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/93e761bb5367166ce98ba908d5eb0edd6be76792",
+                "reference": "93e761bb5367166ce98ba908d5eb0edd6be76792",
                 "shasum": ""
             },
             "require": {
@@ -1066,7 +1066,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-09-20T14:03:45+00:00"
+            "time": "2018-09-25T14:29:00+00:00"
         },
         {
             "name": "laravel/tinker",

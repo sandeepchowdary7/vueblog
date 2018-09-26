@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Providers;
-
+use App\Professor;
+use App\Observers\ProfessorRollNumberObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Professor::observe(ProfessorRollNumberObserver::class);
     }
 
     /**
