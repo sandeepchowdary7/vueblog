@@ -2,8 +2,6 @@
 
 namespace App\Observers;
 use App\Professor;
-use DB;
-use Illuminate\Support\Facades\Input;
 
 class ProfessorRollNumberObserver
 {
@@ -13,24 +11,16 @@ class ProfessorRollNumberObserver
      * @param  \App\Professor  $professor
      * @return void
      */
-    public function created($id)
+    public function created($professor)
     {
-        $professor = Professor::findOrFail($id);
-        $professor->first_name = Input::get('first_name');
-        $professor->last_name = Input::get('last_name');
-        $professor->dob =  Input::get('dob');
-
         $firstNameLetter = substr($professor->first_name, 0, 1);
         $lastNameLetter = substr( $professor->last_name, 0, 1);
         $dateOfBirth = substr($professor->dob, 0,4);
+        $rollNumber = strtoupper($firstNameLetter) . strtolower($lastNameLetter) . '@' . $dateOfBirth;
 
-        $rollNumber = $firstNameLetter . $lastNameLetter . '@' . $dateOfBirth;
-
-        $professor->created(['roll_number'  => $rollNumber]);
-        // dd($professor);
-    
-        // ->save();
-        // dd($result);
+        $professor->update([
+            'roll_number' => $rollNumber,
+        ]);
     }
 
     /**

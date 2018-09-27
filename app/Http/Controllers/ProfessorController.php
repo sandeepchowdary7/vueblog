@@ -63,7 +63,7 @@ class ProfessorController extends Controller
 		$professor = new Professor;
 		$professor->first_name =  Input::get('first_name');
 		$professor->middle_name =  Input::get('middle_name');
-		$professor->last_name =  Input::get('last_name');
+        $professor->last_name =  Input::get('last_name');
 		$professor->gender =  Input::get('gender');
 		$professor->dob =  Input::get('dob');
 		$professor->email =  Input::get('email');
@@ -138,7 +138,7 @@ class ProfessorController extends Controller
 			'Id' => $professor->id,
 			'First Name' => $professor->first_name,
 			'Middle Name' => $professor->middle_name,
-			'Last Name' => $professor->last_name,
+            'Last Name' => $professor->last_name,
 			'Roll Num' => $professor->roll_number,
 			'Gender' => $professor->gender,
 			'Date of Birth' => $professor->dob,
