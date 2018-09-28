@@ -79,9 +79,9 @@ class ProfessorController extends Controller
      * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function show($Id)
+    public function show($id)
     {
-	   $professor = Professor::findOrFail($Id);
+	   $professor = Professor::findOrFail($id);
 	   
 	   return $this->ResultFormatter($professor);
     }
@@ -95,7 +95,7 @@ class ProfessorController extends Controller
      */
     public function update(Request $request, $id)
     {
-		$professor = Album::findOrFail($id);
+		$professor = Professor::findOrFail($id);
 		
 		$professor = new Professor;
         $professor->first_name = $request['first_name'];
