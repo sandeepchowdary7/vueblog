@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\CourseYear;
 use Illuminate\Http\Request;
 
@@ -14,7 +13,13 @@ class CourseYearController extends Controller
      */
     public function index()
     {
-        //
+        $courseYears = CourseYear::all();
+        $result = [];
+
+        foreach ($courseYears as $courseYear) {
+            $result [] = $this->ResultFormatter($courseYear);
+        }
+        return $result;
     }
 
     /**
@@ -24,7 +29,7 @@ class CourseYearController extends Controller
      */
     public function create()
     {
-        //
+        // return view('courseYear.create');
     }
 
     /**
@@ -35,7 +40,17 @@ class CourseYearController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            	'year'   =>  'required|year',
+        ]);
+        // CourseYear::create($request->all());
+        // return redirect()->route('courseYears.index')
+        //                 ->with('success','courseYear created successfully.');
+
+        $courseYear = new CourseYear;
+        $courseYear->year =  Input::get('year');
+        
+        $courseYear->save();
     }
 
     /**
@@ -44,20 +59,11 @@ class CourseYearController extends Controller
      * @param  \App\CourseYear  $courseYear
      * @return \Illuminate\Http\Response
      */
-    public function show(CourseYear $courseYear)
+    public function show($id)
     {
-        //
-    }
+        $courseYear = CourseYear::findOrFail();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\CourseYear  $courseYear
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CourseYear $courseYear)
-    {
-        //
+        return $this->ResultFormatter($courseYear);
     }
 
     /**
@@ -69,7 +75,12 @@ class CourseYearController extends Controller
      */
     public function update(Request $request, CourseYear $courseYear)
     {
-        //
+        $courseYear = CourseYear::findOrFail($id);
+
+        $courseYear = new CourseYear;
+        $courseYear->year =  Input::get('year');
+        
+        $courseYear->save();
     }
 
     /**
@@ -80,6 +91,24 @@ class CourseYearController extends Controller
      */
     public function destroy(CourseYear $courseYear)
     {
-        //
+        $courseYear = CourseYear::findOrFail($id);
+	    $courseYear->delete();
+
+		return response()->json([
+			"message" => "Success"
+		]);
     }
+
+    /**
+     * Give you the specific reponse from resource.
+     *
+     * @param  \App\CourseYear  $courseYear
+     * @return \Illuminate\Http\Response
+     */
+    protected function ResultFormatter($courseYear) {
+		return [
+			'Id' => $courseYear->id,
+			'Year' => $courseYear->year
+		];
+	}
 }
