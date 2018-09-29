@@ -61,7 +61,7 @@ class CourseYearController extends Controller
      */
     public function show($id)
     {
-        $courseYear = CourseYear::findOrFail();
+        $courseYear = CourseYear::findOrFail($id);
 
         return $this->ResultFormatter($courseYear);
     }
@@ -69,11 +69,10 @@ class CourseYearController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\CourseYear  $courseYear
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CourseYear $courseYear)
+    public function update($id)
     {
         $courseYear = CourseYear::findOrFail($id);
 

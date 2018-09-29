@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\CourseGroup;
 use Illuminate\Http\Request;
 
@@ -14,7 +13,13 @@ class CourseGroupController extends Controller
      */
     public function index()
     {
-        //
+        $courseGroup = CourseGroup::all();
+        $result = [];
+
+        foreach ($courseGroups as $courseGroup) {
+            $result [] = $this->ResultFormatter($courseGroup);
+        }
+        return $result;
     }
 
     /**
@@ -35,7 +40,17 @@ class CourseGroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $validator = Validator::make($request->all(), [
+            	'group_name'   =>  'required',
+        ]);
+        // CourseGroup::create($request->all());
+        // return redirect()->route('courseGroups.index')
+        //                 ->with('success','courseGroup created successfully.');
+
+        $courseGroup = new CourseGroup;
+        $courseGroup->group_name =  Input::get('group_name');
+        
+        $courseGroup->save();
     }
 
     /**
@@ -44,20 +59,11 @@ class CourseGroupController extends Controller
      * @param  \App\CourseGroup  $courseGroup
      * @return \Illuminate\Http\Response
      */
-    public function show(CourseGroup $courseGroup)
+    public function show($id)
     {
-        //
-    }
+        $courseGroup = CourseGroup::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\CourseGroup  $courseGroup
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CourseGroup $courseGroup)
-    {
-        //
+        return $this->ResultFormatter($courseGroup);
     }
 
     /**
@@ -67,9 +73,13 @@ class CourseGroupController extends Controller
      * @param  \App\CourseGroup  $courseGroup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CourseGroup $courseGroup)
+    public function update($id)
     {
-        //
+        $courseGroup = CourseGroup::findOrFail($id);
+
+        $courseGroup = new CourseGroup;
+        $courseGroup->group_name =  Input::get('group_name');
+        $courseGroup->save();
     }
 
     /**
@@ -78,8 +88,26 @@ class CourseGroupController extends Controller
      * @param  \App\CourseGroup  $courseGroup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CourseGroup $courseGroup)
+    public function destroy($id)
     {
-        //
+        $courseGroup = CourseGroup::findOrFail($id);
+        $courseGroup->delete();
+
+        return response()->json([
+			"message" => "Success"
+		]);
     }
+
+     /**
+     * Give you the specific reponse from resource.
+     *
+     * @param  \App\CourseGroup  $courseGroup
+     * @return \Illuminate\Http\Response
+     */
+    protected function ResultFormatter($courseGroup) {
+		return [
+			'Id' => $courseGroup->id,
+			'Year' => $courseGroup->group_name
+		];
+	}
 }
