@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\CourseGroup;
 use Illuminate\Http\Request;
+use Validator;
 
 class CourseGroupController extends Controller
 {

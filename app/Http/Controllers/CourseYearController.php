@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\CourseYear;
 use Illuminate\Http\Request;
+use Validator;
 
 class CourseYearController extends Controller
 {
