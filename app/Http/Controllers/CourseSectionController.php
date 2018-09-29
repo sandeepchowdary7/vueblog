@@ -18,7 +18,7 @@ class CourseSectionController extends Controller
         $result = [];
 
         foreach ($courseSections as $courseSection) {
-            $result = $this->ResultFormmater($courseSection);
+            $result []= $this->ResultFormmater($courseSection);
         }
         return $result;
     }
@@ -109,7 +109,7 @@ class CourseSectionController extends Controller
     protected function ResultFormatter($courseSection) {
 		return [
 			'Id' => $courseSection->id,
-			'Year' => $courseSection->section_name
+			'Section Name' => $courseSection->section_name
 		];
 	}
 }
