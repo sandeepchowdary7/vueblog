@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\CourseSection;
 use Illuminate\Http\Request;
+use Validator;
 
 class CourseSectionController extends Controller
 {
@@ -14,7 +14,13 @@ class CourseSectionController extends Controller
      */
     public function index()
     {
-        //
+        $courseSections = CourseSection::all();
+        $result = [];
+
+        foreach ($courseSections as $courseSection) {
+            $result = $this->ResultFormmater($courseSection);
+        }
+        return $result;
     }
 
     /**
@@ -35,7 +41,17 @@ class CourseSectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'section_name'   =>  'required'
+        ]);
+        // CourseYear::create($request->all());
+        // return redirect()->route('courseSection.index')
+        //                 ->with('success','courseSection created successfully.');
+
+        $courseSection = new CourseSection;
+        $courseSection->section_name =  Input::get('section_name');
+        
+        $courseSection->save();
     }
 
     /**
@@ -44,20 +60,11 @@ class CourseSectionController extends Controller
      * @param  \App\CourseSection  $courseSection
      * @return \Illuminate\Http\Response
      */
-    public function show(CourseSection $courseSection)
+    public function show($id)
     {
-        //
-    }
+       $courseSection = CourseSection::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\CourseSection  $courseSection
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CourseSection $courseSection)
-    {
-        //
+       return $this->ResultFormatter($courseSection);
     }
 
     /**
@@ -67,9 +74,14 @@ class CourseSectionController extends Controller
      * @param  \App\CourseSection  $courseSection
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CourseSection $courseSection)
+    public function update(Request $request, $id)
     {
-        //
+       $courseSection =  CourseSection::findOrFail($id);
+
+       $courseSection = new CourseSection;
+       $courseSection->section_name = $request('section_name');
+
+       $courseSection->update();
     }
 
     /**
@@ -78,8 +90,26 @@ class CourseSectionController extends Controller
      * @param  \App\CourseSection  $courseSection
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CourseSection $courseSection)
+    public function destroy($id)
     {
-        //
+       $courseSection = CourseSection::findOrFail($id);
+       $courseSection->delete();
+
+       return response()->json([
+        "message" => "Success"
+    ]);
     }
+
+     /**
+     * Give you the specific reponse from resource.
+     *
+     * @param  \App\CourseSection  $courseSection
+     * @return \Illuminate\Http\Response
+     */
+    protected function ResultFormatter($courseSection) {
+		return [
+			'Id' => $courseSection->id,
+			'Year' => $courseSection->section_name
+		];
+	}
 }
