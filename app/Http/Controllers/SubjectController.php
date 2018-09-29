@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Subject;
 use Illuminate\Http\Request;
+use Validator;
 
 class SubjectController extends Controller
 {
@@ -14,7 +14,12 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subjects = Subject::all();
+        $result = [];
+
+        foreach ($subjects as $subject) {
+            $result [] = $this->ResultFormatter($subject);
+        }
     }
 
     /**
@@ -35,7 +40,17 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'subject_name'   =>  'required'
+        ]);
+        // Subject::create($request->all());
+        // return redirect()->route('subject.index')
+        //                 ->with('success','subject created successfully.');
+
+        $subject = new Subject;
+        $subject->subject_name =  Input::get('subject_name');
+        
+        $subject->save();
     }
 
     /**
@@ -44,20 +59,11 @@ class SubjectController extends Controller
      * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function show(Subject $subject)
+    public function show($id)
     {
-        //
-    }
+       $subject = Subject::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Subject  $subject
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Subject $subject)
-    {
-        //
+       return $this->ResultFormatter($subject);
     }
 
     /**
@@ -67,9 +73,14 @@ class SubjectController extends Controller
      * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subject $subject)
+    public function update(Request $request, $id)
     {
-        //
+       $subject = Subject::findOrFail($id);
+
+       $subject = new Subject;
+       $subject->subject_name = $request('subject_name');
+
+       $subject->update();
     }
 
     /**
@@ -78,8 +89,26 @@ class SubjectController extends Controller
      * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subject $subject)
+    public function destroy($id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+        $subject->delete();
+
+        return response()->json([
+            "message" => "Success"
+        ]);
     }
+
+     /**
+     * Give you the specific reponse from resource.
+     *
+     * @param  \App\Subject  $subject
+     * @return \Illuminate\Http\Response
+     */
+    protected function ResultFormatter($subject) {
+		return [
+			'Id' => $subject->id,
+			'Subject Name' => $subject->subject_name
+		];
+	}
 }
