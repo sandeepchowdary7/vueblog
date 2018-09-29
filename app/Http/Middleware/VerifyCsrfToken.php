@@ -20,6 +20,10 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         '/professor',
         '/professorDetail',
-        '/courseYear'
+        '/student',
+        '/courseYear',
+        '/courseGroup',
+        '/courseSection',
+        '/subject'
     ];
 }
