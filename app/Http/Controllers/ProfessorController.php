@@ -135,16 +135,16 @@ class ProfessorController extends Controller
      */
     protected function ResultFormatter($professor) {
 		return [
-			'Id' => $professor->id,
-			'First Name' => $professor->first_name,
-			'Middle Name' => $professor->middle_name,
-            'Last Name' => $professor->last_name,
-			'Roll Num' => $professor->roll_number,
-			'Gender' => $professor->gender,
-			'Date of Birth' => $professor->dob,
-			'Email' => $professor->email,
+			'Id'                      => $professor->id,
+			'First Name'       => $professor->first_name,
+			'Middle Name'   => $professor->middle_name,
+            'Last Name'        => $professor->last_name,
+			'Roll Num'         => $professor->roll_number,
+			'Gender'             => $professor->gender,
+			'Date of Birth'    => $professor->dob,
+			'Email'               => $professor->email,
 			'Phone Number' => $professor->phone_number,
-			'Address' => $professor->address
+            'Address'            => $professor->address
 		];
 	}
 }
