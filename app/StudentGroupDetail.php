@@ -19,48 +19,48 @@ class StudentGroupDetail extends Model
     /**
      * Get the students for the StudentGroupDetail.
      */
-    public function students()
+    public function student()
     {
-        return $this->hasMany('App\Student');
+        return $this->belongsTo('App\Student');
     }
 
     /**
      * Get the course_years for the StudentGroupDetail.
      */
-    public function course_years()
+    public function course_year()
     {
-        return $this->hasMany('App\CourseYear');
+        return $this->belongsTo('App\CourseYear');
     }
 
     /**
      * Get the course_groups for the StudentGroupDetail.
      */
-    public function course_groups()
+    public function course_group()
     {
-        return $this->hasMany('App\CourseGroup');
+        return $this->belongsTo('App\CourseGroup');
     }
 
     /**
      * Get the course_sections for the StudentGroupDetail.
      */
-    public function course_sections()
+    public function course_section()
     {
-        return $this->hasMany('App\CourseSection');
+        return $this->belongsTo('App\CourseSection');
     }
 
     /**
      * Get the subjects for the StudentGroupDetail.
      */
-    public function subjects()
+    public function subject()
     {
-        return $this->hasMany('App\Subject');
+        return $this->belongsTo('App\Subject');
     }
 
     /**
      * Get the professors for the StudentGroupDetail.
      */
-    public function professors()
+    public function professor()
     {
-        return $this->hasMany('App\Professor');
+        return $this->belongsTo('App\Professor');
     }
 }

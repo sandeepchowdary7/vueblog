@@ -22,3 +22,4 @@ Route::resource('/courseYear', 'CourseYearController');
 Route::resource('/courseGroup', 'CourseGroupController');
 Route::resource('/courseSection', 'CourseSectionController');
 Route::resource('/subject', 'SubjectController');
+Route::resource('/StudentGroupDetail', 'StudentGroupDetailController');
