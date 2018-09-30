@@ -132,7 +132,26 @@ class StudentGroupDetailController extends Controller
                 'Id'                        => $studentGroupDetail->course_year->id,
                 'Course Year'        => $studentGroupDetail->course_year->year,
             ],
-
+            [
+                'Id' => $studentGroupDetail->professor->id,
+                'First Name' => $studentGroupDetail->professor->first_name,
+                'Middle Name' => $studentGroupDetail->professor->middle_name,
+                'Last Name' => $studentGroupDetail->professor->last_name,
+                'Roll Num' => $studentGroupDetail->professor->roll_number,
+                'Gender' => $studentGroupDetail->professor->gender,
+                'Date of Birth' => $studentGroupDetail->professor->dob,
+                'Email' => $studentGroupDetail->professor->email,
+                'Phone Number' => $studentGroupDetail->professor->phone_number,
+                'Address' => $studentGroupDetail->professor->address,
+                // [ 
+                //     'Id' => $studentGroupDetail->professor->professorDetail->id,
+                //     'role' => $studentGroupDetail->professor->professorDetail->role,
+                //     'salary' => $studentGroupDetail->professor->professorDetail->salary,
+                //     'is_active' => $studentGroupDetail->professor->professorDetail->is_active,
+                //     'joined_on' => $studentGroupDetail->professor->professorDetail->joined_on,
+                //     'resigned_at' => $studentGroupDetail->professor->professorDetail->resigned_at
+                // ],
+            ]
 		];
 	}
 }
