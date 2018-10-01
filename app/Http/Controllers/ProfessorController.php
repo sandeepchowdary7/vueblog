@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Professor;
+use App\ProfessorDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Validator;
@@ -17,7 +18,7 @@ class ProfessorController extends Controller
     {
         $professors = Professor::all();
         $result = [ ];
-
+        
         foreach ($professors as  $professor) {
             $result [ ] = $this->ResultFormatter($professor);
         }
@@ -144,7 +145,15 @@ class ProfessorController extends Controller
 			'Date of Birth'    => $professor->dob,
 			'Email'               => $professor->email,
 			'Phone Number' => $professor->phone_number,
-            'Address'            => $professor->address
+            'Address'            => $professor->address,
+            // [ 
+            //     'Id' => $professor->professor_detail->id,
+            //     'role' => $professor->professor_detail->role,
+            //     'salary' => $professor->professor_detail->salary,
+            //     'is_active' => $professor->professor_detail->is_active,
+            //     'joined_on' => $professor->professor_detail->joined_on,
+            //     'resigned_at' => $professor->professor_detail->resigned_at
+            // ]
 		];
 	}
 }
