@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 use App\Professor;
+use App\Student;
 use App\Observers\ProfessorRollNumberObserver;
+use App\Observers\StudentRollNumberObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Professor::observe(ProfessorRollNumberObserver::class);
+        Professor::observe(StudentRollNumberObserver::class);
     }
 
     /**
