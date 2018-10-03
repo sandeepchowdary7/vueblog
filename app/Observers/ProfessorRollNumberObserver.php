@@ -16,7 +16,7 @@ class ProfessorRollNumberObserver
         $firstNameLetter = substr($professor->first_name, 0, 1);
         $lastNameLetter = substr( $professor->last_name, 0, 1);
         $dateOfBirth = substr($professor->dob, 0,4);
-        $rollNumber = strtoupper($firstNameLetter) . strtolower($lastNameLetter) . '@' . $dateOfBirth;
+        $rollNumber = strtoupper($firstNameLetter) . strtolower($lastNameLetter) . '@' . $dateOfBirth . chr(65 + rand(0, 25));
 
         $professor->update([
             'roll_number' => $rollNumber,
