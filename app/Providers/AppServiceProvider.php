@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Professor::observe(ProfessorRollNumberObserver::class);
-        Professor::observe(StudentRollNumberObserver::class);
+        Student::observe(StudentRollNumberObserver::class);
     }
 
     /**
