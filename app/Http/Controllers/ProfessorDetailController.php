@@ -138,11 +138,11 @@ class ProfessorDetailController extends Controller
             'Address' => $professorDetail->professor->address,
             [ 
                 'Id' => $professorDetail->id,
-                'role' => $professorDetail->role,
-                'salary' => $professorDetail->salary,
-                'is_active' => $professorDetail->is_active,
-                'joined_on' => $professorDetail->joined_on,
-                'resigned_at' => $professorDetail->resigned_at
+                'Role' =>  $professorDetail->Role,
+                'Salary' => $professorDetail->salary,
+                'Is_active' => $professorDetail->is_active,
+                'Joined On' => $professorDetail->joined_on,
+                'Resigned At' => $professorDetail->resigned_at
             ]
 		];
 	}
