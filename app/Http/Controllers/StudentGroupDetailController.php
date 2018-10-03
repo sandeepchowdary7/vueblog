@@ -50,21 +50,11 @@ class StudentGroupDetailController extends Controller
      * @param  \App\StudentGroupDetail  $studentGroupDetail
      * @return \Illuminate\Http\Response
      */
-    public function show($studentId)
+    public function show($id)
     {
-        // $student = StudentGroupDetail::where('student_id', $studentId)->get();
-        // dd($student);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\StudentGroupDetail  $studentGroupDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(StudentGroupDetail $studentGroupDetail)
-    {
-        //
+        $studentGroupDetail = StudentGroupDetail::findOrFail($id);
+       
+        return $this->ResultFormatter($studentGroupDetail);
     }
 
     /**
@@ -85,9 +75,14 @@ class StudentGroupDetailController extends Controller
      * @param  \App\StudentGroupDetail  $studentGroupDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StudentGroupDetail $studentGroupDetail)
+    public function destroy($id)
     {
-        //
+        $studentGroupDetail = StudentGroupDetail::findOrFail($id);
+        $studentGroupDetail->delete();
+ 
+         return response()->json([
+             "message" => "Success"
+         ]);
     }
 
      /**
@@ -143,14 +138,14 @@ class StudentGroupDetailController extends Controller
                 'Email' => $studentGroupDetail->professor->email,
                 'Phone Number' => $studentGroupDetail->professor->phone_number,
                 'Address' => $studentGroupDetail->professor->address,
-                // [ 
-                //     'Id' => $studentGroupDetail->professor->professorDetail->id,
-                //     'role' => $studentGroupDetail->professor->professorDetail->role,
-                //     'salary' => $studentGroupDetail->professor->professorDetail->salary,
-                //     'is_active' => $studentGroupDetail->professor->professorDetail->is_active,
-                //     'joined_on' => $studentGroupDetail->professor->professorDetail->joined_on,
-                //     'resigned_at' => $studentGroupDetail->professor->professorDetail->resigned_at
-                // ],
+                [ 
+                    'Id' => $studentGroupDetail->professor->professor_detail->id,
+                    'Role' => $studentGroupDetail->professor->professor_detail->Role,
+                    'Salary' => $studentGroupDetail->professor->professor_detail->salary,
+                    'Is_active' => $studentGroupDetail->professor->professor_detail->is_active,
+                    'Joined On' => $studentGroupDetail->professor->professor_detail->joined_on,
+                    'Resigned At' => $studentGroupDetail->professor->professor_detail->resigned_at
+                ],
             ]
 		];
 	}
