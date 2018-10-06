@@ -713,16 +713,16 @@
         },
         {
             "name": "freshbitsweb/laratables",
-            "version": "v1.0.9",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/freshbitsweb/laratables.git",
-                "reference": "9c511c9d5795c9853c45052322ff86b106397745"
+                "reference": "5528864b1d15696bf75169d7122831c2b8ab0b02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/freshbitsweb/laratables/zipball/9c511c9d5795c9853c45052322ff86b106397745",
-                "reference": "9c511c9d5795c9853c45052322ff86b106397745",
+                "url": "https://api.github.com/repos/freshbitsweb/laratables/zipball/5528864b1d15696bf75169d7122831c2b8ab0b02",
+                "reference": "5528864b1d15696bf75169d7122831c2b8ab0b02",
                 "shasum": ""
             },
             "require": {
@@ -756,7 +756,7 @@
                 }
             ],
             "description": "Ajax support of DataTables for Laravel 5.5+",
-            "time": "2018-09-22T04:21:46+00:00"
+            "time": "2018-10-06T07:39:43+00:00"
         },
         {
             "name": "fzaninotto/faker",
