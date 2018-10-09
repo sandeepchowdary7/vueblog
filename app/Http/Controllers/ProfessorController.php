@@ -43,23 +43,17 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     { 
-		// $validator = Validator::make($request->all(), [
-		// 			'first_name'            =>  'required|max:20',
-		// 			'middle_name'       =>  'required|max:20',
-		// 			'last_name'            =>   'required|max:20',
-		// 			'roll_number'        =>   'required|unique',
-		// 			'gender'              	 =>   'required',
-		// 			'dob'                     =>   'required|date',
-		// 			'email'                  =>   'required|unique',
-		// 			'phone_number'   =>   'required|digits:15',
-		// 			'address'               =>   'required|max:300'
-		// ]);
-
-		// if ($validator->fails()) {
-        //     return redirect('/professor')
-        //                 ->withErrors($validator)
-        //                 ->withInput();
-        // }
+		$this->validate($request, [
+					'first_name'            =>  'required|max:20',
+					'middle_name'       =>  'required|max:20',
+					'last_name'            =>   'required|max:20',
+					'roll_number'        =>   'required|unique',
+					'gender'              	 =>   'required',
+					'dob'                     =>   'required|date',
+					'email'                  =>   'required|unique',
+					'phone_number'   =>   'required|digits:15',
+					'address'               =>   'required|max:300'
+		]);
 		
 		$professor = new Professor;
 		$professor->first_name =  Input::get('first_name');
