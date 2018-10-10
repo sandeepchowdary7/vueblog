@@ -52,8 +52,7 @@
                         <div class="modal-body">
                             
                             <div class="form-group">
-                                <input v-model="form.firstname" type="text" name="firstname"
-                                    placeholder = "First Name"
+                                <input placeholder = "First Name"  type="text" name="firstname"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('firstname') }">
                                 <has-error :form="form" field="firstname"></has-error>
                             </div>
@@ -70,6 +69,13 @@
                                     placeholder = "User Name"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('username') }">
                                 <has-error :form="form" field="username"></has-error>
+                            </div>
+
+                             <div class="form-group">
+                                <input  type="password" name="password"
+                                    placeholder = "Password"
+                                    class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
+                                <has-error :form="form" field="password"></has-error>
                             </div>
 
                             <div class="form-group">
@@ -97,13 +103,6 @@
                                 <has-error :form="form" field="bio"></has-error>
                             </div>
 
-                            <div class="form-group">
-                                <input v-model="form.password" type="password" name="password"
-                                    placeholder = "Password"
-                                    class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
-                                <has-error :form="form" field="password"></has-error>
-                            </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -120,14 +119,14 @@
         data () {
             return {
                 form: new Form ({
-                    firstname: ' ',
-                    lastname: ' ',
-                    email: ' ',
-                    username: ' ',
-                    password: ' ',
-                    type: ' ',
-                    bio: ' ',
-                    photo: ' '
+                    firstname: '',
+                    lastname: '',
+                    email: '',
+                    username: '',
+                    password: '',
+                    type: '',
+                    bio: '',
+                    photo: ''
                 })
             }
         },

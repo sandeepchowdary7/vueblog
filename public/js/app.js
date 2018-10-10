@@ -51340,20 +51340,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             form: new Form({
-                firstname: ' ',
-                lastname: ' ',
-                email: ' ',
-                username: ' ',
-                password: ' ',
-                type: ' ',
-                bio: ' ',
-                photo: ' '
+                firstname: '',
+                lastname: '',
+                email: '',
+                username: '',
+                password: '',
+                type: '',
+                bio: '',
+                photo: ''
             })
         };
     },
@@ -51402,29 +51401,12 @@ var render = function() {
                   { staticClass: "form-group" },
                   [
                     _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.firstname,
-                          expression: "form.firstname"
-                        }
-                      ],
                       staticClass: "form-control",
                       class: { "is-invalid": _vm.form.errors.has("firstname") },
                       attrs: {
+                        placeholder: "First Name",
                         type: "text",
-                        name: "firstname",
-                        placeholder: "First Name"
-                      },
-                      domProps: { value: _vm.form.firstname },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "firstname", $event.target.value)
-                        }
+                        name: "firstname"
                       }
                     }),
                     _vm._v(" "),
@@ -51506,6 +51488,27 @@ var render = function() {
                     _vm._v(" "),
                     _c("has-error", {
                       attrs: { form: _vm.form, field: "username" }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("input", {
+                      staticClass: "form-control",
+                      class: { "is-invalid": _vm.form.errors.has("password") },
+                      attrs: {
+                        type: "password",
+                        name: "password",
+                        placeholder: "Password"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", {
+                      attrs: { form: _vm.form, field: "password" }
                     })
                   ],
                   1
@@ -51646,44 +51649,6 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("has-error", { attrs: { form: _vm.form, field: "bio" } })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "form-group" },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.password,
-                          expression: "form.password"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.form.errors.has("password") },
-                      attrs: {
-                        type: "password",
-                        name: "password",
-                        placeholder: "Password"
-                      },
-                      domProps: { value: _vm.form.password },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "password", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form, field: "password" }
-                    })
                   ],
                   1
                 )
