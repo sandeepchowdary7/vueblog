@@ -46,12 +46,12 @@ class ProfessorController extends Controller
 		$valid = $this->validate($request, [
 					'first_name'            =>  'required|max:20',
 					'middle_name'       =>  'required|max:20',
-					'last_name'            =>   'required|max:20',
-					'gender'              	 =>   'required',
-					'dob'                     =>   'required|date',
-					'email'                  =>   'required|unique',
-					'phone_number'   =>   'required',
-					'address'               =>   'required|max:300'
+					'last_name'             =>   'required|max:20',
+					'gender'              	  =>   'required',
+					'dob'                       =>   'required|date',
+					'email'                    =>   'required',
+					'phone_number'     =>   'required',
+					'address'                 =>   'required|max:300'
 		]);
         
 		$professor = new Professor;
