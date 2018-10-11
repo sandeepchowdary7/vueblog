@@ -6,7 +6,7 @@
                 <h3 class="card-title">Users Table</h3>
 
                 <div class="card-tools">
-                    <button class="btn btn-success" data-toggle="modal" data-target="#addUser">Add User <i class="fa fa-user-plus fa-fw"></i></button>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#addUser">Add Professor <i class="fa fa-user-plus fa-fw"></i></button>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -20,9 +20,9 @@
                     <th>Reason</th>
                   </tr>
                   <tr>
-                    <td>183</td>
-                    <td>John Doe</td>
-                    <td>11-7-2014</td>
+                    <td>100</td>
+                    <td>Sandeep K</td>
+                    <td>10-10-2018</td>
                     <td><span class="tag tag-success">Modify</span></td>
                     <td>
                         <a href="#">
@@ -44,12 +44,12 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addUserLabel">Add User</h5>
+                            <h5 class="modal-title" id="addUserLabel">Add Professor</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form @submit.prevent="createUser">
+                        <form @submit="createProfessor">
                             <div class="modal-body">
                                 
                                 <div class="form-group">
@@ -59,10 +59,26 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <input placeholder = "Middle Name"  type="text" name="middlename"
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('middlename') }">
+                                    <has-error :form="form" field="middlename"></has-error>
+                                </div>
+
+                                <div class="form-group">
                                     <input v-model="form.lastname" type="text" name="lastname"
                                         placeholder = "Last Name"
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('lastname') }">
                                     <has-error :form="form" field="lastname"></has-error>
+                                </div>
+
+                                <div class="form-group">
+                                    <select v-model="form.gender" id="gender" name="gender"
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('gender') }">
+                                        <option value="" selected>Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                    <has-error :form="form" field="gender"></has-error>
                                 </div>
 
                                 <div class="form-group">
@@ -122,19 +138,20 @@
             return {
                 form: new Form ({
                     firstname: '',
+                    middlename: '',
                     lastname: '',
+                    gender: '',
+                    dob: '',
                     email: '',
-                    username: '',
-                    password: '',
-                    type: '',
-                    bio: '',
+                    phone_number: '',
+                    address: '',
                     photo: ''
                 })
             }
         },
         methods: {
-            createUser () {
-                 this.form.post('/user')
+            createProfessor() {
+                    this.form.post('/professor')
                         .then(({ data }) => { console.log(data) })
             }
         },
