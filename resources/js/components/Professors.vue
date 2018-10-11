@@ -53,22 +53,22 @@
                             <div class="modal-body">
                                 
                                 <div class="form-group">
-                                    <input placeholder = "First Name"  type="text" name="firstname"
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('firstname') }">
-                                    <has-error :form="form" field="firstname"></has-error>
+                                    <input v-model="form.first_name" placeholder = "First Name"  type="text" name="firstName"
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('first_name') }">
+                                    <has-error :form="form" field="first_name"></has-error>
                                 </div>
 
                                 <div class="form-group">
-                                    <input placeholder = "Middle Name"  type="text" name="middlename"
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('middlename') }">
-                                    <has-error :form="form" field="middlename"></has-error>
+                                    <input v-model="form.middle_name" placeholder = "Middle Name"  type="text" name="middleName"
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('middle_name') }">
+                                    <has-error :form="form" field="middle_name"></has-error>
                                 </div>
 
                                 <div class="form-group">
-                                    <input v-model="form.lastname" type="text" name="lastname"
+                                    <input v-model="form.last_name" type="text" name="lastName"
                                         placeholder = "Last Name"
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('lastname') }">
-                                    <has-error :form="form" field="lastname"></has-error>
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('last_name') }">
+                                    <has-error :form="form" field="last_name"></has-error>
                                 </div>
 
                                 <div class="form-group">
@@ -77,47 +77,37 @@
                                         <option value="" selected>Select Gender</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
+                                        <option value="other">Other</option>
                                     </select>
                                     <has-error :form="form" field="gender"></has-error>
                                 </div>
 
                                 <div class="form-group">
-                                    <input v-model="form.username" type="text" name="username"
-                                        placeholder = "User Name"
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('username') }">
-                                    <has-error :form="form" field="username"></has-error>
-                                </div>
-
-                                <div class="form-group">
-                                    <input  type="password" name="password"
-                                        placeholder = "Password"
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
-                                    <has-error :form="form" field="password"></has-error>
+                                    <input v-model="form.dob" type="date" name="dob"
+                                        placeholder = "Date of Birth"
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('dob') }">
+                                    <has-error :form="form" field="dob"></has-error>
                                 </div>
 
                                 <div class="form-group">
                                     <input v-model="form.email" type="email" name="email"
-                                        placeholder = "Email Address" autocomplete="off" 
+                                        placeholder = "Email" autocomplete="off" 
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
                                     <has-error :form="form" field="email"></has-error>
                                 </div>
 
                                 <div class="form-group">
-                                    <select v-model="form.type" id="email" name="type"
-                                        placeholder = "type"
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('type') }">
-                                        <option value="" selected>Select User Role</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
-                                    </select>
-                                    <has-error :form="form" field="type"></has-error>
+                                    <input v-model="form.phone_number" type="tel" name="phoneNumber"
+                                        placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('phone_number') }">
+                                    <has-error :form="form" field="phone_number"></has-error>
                                 </div>
 
                                 <div class="form-group">
-                                    <textarea v-model="form.bio" name="bio" id="bio"
-                                    placeholder = "Short Bio for user (Optional)"
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
-                                    <has-error :form="form" field="bio"></has-error>
+                                    <textarea v-model="form.address" name="address" id="address"
+                                    placeholder = "Write Address" rows="4" cols="50"
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('address') }"></textarea>
+                                    <has-error :form="form" field="address"></has-error>
                                 </div>
 
                             </div>
@@ -137,22 +127,20 @@
         data () {
             return {
                 form: new Form ({
-                    firstname: '',
-                    middlename: '',
-                    lastname: '',
+                    first_name: '',
+                    middle_name: '',
+                    last_name: '',
                     gender: '',
                     dob: '',
                     email: '',
                     phone_number: '',
                     address: '',
-                    photo: ''
                 })
             }
         },
         methods: {
             createProfessor() {
-                    this.form.post('/professor')
-                        .then(({ data }) => { console.log(data) })
+                    this.form.post('/professor');
             }
         },
         mounted() {

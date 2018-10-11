@@ -1218,16 +1218,16 @@
         },
         {
             "name": "maatwebsite/excel",
-            "version": "3.1.1",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-                "reference": "7f2cdb5ac02401460c52e09ad64cdcd91c97732f"
+                "reference": "a80179c3f33d06fc0d7f22891d6aae4bb083f8c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/7f2cdb5ac02401460c52e09ad64cdcd91c97732f",
-                "reference": "7f2cdb5ac02401460c52e09ad64cdcd91c97732f",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/a80179c3f33d06fc0d7f22891d6aae4bb083f8c3",
+                "reference": "a80179c3f33d06fc0d7f22891d6aae4bb083f8c3",
                 "shasum": ""
             },
             "require": {
@@ -1280,7 +1280,7 @@
                 "php",
                 "phpspreadsheet"
             ],
-            "time": "2018-10-04T09:00:36+00:00"
+            "time": "2018-10-11T09:21:58+00:00"
         },
         {
             "name": "markbaker/complex",
@@ -2118,16 +2118,16 @@
         },
         {
             "name": "rennokki/befriended",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rennokki/befriended.git",
-                "reference": "8da9f63059afed9907a8104441ac14a208656ee8"
+                "reference": "d73a19c3f919974b5329657208b63b63e6760bd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rennokki/befriended/zipball/8da9f63059afed9907a8104441ac14a208656ee8",
-                "reference": "8da9f63059afed9907a8104441ac14a208656ee8",
+                "url": "https://api.github.com/repos/rennokki/befriended/zipball/d73a19c3f919974b5329657208b63b63e6760bd4",
+                "reference": "d73a19c3f919974b5329657208b63b63e6760bd4",
                 "shasum": ""
             },
             "require": {
@@ -2181,7 +2181,7 @@
                 "model",
                 "social"
             ],
-            "time": "2018-09-16T19:38:21+00:00"
+            "time": "2018-10-11T13:44:46+00:00"
         },
         {
             "name": "spatie/laravel-view-models",

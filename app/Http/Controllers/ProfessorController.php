@@ -43,18 +43,17 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     { 
-		$this->validate($request, [
+		$valid = $this->validate($request, [
 					'first_name'            =>  'required|max:20',
 					'middle_name'       =>  'required|max:20',
 					'last_name'            =>   'required|max:20',
-					'roll_number'        =>   'required|unique',
 					'gender'              	 =>   'required',
 					'dob'                     =>   'required|date',
 					'email'                  =>   'required|unique',
-					'phone_number'   =>   'required|digits:15',
+					'phone_number'   =>   'required',
 					'address'               =>   'required|max:300'
 		]);
-		
+        
 		$professor = new Professor;
 		$professor->first_name =  Input::get('first_name');
 		$professor->middle_name =  Input::get('middle_name');
@@ -64,8 +63,9 @@ class ProfessorController extends Controller
 		$professor->email =  Input::get('email');
 		$professor->phone_number = Input::get('phone_number');
 		$professor->address =  Input::get('address');
-		
         $professor->save();
+
+        return $professor;
     }
 
     /**
