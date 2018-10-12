@@ -16,15 +16,13 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        return $professors = Professor::paginate(30);
-
-        // $professors = Professor::all();
-        // $result = [ ];
+        $professors = Professor::all();
+        $result = [ ];
         
-        // foreach ($professors as  $professor) {
-        //     $result [ ] = $this->ResultFormatter($professor);
-        // }
-        // return $result;
+        foreach ($professors as  $professor) {
+            $result [ ] = $this->ResultFormatter($professor);
+        }
+        return $result;
     }
 
     /**
@@ -133,22 +131,24 @@ class ProfessorController extends Controller
     protected function ResultFormatter($professor) {
 		return [
 			'Id'                      => $professor->id,
-			'First Name'       => $professor->first_name,
-			'Middle Name'   => $professor->middle_name,
-            'Last Name'        => $professor->last_name,
-			'Roll Num'         => $professor->roll_number,
+			'FirstName'       => $professor->first_name,
+			'MiddleName'   => $professor->middle_name,
+            'LastName'        => $professor->last_name,
+			'RollNumber'     => $professor->roll_number,
 			'Gender'             => $professor->gender,
-			'Date of Birth'    => $professor->dob,
-			'Email'               => $professor->email,
-			'Phone Number' => $professor->phone_number,
+			'DateofBirth'      => $professor->dob,
+			'Email'                => $professor->email,
+			'PhoneNumber'  => $professor->phone_number,
             'Address'            => $professor->address,
             // [ 
-            //     'Id' => $professor->professor_detail->id,
-            //     'Role' => $professor->professor_detail->Role,
-            //     'Salary' => $professor->professor_detail->salary,
-            //     'Is_active' => $professor->professor_detail->is_active,
-            //     'Joined On' => $professor->professor_detail->joined_on,
-            //     'Resigned At' => $professor->professor_detail->resigned_at
+            //     'professorDetail' => [
+            //         'Id' => $professor->professor_detail->id,
+            //         'Role' => $professor->professor_detail->Role,
+            //         'Salary' => $professor->professor_detail->salary,
+            //         'IsActive' => $professor->professor_detail->is_active,
+            //         'JoinedOn' => $professor->professor_detail->joined_on,
+            //         'ResignedAt' => $professor->professor_detail->resigned_at
+            //     ]
             // ]
 		];
 	}

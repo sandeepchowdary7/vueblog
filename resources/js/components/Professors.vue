@@ -25,14 +25,14 @@
                   </tr>
 
                   <tr v-for=" professor in professors" :key="professor.id">
-                    <td>{{ professor.id }}</td>
-                    <td>{{ professor.first_name }}</td>
-                    <td>{{ professor.middle_name }}</td>
-                    <td>{{ professor.last_name }}</td>
-                    <td>{{ professor.gender }}</td>
-                    <td>{{ professor.dob }}</td>
-                    <td>{{ professor.phone_number }}</td>
-                    <td>{{ professor.address }}</td>
+                    <td>{{ professor.Id }}</td>
+                    <td>{{ professor.FirstName | capitalize }}</td>
+                    <td>{{ professor.MiddleName | capitalize }}</td>
+                    <td>{{ professor.LastName | capitalize}}</td>
+                    <td>{{ professor.Gender }}</td>
+                    <td>{{ professor.DateofBirth }}</td>
+                    <td>{{ professor.PhoneNumber }}</td>
+                    <td>{{ professor.Address }}</td>
                     <td>
                         <a href="#">
                             <i class="fa fa-edit blue"></i>
@@ -135,7 +135,7 @@
     export default {
         data () {
             return {
-                professors: {},
+                professors:{},
                 form: new Form ({
                     first_name: '',
                     middle_name: '',
@@ -150,7 +150,7 @@
         },
         methods: {
             displayProfessors () {
-                axios.get('/professor').then(({ data }) => (this.professors = data.data))
+                axios.get('/professor').then(data => (this.professors=data.data));
             },
             createProfessor () {
                     this.form.post('/professor');

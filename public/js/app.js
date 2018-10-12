@@ -14031,6 +14031,10 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     routes: routes
 });
 
+Vue.filter('capitalize', function (text) {
+    return text[0].toUpperCase() + text.slice(1);
+});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -52039,8 +52043,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         displayProfessors: function displayProfessors() {
             var _this = this;
 
-            axios.get('/professor').then(function (_ref) {
-                var data = _ref.data;
+            axios.get('/professor').then(function (data) {
                 return _this.professors = data.data;
             });
         },
@@ -52075,21 +52078,27 @@ var render = function() {
                 _vm._v(" "),
                 _vm._l(_vm.professors, function(professor) {
                   return _c("tr", { key: professor.id }, [
-                    _c("td", [_vm._v(_vm._s(professor.id))]),
+                    _c("td", [_vm._v(_vm._s(professor.Id))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(professor.first_name))]),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("capitalize")(professor.FirstName)))
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(professor.middle_name))]),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("capitalize")(professor.MiddleName)))
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(professor.last_name))]),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("capitalize")(professor.LastName)))
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(professor.gender))]),
+                    _c("td", [_vm._v(_vm._s(professor.Gender))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(professor.dob))]),
+                    _c("td", [_vm._v(_vm._s(professor.DateofBirth))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(professor.phone_number))]),
+                    _c("td", [_vm._v(_vm._s(professor.PhoneNumber))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(professor.address))]),
+                    _c("td", [_vm._v(_vm._s(professor.Address))]),
                     _vm._v(" "),
                     _vm._m(2, true)
                   ])

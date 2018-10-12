@@ -28,6 +28,10 @@ const router = new VueRouter({
     routes
 })
 
+Vue.filter('capitalize', function(text) {
+    return text[0].toUpperCase() + text.slice(1);
+});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
