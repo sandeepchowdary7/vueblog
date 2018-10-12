@@ -16,13 +16,15 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        $professors = Professor::all();
-        $result = [ ];
+        return $professors = Professor::paginate(30);
+
+        // $professors = Professor::all();
+        // $result = [ ];
         
-        foreach ($professors as  $professor) {
-            $result [ ] = $this->ResultFormatter($professor);
-        }
-        return $result;
+        // foreach ($professors as  $professor) {
+        //     $result [ ] = $this->ResultFormatter($professor);
+        // }
+        // return $result;
     }
 
     /**
@@ -140,14 +142,14 @@ class ProfessorController extends Controller
 			'Email'               => $professor->email,
 			'Phone Number' => $professor->phone_number,
             'Address'            => $professor->address,
-            [ 
-                'Id' => $professor->professor_detail->id,
-                'Role' => $professor->professor_detail->Role,
-                'Salary' => $professor->professor_detail->salary,
-                'Is_active' => $professor->professor_detail->is_active,
-                'Joined On' => $professor->professor_detail->joined_on,
-                'Resigned At' => $professor->professor_detail->resigned_at
-            ]
+            // [ 
+            //     'Id' => $professor->professor_detail->id,
+            //     'Role' => $professor->professor_detail->Role,
+            //     'Salary' => $professor->professor_detail->salary,
+            //     'Is_active' => $professor->professor_detail->is_active,
+            //     'Joined On' => $professor->professor_detail->joined_on,
+            //     'Resigned At' => $professor->professor_detail->resigned_at
+            // ]
 		];
 	}
 }

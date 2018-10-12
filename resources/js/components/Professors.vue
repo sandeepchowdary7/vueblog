@@ -3,10 +3,10 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Users Table</h3>
+                <h3 class="card-title">Professors</h3>
 
                 <div class="card-tools">
-                    <button class="btn btn-success" data-toggle="modal" data-target="#addUser">Add Professor <i class="fa fa-user-plus fa-fw"></i></button>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#addProfessor">Add Professor <i class="fa fa-user-plus fa-fw"></i></button>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -14,16 +14,25 @@
                 <table class="table table-hover">
                   <tbody><tr>
                     <th>ID</th>
-                    <th>User</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Reason</th>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Date of Birth</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
+                    <th><span>Actions</span></th>
                   </tr>
-                  <tr>
-                    <td>100</td>
-                    <td>Sandeep K</td>
-                    <td>10-10-2018</td>
-                    <td><span class="tag tag-success">Modify</span></td>
+
+                  <tr v-for=" professor in professors" :key="professor.id">
+                    <td>{{ professor.id }}</td>
+                    <td>{{ professor.first_name }}</td>
+                    <td>{{ professor.middle_name }}</td>
+                    <td>{{ professor.last_name }}</td>
+                    <td>{{ professor.gender }}</td>
+                    <td>{{ professor.dob }}</td>
+                    <td>{{ professor.phone_number }}</td>
+                    <td>{{ professor.address }}</td>
                     <td>
                         <a href="#">
                             <i class="fa fa-edit blue"></i>
@@ -40,11 +49,11 @@
             <!-- /.card -->
           </div>
                     <!-- Modal -->
-            <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="addUserLabel" aria-hidden="true">
+            <div class="modal fade" id="addProfessor" tabindex="-1" role="dialog" aria-labelledby="addProfessorLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addUserLabel">Add Professor</h5>
+                            <h5 class="modal-title" id="addProfessorLabel">Add Professor</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -126,6 +135,7 @@
     export default {
         data () {
             return {
+                professors: {},
                 form: new Form ({
                     first_name: '',
                     middle_name: '',
@@ -139,12 +149,15 @@
             }
         },
         methods: {
-            createProfessor() {
+            displayProfessors () {
+                axios.get('/professor').then(({ data }) => (this.professors = data.data))
+            },
+            createProfessor () {
                     this.form.post('/professor');
             }
         },
-        mounted() {
-            console.log('Users Component mounted.')
+        created() {
+           this.displayProfessors();
         }
     }
 </script>

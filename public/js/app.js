@@ -52008,10 +52008,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            professors: {},
             form: new Form({
                 first_name: '',
                 middle_name: '',
@@ -52026,12 +52036,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        displayProfessors: function displayProfessors() {
+            var _this = this;
+
+            axios.get('/professor').then(function (_ref) {
+                var data = _ref.data;
+                return _this.professors = data.data;
+            });
+        },
         createProfessor: function createProfessor() {
             this.form.post('/professor');
         }
     },
-    mounted: function mounted() {
-        console.log('Users Component mounted.');
+    created: function created() {
+        this.displayProfessors();
     }
 });
 
@@ -52044,17 +52062,55 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row mt-4" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body table-responsive p-0" }, [
+          _c("table", { staticClass: "table table-hover" }, [
+            _c(
+              "tbody",
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._l(_vm.professors, function(professor) {
+                  return _c("tr", { key: professor.id }, [
+                    _c("td", [_vm._v(_vm._s(professor.id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(professor.first_name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(professor.middle_name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(professor.last_name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(professor.gender))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(professor.dob))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(professor.phone_number))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(professor.address))]),
+                    _vm._v(" "),
+                    _vm._m(2, true)
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c(
       "div",
       {
         staticClass: "modal fade",
         attrs: {
-          id: "addUser",
+          id: "addProfessor",
           tabindex: "-1",
           role: "dialog",
-          "aria-labelledby": "addUserLabel",
+          "aria-labelledby": "addProfessorLabel",
           "aria-hidden": "true"
         }
       },
@@ -52067,7 +52123,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(3),
               _vm._v(" "),
               _c("form", { on: { submit: _vm.createProfessor } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -52428,7 +52484,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(2)
+                _vm._m(4)
               ])
             ])
           ]
@@ -52442,67 +52498,59 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _c("h3", { staticClass: "card-title" }, [_vm._v("Users Table")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-tools" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-success",
-                attrs: { "data-toggle": "modal", "data-target": "#addUser" }
-              },
-              [
-                _vm._v("Add Professor "),
-                _c("i", { staticClass: "fa fa-user-plus fa-fw" })
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body table-responsive p-0" }, [
-          _c("table", { staticClass: "table table-hover" }, [
-            _c("tbody", [
-              _c("tr", [
-                _c("th", [_vm._v("ID")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("User")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Date")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Status")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Reason")])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("100")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Sandeep K")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("10-10-2018")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("span", { staticClass: "tag tag-success" }, [
-                    _vm._v("Modify")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _c("i", { staticClass: "fa fa-edit blue" })
-                  ]),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "#" } }, [
-                    _c("i", { staticClass: "fa fa-trash red" })
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Professors")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            attrs: { "data-toggle": "modal", "data-target": "#addProfessor" }
+          },
+          [
+            _vm._v("Add Professor "),
+            _c("i", { staticClass: "fa fa-user-plus fa-fw" })
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("ID")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("First Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Middle Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Last Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Gender")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Date of Birth")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Phone Number")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Address")]),
+      _vm._v(" "),
+      _c("th", [_c("span", [_vm._v("Actions")])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-edit blue" })
+      ]),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-trash red" })
       ])
     ])
   },
@@ -52511,9 +52559,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c("h5", { staticClass: "modal-title", attrs: { id: "addUserLabel" } }, [
-        _vm._v("Add Professor")
-      ]),
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "addProfessorLabel" } },
+        [_vm._v("Add Professor")]
+      ),
       _vm._v(" "),
       _c(
         "button",
