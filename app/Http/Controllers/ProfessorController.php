@@ -140,16 +140,15 @@ class ProfessorController extends Controller
 			'Email'                => $professor->email,
 			'PhoneNumber'  => $professor->phone_number,
             'Address'            => $professor->address,
-            // [ 
-            //     'professorDetail' => [
-            //         'Id' => $professor->professor_detail->id,
-            //         'Role' => $professor->professor_detail->Role,
-            //         'Salary' => $professor->professor_detail->salary,
-            //         'IsActive' => $professor->professor_detail->is_active,
-            //         'JoinedOn' => $professor->professor_detail->joined_on,
-            //         'ResignedAt' => $professor->professor_detail->resigned_at
-            //     ]
-            // ]
+            'professorDetail' =>
+                [ 
+                        'Id' => $professor->professor_detail['id'],
+                        'Role' => $professor->professor_detail['Role'],
+                        'Salary' => $professor->professor_detail['salary'],
+                        'IsActive' => $professor->professor_detail['is_active'],
+                        'JoinedOn' => $professor->professor_detail['joined_on'],
+                        'ResignedAt' => $professor->professor_detail['resigned_at']
+                ]
 		];
 	}
 }
