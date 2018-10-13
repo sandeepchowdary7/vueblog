@@ -52897,7 +52897,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm._f("capitalize")(student.GuardianName)))
+                      _vm._v(_vm._s(_vm._f("capitalize")(student.GaurdianName)))
                     ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(student.RollNumber))]),

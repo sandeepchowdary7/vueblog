@@ -27,12 +27,12 @@
                     <th><span>Actions</span></th>
                   </tr>
 
-                  <tr v-for=" student in students" :key="student.id">
+                  <tr v-for="student in students" :key="student.id">
                     <td>{{ student.Id }}</td>
                     <td>{{ student.FirstName | capitalize }}</td>
                     <td>{{ student.MiddleName | capitalize }}</td>
                     <td>{{ student.LastName | capitalize}}</td>
-                    <td>{{ student.GuardianName | capitalize}}</td>
+                    <td>{{ student.GaurdianName | capitalize}}</td>
                     <td>{{ student.RollNumber }}</td>
                     <td>{{ student.Gender }}</td>
                     <td>{{ student.DateofBirth }}</td>
@@ -164,7 +164,7 @@
         },
         methods: {
             displayStudents () {
-                axios.get('/student').then (data => (this.students=data.data));
+                axios.get('/student').then (data => (this.students = data.data));
             },
             createStudent () {
                     this.form.post('/student');

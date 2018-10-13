@@ -152,7 +152,8 @@
         },
         methods: {
             displayProfessors () {
-                axios.get('/professor').then(data => (this.professors=data.data));
+                axios.get('/professor').then(data => (this.professors = data.data));
+                
             },
             createProfessor () {
                     this.form.post('/professor');
