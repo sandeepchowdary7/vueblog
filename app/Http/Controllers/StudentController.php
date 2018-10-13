@@ -42,25 +42,18 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-            // 			'first_name'               =>  'required|max:20',
-            // 			'middle_name'          =>  'required|max:20',
-            // 			'last_name'               =>   'required|max:20',
-            // 			'guardian_name'      =>   'required|max:20',
-            // 			'roll_number'           =>   'required|unique',
-            // 			'gender'              	    =>   'required',
-            // 			'dob'                         =>   'required|date',
-            // 			'is_active'                 =>   'required|unique',
-            // 			'contact_number'     =>   'required|digits:15',
-            // 			'address'                   =>   'required|max:300',
-            //          'graduated_year'      =>   'year'
-            // ]);
-    
-            // if ($validator->fails()) {
-            //     return redirect('/student')
-            //                 ->withErrors($validator)
-            //                 ->withInput();
-            // }
+        $validator = Validator::make($request->all(), [
+            			'first_name'               =>  'required|max:20',
+            			'middle_name'          =>  'required|max:20',
+            			'last_name'               =>   'required|max:20',
+            			'guardian_name'      =>   'required|max:20',
+            			'roll_number'           =>   'required|unique',
+            			'gender'              	    =>   'required',
+            			'dob'                         =>   'required|date',
+            			'contact_number'     =>   'required|digits:15',
+            			'address'                   =>   'required|max:300',
+                        'graduated_year'      =>   'year'
+            ]);
             
             $student = new Student;
             $student->first_name =  Input::get('first_name');
@@ -141,17 +134,17 @@ class StudentController extends Controller
     protected function ResultFormatter($student) {
 		return [
 			'Id' => $student->id,
-			'First Name' => $student->first_name,
-			'Middle Name' => $student->middle_name,
-            'Last Name' => $student->last_name,
-            'Gaurdian Name' => $student->guardian_name,
-			'Roll Number' => $student->roll_number,
+			'FirstName' => $student->first_name,
+			'MiddleName' => $student->middle_name,
+            'LastName' => $student->last_name,
+            'GaurdianName' => $student->guardian_name,
+			'RollNumber' => $student->roll_number,
 			'Gender' => $student->gender,
-			'Date of Birth' => $student->dob,
+			'DateofBirth' => $student->dob,
 			'is_active' => $student->is_active,
-			'Contact Number' => $student->contact_number,
+			'ContactNumber' => $student->contact_number,
 			'Address' => $student->address,
-			'Graduated Year' => $student->graduated_year
+			'GraduatedYear' => $student->graduated_year
 		];
 	}
 }

@@ -88,8 +88,14 @@
                 </li>
                 <li class="nav-item">
                   <router-link to="/professors" class="nav-link active">
-                  <i class="fas fa-chalkboard-teacher cyan"></i>
+                  <i class="fas fa-chalkboard-teacher teal"></i>
                     <p>Professors</p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link to="/students" class="nav-link active">
+                  <i class="fas fa-user-graduate indigo"></i>
+                    <p>Students</p>
                   </router-link>
                 </li>
               </ul>

@@ -3,10 +3,10 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Professors</h3>
+                <h3 class="card-title">Students</h3>
 
                 <div class="card-tools">
-                    <button class="btn btn-success" data-toggle="modal" data-target="#addProfessor">Add Professor <i class="fa fa-user-plus fa-fw"></i></button>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#addStudent">Add Student <i class="fa fa-user-plus fa-fw"></i></button>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -17,24 +17,28 @@
                     <th>First Name</th>
                     <th>Middle Name</th>
                     <th>Last Name</th>
+                    <th>Guardian Name</th>
                     <th>Roll Number</th>
                     <th>Gender</th>
                     <th>Date of Birth</th>
-                    <th>Phone Number</th>
+                    <th>Contact Number</th>
                     <th>Address</th>
+                    <th>Graduated Year</th>
                     <th><span>Actions</span></th>
                   </tr>
 
-                  <tr v-for=" professor in professors" :key="professor.id">
-                    <td>{{ professor.Id }}</td>
-                    <td>{{ professor.FirstName | capitalize }}</td>
-                    <td>{{ professor.MiddleName | capitalize }}</td>
-                    <td>{{ professor.LastName | capitalize}}</td>
-                    <td>{{ professor.RollNumber }}</td>
-                    <td>{{ professor.Gender }}</td>
-                    <td>{{ professor.DateofBirth }}</td>
-                    <td>{{ professor.PhoneNumber }}</td>
-                    <td>{{ professor.Address }}</td>
+                  <tr v-for=" student in students" :key="student.id">
+                    <td>{{ student.Id }}</td>
+                    <td>{{ student.FirstName | capitalize }}</td>
+                    <td>{{ student.MiddleName | capitalize }}</td>
+                    <td>{{ student.LastName | capitalize}}</td>
+                    <td>{{ student.GuardianName | capitalize}}</td>
+                    <td>{{ student.RollNumber }}</td>
+                    <td>{{ student.Gender }}</td>
+                    <td>{{ student.DateofBirth }}</td>
+                    <td>{{ student.ContactNumber }}</td>
+                    <td>{{ student.Address }}</td>
+                    <td>{{ student.GraduatedYear }}</td>
                     <td>
                         <a href="#">
                             <i class="fa fa-edit blue"></i>
@@ -51,16 +55,16 @@
             <!-- /.card -->
           </div>
                     <!-- Modal -->
-            <div class="modal fade" id="addProfessor" tabindex="-1" role="dialog" aria-labelledby="addProfessorLabel" aria-hidden="true">
+            <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="addStudentLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addProfessorLabel">Add Professor</h5>
+                            <h5 class="modal-title" id="addStudentLabel">Add Student</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form @submit="createProfessor">
+                        <form @submit="createStudent">
                             <div class="modal-body">
                                 
                                 <div class="form-group">
@@ -83,6 +87,13 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <input v-model="form.guardian_name" type="text" name="guardianName"
+                                        placeholder = "Guardian Name"
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('guardian_name') }">
+                                    <has-error :form="form" field="guardian_name"></has-error>
+                                </div>
+
+                                <div class="form-group">
                                     <select v-model="form.gender" id="gender" name="gender"
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('gender') }">
                                         <option value="" selected>Select Gender</option>
@@ -101,17 +112,17 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input v-model="form.email" type="email" name="email"
-                                        placeholder = "Email" autocomplete="off" 
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
-                                    <has-error :form="form" field="email"></has-error>
+                                    <input v-model="form.contact_number" type="tel" name="ContactNumber"
+                                        placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('contact_number') }">
+                                    <has-error :form="form" field="contact_number"></has-error>
                                 </div>
 
                                 <div class="form-group">
-                                    <input v-model="form.phone_number" type="tel" name="phoneNumber"
-                                        placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('phone_number') }">
-                                    <has-error :form="form" field="phone_number"></has-error>
+                                    <input v-model="form.graduated_year" type="number"  min="2018" max="2030" id="Graduated Year"
+                                    placeholder = "Expected Graduated Year" rows="4" cols="50"
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('graduated_year') }">
+                                    <has-error :form="form" field="graduated_year"></has-error>
                                 </div>
 
                                 <div class="form-group">
@@ -121,7 +132,7 @@
                                     <has-error :form="form" field="address"></has-error>
                                 </div>
 
-                            </div>
+                            </div> 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Create</button>
@@ -137,29 +148,30 @@
     export default {
         data () {
             return {
-                professors:{},
+                students:{},
                 form: new Form ({
                     first_name: '',
                     middle_name: '',
                     last_name: '',
+                    guardian_name: '',
                     gender: '',
                     dob: '',
-                    email: '',
-                    phone_number: '',
+                    contact_number: '',
                     address: '',
+                    graduated_year: ''
                 })
             }
         },
         methods: {
-            displayProfessors () {
-                axios.get('/professor').then(data => (this.professors=data.data));
+            displayStudents () {
+                axios.get('/student').then (data => (this.students=data.data));
             },
-            createProfessor () {
-                    this.form.post('/professor');
+            createStudent () {
+                    this.form.post('/student');
             }
         },
         created() {
-           this.displayProfessors();
+           this.displayStudents ();
         }
     }
 </script>
