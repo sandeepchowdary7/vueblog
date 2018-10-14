@@ -158,6 +158,11 @@
             createProfessor () {
                 this.$Progress.start();
                     this.form.post('/professor');
+                    $('#addProfessor').modal('hide')
+                    toast({
+                        type: 'success',
+                        title: 'Professor Created successfully'
+                    })
                 this.$Progress.finish();
             }
         },

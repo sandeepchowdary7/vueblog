@@ -10,6 +10,7 @@ window.Vue = require('vue');
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
 import  VueProgressBar from 'vue-progressbar';
+import  swal from 'sweetalert2';
 
 const options = {
     color: '#bffaf3',
@@ -24,9 +25,17 @@ const options = {
     location: 'left',
     inverse: false
   }
-  
   Vue.use(VueProgressBar, options);
+   
+const toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+  });
 
+window.toast = toast;
+window.swal = swal;
 window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
