@@ -167,18 +167,24 @@
                 axios.get('/student').then (data => (this.students = data.data));
             },
             createStudent () {
+                //Progress bar starts before request
                 this.$Progress.start();
+                    //Sending a POST rqst
                     this.form.post('/student');
+                        //Hiding a modal after rqst
                         $('#addStudent').modal('hide')
+                        // toasting a model after rqst
                         toast({
                             type: 'success',
                             title: 'Student Added successfully'
                         })
+                 //Progress bar ends after request
                  this.$Progress.finish();
             }
         },
         created() {
            this.displayStudents ();
+            //send reqst for evry 3sec to update data
            setInterval(() => this.displayStudents(), 3000);
         }
     }
