@@ -62,7 +62,6 @@ class StudentController extends Controller
             $student->guardian_name =  Input::get('guardian_name');
             $student->gender =  Input::get('gender');
             $student->dob =  Input::get('dob');
-            $student->is_active =  Input::get('is_active');
             $student->contact_number = Input::get('contact_number');
             $student->address =  Input::get('address');
             $student->graduated_year =  Input::get('graduated_year');

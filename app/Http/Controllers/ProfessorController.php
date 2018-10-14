@@ -5,7 +5,7 @@ use App\Professor;
 use App\ProfessorDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Validator;
+use Illuminate\Contracts\Validation\Validator;
 
 class ProfessorController extends Controller
 {
@@ -43,7 +43,7 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     { 
-		$valid = $this->validate($request, [
+        $request->validate ([
 					'first_name'            =>  'required|max:20',
 					'middle_name'       =>  'required|max:20',
 					'last_name'             =>   'required|max:20',
@@ -52,7 +52,7 @@ class ProfessorController extends Controller
 					'email'                    =>   'required',
 					'phone_number'     =>   'required',
 					'address'                 =>   'required|max:300'
-		]);
+        ]);
         
 		$professor = new Professor;
 		$professor->first_name =  Input::get('first_name');

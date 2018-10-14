@@ -32,7 +32,7 @@
                     <td>{{ professor.LastName | capitalize}}</td>
                     <td>{{ professor.RollNumber }}</td>
                     <td>{{ professor.Gender }}</td>
-                    <td>{{ professor.DateofBirth }}</td>
+                    <td>{{ professor.DateofBirth | myDate }}</td>
                     <td>{{ professor.PhoneNumber }}</td>
                     <td>{{ professor.Address }}</td>
                     <td>
@@ -60,23 +60,23 @@
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form @submit="createProfessor">
+                        <form @submit.prevent="createProfessor">
                             <div class="modal-body">
                                 
                                 <div class="form-group">
-                                    <input v-model="form.first_name" placeholder = "First Name"  type="text" name="firstName"
+                                    <input v-model="form.first_name" placeholder = "First Name"  type="text" name="first_name"
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('first_name') }">
                                     <has-error :form="form" field="first_name"></has-error>
                                 </div>
 
                                 <div class="form-group">
-                                    <input v-model="form.middle_name" placeholder = "Middle Name"  type="text" name="middleName"
+                                    <input v-model="form.middle_name" placeholder = "Middle Name"  type="text" name="middle_name"
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('middle_name') }">
                                     <has-error :form="form" field="middle_name"></has-error>
                                 </div>
 
                                 <div class="form-group">
-                                    <input v-model="form.last_name" type="text" name="lastName"
+                                    <input v-model="form.last_name" type="text" name="last_name"
                                         placeholder = "Last Name"
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('last_name') }">
                                     <has-error :form="form" field="last_name"></has-error>
@@ -108,7 +108,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input v-model="form.phone_number" type="tel" name="phoneNumber"
+                                    <input v-model="form.phone_number" type="tel" name="phone_number"
                                         placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('phone_number') }">
                                     <has-error :form="form" field="phone_number"></has-error>
@@ -156,7 +156,9 @@
                 
             },
             createProfessor () {
+                this.$Progress.start();
                     this.form.post('/professor');
+                this.$Progress.finish();
             }
         },
         created() {

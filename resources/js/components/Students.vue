@@ -35,7 +35,7 @@
                     <td>{{ student.GaurdianName | capitalize}}</td>
                     <td>{{ student.RollNumber }}</td>
                     <td>{{ student.Gender }}</td>
-                    <td>{{ student.DateofBirth }}</td>
+                    <td>{{ student.DateofBirth | myDate }}</td>
                     <td>{{ student.ContactNumber }}</td>
                     <td>{{ student.Address }}</td>
                     <td>{{ student.GraduatedYear }}</td>
