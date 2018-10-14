@@ -68730,7 +68730,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     created: function created() {
+        var _this2 = this;
+
         this.displayProfessors();
+        setInterval(function () {
+            return _this2.displayProfessors();
+        }, 3000);
     }
 });
 
@@ -69560,7 +69565,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     created: function created() {
+        var _this2 = this;
+
         this.displayStudents();
+        setInterval(function () {
+            return _this2.displayStudents();
+        }, 3000);
     }
 });
 

@@ -179,6 +179,7 @@
         },
         created() {
            this.displayStudents ();
+           setInterval(() => this.displayStudents(), 3000);
         }
     }
 </script>

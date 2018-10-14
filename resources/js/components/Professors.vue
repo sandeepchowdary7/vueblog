@@ -168,6 +168,7 @@
         },
         created() {
            this.displayProfessors();
+           setInterval(() => this.displayProfessors(), 3000);
         }
     }
 </script>
