@@ -157,18 +157,22 @@
             createProfessor () {
                 //Progress bar starts before request
                 this.$Progress.start();
-                    this.form.post('/professor');
-                    //Custom Vue Event Firing after a professor POST request
-                    Fire.$emit('AfterCreate');
-                    //Hiding a modal after rqst
-                    $('#addProfessor').modal('hide')
-                    // toasting a model after rqst
-                    toast({
-                        type: 'success',
-                        title: 'Professor Created successfully'
+                this.form.post('/professor')
+                    .then(() => {
+                        //Custom Vue Event Firing after a professor POST request
+                        Fire.$emit('AfterCreate');
+                        //Hiding a modal after rqst
+                        $('#addProfessor').modal('hide')
+                        // toasting a model after rqst
+                        toast({
+                            type: 'success',
+                            title: 'Professor Created successfully'
+                        })
+                        //Progress bar ends after request
+                        this.$Progress.finish();
                     })
-                //Progress bar ends after request
-                this.$Progress.finish();
+                    .catch(() =>{
+                    })
             }
         },
         created() {

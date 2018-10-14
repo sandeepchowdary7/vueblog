@@ -68722,30 +68722,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         createProfessor: function createProfessor() {
+            var _this2 = this;
+
             //Progress bar starts before request
             this.$Progress.start();
-            this.form.post('/professor');
-            //Custom Vue Event Firing after a professor POST request
-            Fire.$emit('AfterCreate');
-            //Hiding a modal after rqst
-            $('#addProfessor').modal('hide');
-            // toasting a model after rqst
-            toast({
-                type: 'success',
-                title: 'Professor Created successfully'
-            });
-            //Progress bar ends after request
-            this.$Progress.finish();
+            this.form.post('/professor').then(function () {
+                //Custom Vue Event Firing after a professor POST request
+                Fire.$emit('AfterCreate');
+                //Hiding a modal after rqst
+                $('#addProfessor').modal('hide');
+                // toasting a model after rqst
+                toast({
+                    type: 'success',
+                    title: 'Professor Created successfully'
+                });
+                //Progress bar ends after request
+                _this2.$Progress.finish();
+            }).catch(function () {});
         }
     },
     created: function created() {
-        var _this2 = this;
+        var _this3 = this;
 
         this.displayProfessors();
 
         //Custom Vue Event calling after creating a professor
         Fire.$on('AfterCreate', function () {
-            _this2.displayProfessors();
+            _this3.displayProfessors();
         });
         //send reqst for evry 3sec to update data
         //    setInterval(() => this.displayProfessors(), 3000);
