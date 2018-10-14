@@ -153,22 +153,33 @@
         methods: {
             displayProfessors () {
                 axios.get('/professor').then(data => (this.professors = data.data));
-                
             },
             createProfessor () {
+                //Progress bar starts before request
                 this.$Progress.start();
                     this.form.post('/professor');
+                    //Custom Vue Event Firing after a professor POST request
+                    Fire.$emit('AfterCreate');
+                    //Hiding a modal after rqst
                     $('#addProfessor').modal('hide')
+                    // toasting a model after rqst
                     toast({
                         type: 'success',
                         title: 'Professor Created successfully'
                     })
+                //Progress bar ends after request
                 this.$Progress.finish();
             }
         },
         created() {
            this.displayProfessors();
-           setInterval(() => this.displayProfessors(), 3000);
+
+           //Custom Vue Event calling after creating a professor
+            Fire.$on('AfterCreate', () => {
+                this.displayProfessors();
+            });
+           //send reqst for evry 3sec to update data
+        //    setInterval(() => this.displayProfessors(), 3000);
         }
     }
 </script>

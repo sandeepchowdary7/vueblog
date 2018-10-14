@@ -30433,8 +30433,11 @@ var toast = __WEBPACK_IMPORTED_MODULE_3_sweetalert2___default.a.mixin({
     showConfirmButton: false,
     timer: 3000
 });
-
 window.toast = toast;
+
+var Fire = new Vue();
+window.Fire = Fire;
+
 window.swal = __WEBPACK_IMPORTED_MODULE_3_sweetalert2___default.a;
 window.Form = __WEBPACK_IMPORTED_MODULE_1_vform__["Form"];
 Vue.component(__WEBPACK_IMPORTED_MODULE_1_vform__["HasError"].name, __WEBPACK_IMPORTED_MODULE_1_vform__["HasError"]);
@@ -68719,13 +68722,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         createProfessor: function createProfessor() {
+            //Progress bar starts before request
             this.$Progress.start();
             this.form.post('/professor');
+            //Custom Vue Event Firing after a professor POST request
+            Fire.$emit('AfterCreate');
+            //Hiding a modal after rqst
             $('#addProfessor').modal('hide');
+            // toasting a model after rqst
             toast({
                 type: 'success',
                 title: 'Professor Created successfully'
             });
+            //Progress bar ends after request
             this.$Progress.finish();
         }
     },
@@ -68733,9 +68742,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this2 = this;
 
         this.displayProfessors();
-        setInterval(function () {
-            return _this2.displayProfessors();
-        }, 3000);
+
+        //Custom Vue Event calling after creating a professor
+        Fire.$on('AfterCreate', function () {
+            _this2.displayProfessors();
+        });
+        //send reqst for evry 3sec to update data
+        //    setInterval(() => this.displayProfessors(), 3000);
     }
 });
 
@@ -69554,13 +69567,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         createStudent: function createStudent() {
+            //Progress bar starts before request
             this.$Progress.start();
+            //Sending a POST rqst
             this.form.post('/student');
+            //Hiding a modal after rqst
             $('#addStudent').modal('hide');
+            // toasting a model after rqst
             toast({
                 type: 'success',
                 title: 'Student Added successfully'
             });
+            //Progress bar ends after request
             this.$Progress.finish();
         }
     },
@@ -69568,6 +69586,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this2 = this;
 
         this.displayStudents();
+        //send reqst for evry 3sec to update data
         setInterval(function () {
             return _this2.displayStudents();
         }, 3000);

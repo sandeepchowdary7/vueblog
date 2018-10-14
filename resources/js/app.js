@@ -33,8 +33,11 @@ const toast = swal.mixin({
     showConfirmButton: false,
     timer: 3000
   });
-
 window.toast = toast;
+
+let Fire = new Vue();
+window.Fire = Fire;
+
 window.swal = swal;
 window.Form = Form;
 Vue.component(HasError.name, HasError)
