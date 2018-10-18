@@ -8,21 +8,21 @@
     "packages": [
         {
             "name": "bensampo/laravel-enum",
-            "version": "1.15.0",
+            "version": "1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenSampo/laravel-enum.git",
-                "reference": "ed266d0f44a9eacaac98d4270e6500e37e7fbee9"
+                "reference": "dc09346ec44ca03d0b8738a0212730983db8cba7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenSampo/laravel-enum/zipball/ed266d0f44a9eacaac98d4270e6500e37e7fbee9",
-                "reference": "ed266d0f44a9eacaac98d4270e6500e37e7fbee9",
+                "url": "https://api.github.com/repos/BenSampo/laravel-enum/zipball/dc09346ec44ca03d0b8738a0212730983db8cba7",
+                "reference": "dc09346ec44ca03d0b8738a0212730983db8cba7",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "~5.1",
-                "php": "~7.0"
+                "illuminate/support": "~5.4",
+                "php": "~7.1"
             },
             "require-dev": {
                 "laravel/framework": "5.7.*",
@@ -66,7 +66,7 @@
                 "package",
                 "validation"
             ],
-            "time": "2018-09-25T17:41:57+00:00"
+            "time": "2018-10-17T08:30:14+00:00"
         },
         {
             "name": "beyondcode/laravel-self-diagnosis",
