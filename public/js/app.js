@@ -68714,15 +68714,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        displayProfessors: function displayProfessors() {
+        deleteProfessor: function deleteProfessor(id) {
             var _this = this;
 
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) {
+                if (result.value) {
+                    _this.form.delete('/professor/' + id).then(function () {
+                        swal('Deleted!', 'Your file has been deleted.', 'success');
+                        Fire.$emit('AfterCreate');
+                    }).catch(function () {
+                        swal("Failed!", "There is something wrong", "warning");
+                    });
+                }
+            });
+        },
+        displayProfessors: function displayProfessors() {
+            var _this2 = this;
+
             axios.get('/professor').then(function (data) {
-                return _this.professors = data.data;
+                return _this2.professors = data.data;
             });
         },
         createProfessor: function createProfessor() {
-            var _this2 = this;
+            var _this3 = this;
 
             //Progress bar starts before request
             this.$Progress.start();
@@ -68737,18 +68759,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     title: 'Professor Created successfully'
                 });
                 //Progress bar ends after request
-                _this2.$Progress.finish();
+                _this3.$Progress.finish();
             }).catch(function () {});
         }
     },
     created: function created() {
-        var _this3 = this;
+        var _this4 = this;
 
         this.displayProfessors();
 
         //Custom Vue Event calling after creating a professor
         Fire.$on('AfterCreate', function () {
-            _this3.displayProfessors();
+            _this4.displayProfessors();
         });
         //send reqst for evry 3sec to update data
         //    setInterval(() => this.displayProfessors(), 3000);
@@ -68803,7 +68825,22 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(professor.Address))]),
                     _vm._v(" "),
-                    _vm._m(2, true)
+                    _c("td", [
+                      _vm._m(2, true),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              _vm.deleteProfessor(professor.Id)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-trash red" })]
+                      )
+                    ])
                   ])
                 })
               ],
@@ -69277,14 +69314,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fa fa-edit blue" })
-      ]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fa fa-trash red" })
-      ])
+    return _c("a", { attrs: { href: "#" } }, [
+      _c("i", { staticClass: "fa fa-edit blue" })
     ])
   },
   function() {

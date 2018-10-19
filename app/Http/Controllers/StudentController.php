@@ -43,10 +43,10 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            			'first_name'               =>  'required|max:20',
-            			'middle_name'          =>  'required|max:20',
-            			'last_name'               =>   'required|max:20',
-            			'guardian_name'      =>   'required|max:20',
+            			'first_name'               =>  'required',
+            			'middle_name'          =>  'required',
+            			'last_name'               =>   'required',
+            			'guardian_name'      =>   'required',
             			'roll_number'           =>   'required|unique',
             			'gender'              	    =>   'required',
             			'dob'                         =>   'required|date',
