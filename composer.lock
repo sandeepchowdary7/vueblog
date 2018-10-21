@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "bensampo/laravel-enum",
-            "version": "1.16.0",
+            "version": "1.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenSampo/laravel-enum.git",
-                "reference": "dc09346ec44ca03d0b8738a0212730983db8cba7"
+                "reference": "6ca73f67fb70fa957dee4523843b7ad383755674"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenSampo/laravel-enum/zipball/dc09346ec44ca03d0b8738a0212730983db8cba7",
-                "reference": "dc09346ec44ca03d0b8738a0212730983db8cba7",
+                "url": "https://api.github.com/repos/BenSampo/laravel-enum/zipball/6ca73f67fb70fa957dee4523843b7ad383755674",
+                "reference": "6ca73f67fb70fa957dee4523843b7ad383755674",
                 "shasum": ""
             },
             "require": {
@@ -66,7 +66,7 @@
                 "package",
                 "validation"
             ],
-            "time": "2018-10-17T08:30:14+00:00"
+            "time": "2018-10-19T17:07:29+00:00"
         },
         {
             "name": "beyondcode/laravel-self-diagnosis",
@@ -3800,16 +3800,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.2.1",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "e79cd403fb77fc8963a99ecc30e80ddd885b3311"
+                "reference": "a9f129b99df316f847584d482c89c14a9f796e2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/e79cd403fb77fc8963a99ecc30e80ddd885b3311",
-                "reference": "e79cd403fb77fc8963a99ecc30e80ddd885b3311",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/a9f129b99df316f847584d482c89c14a9f796e2b",
+                "reference": "a9f129b99df316f847584d482c89c14a9f796e2b",
                 "shasum": ""
             },
             "require": {
@@ -3857,7 +3857,7 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2018-06-30T13:14:06+00:00"
+            "time": "2018-10-20T09:00:00+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
