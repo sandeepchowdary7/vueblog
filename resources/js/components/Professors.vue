@@ -39,7 +39,7 @@
                         <a href="#">
                             <i class="fa fa-edit blue"></i>
                         </a>
-                        <a href="#">
+                        <a href="#" @click="deleteProfessor(professor.Id)">
                             <i class="fa fa-trash red"></i>
                         </a>
                     </td>
@@ -151,6 +151,31 @@
             }
         },
         methods: {
+            deleteProfessor(id) {
+                swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                    if (result.value) {
+                        console.log(this.result);
+                        this.form.delete('/professor/'+id).then(() => {
+                            swal(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                            )
+                            Fire.$emit('AfterCreate');
+                        }).catch(() => {
+                            swal("Failed!", "There is something wrong", "warning");
+                        });
+                    }
+                })
+            },
             displayProfessors () {
                 axios.get('/professor').then(data => (this.professors = data.data));
             },

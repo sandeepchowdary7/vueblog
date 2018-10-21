@@ -112,14 +112,12 @@ class ProfessorController extends Controller
      * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Id $id)
+    public function destroy($id)
     {
-	   $professor = Prefessor::findOrFail($id);
+       $professor = Professor::findOrFail($id);
 	   $professor->delete();
 
-		return response()->json([
-			"message" => "Success"
-		]);
+		return ['message' => 'Professor Deleted'];
     }
 
     /**
