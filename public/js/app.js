@@ -72492,7 +72492,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (result) {
                 if (result.value) {
                     _this.form.delete('/professor/' + id).then(function () {
-                        swal('Deleted!', 'Your file has been deleted.', 'success');
+                        swal('Deleted!', 'Professor Record has been deleted.', 'success');
                         Fire.$emit('AfterCreate');
                     }).catch(function () {
                         swal("Failed!", "There is something wrong", "warning");
@@ -73371,7 +73371,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (result) {
                 if (result.value) {
                     _this.form.delete('/student/' + id).then(function () {
-                        swal('Deleted!', 'Your file has been deleted.', 'success');
+                        swal('Deleted!', 'Student Record has been deleted.', 'success');
                         Fire.$emit('AfterCreate');
                     }).catch(function () {
                         swal("Failed!", "There is something wrong", "warning");

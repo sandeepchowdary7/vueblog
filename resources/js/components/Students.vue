@@ -177,7 +177,7 @@
                         this.form.delete('/student/'+id).then(() => {
                             swal(
                             'Deleted!',
-                            'Your file has been deleted.',
+                            'Student Record has been deleted.',
                             'success'
                             )
                             Fire.$emit('AfterCreate');

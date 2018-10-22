@@ -165,7 +165,7 @@
                         this.form.delete('/professor/'+id).then(() => {
                             swal(
                             'Deleted!',
-                            'Your file has been deleted.',
+                            'Professor Record has been deleted.',
                             'success'
                             )
                             Fire.$emit('AfterCreate');
