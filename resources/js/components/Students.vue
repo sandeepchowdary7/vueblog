@@ -43,7 +43,7 @@
                         <a href="#">
                             <i class="fa fa-edit blue"></i>
                         </a>
-                        <a  @click="deleteStudent(student.Id)">
+                        <a  href="#" @click="deleteStudent(student.Id)">
                             <i class="fa fa-trash red"></i>
                         </a>
                     </td>
@@ -163,8 +163,29 @@
             }
         },
         methods: {
-            deleteStudent () {
-
+            deleteStudent (id) {
+                swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                    if (result.value) {
+                        this.form.delete('/student/'+id).then(() => {
+                            swal(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                            )
+                            Fire.$emit('AfterCreate');
+                        }).catch(() => {
+                            swal("Failed!", "There is something wrong", "warning");
+                        });
+                    }
+                })
             },
             displayStudents () {
                 axios.get('/student').then (data => (this.students = data.data));

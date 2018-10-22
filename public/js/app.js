@@ -73357,16 +73357,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        deleteStudent: function deleteStudent() {},
-        displayStudents: function displayStudents() {
+        deleteStudent: function deleteStudent(id) {
             var _this = this;
 
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) {
+                if (result.value) {
+                    _this.form.delete('/student/' + id).then(function () {
+                        swal('Deleted!', 'Your file has been deleted.', 'success');
+                        Fire.$emit('AfterCreate');
+                    }).catch(function () {
+                        swal("Failed!", "There is something wrong", "warning");
+                    });
+                }
+            });
+        },
+        displayStudents: function displayStudents() {
+            var _this2 = this;
+
             axios.get('/student').then(function (data) {
-                return _this.students = data.data;
+                return _this2.students = data.data;
             });
         },
         createStudent: function createStudent() {
-            var _this2 = this;
+            var _this3 = this;
 
             //Progress bar starts before request
             this.$Progress.start();
@@ -73382,17 +73403,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     title: 'Student Added successfully'
                 });
                 //Progress bar ends after request
-                _this2.$Progress.finish();
+                _this3.$Progress.finish();
             });
         }
     },
     created: function created() {
-        var _this3 = this;
+        var _this4 = this;
 
         this.displayStudents();
         //Custom Vue Event calling after creating a student
         Fire.$on('AfterCreate', function () {
-            _this3.displayStudents();
+            _this4.displayStudents();
         });
         //send reqst for evry 3sec to update data
         //    setInterval(() => this.displayStudents(), 3000);
@@ -73459,6 +73480,7 @@ var render = function() {
                       _c(
                         "a",
                         {
+                          attrs: { href: "#" },
                           on: {
                             click: function($event) {
                               _vm.deleteStudent(student.Id)
