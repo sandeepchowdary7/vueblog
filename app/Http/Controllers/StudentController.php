@@ -43,18 +43,17 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            			'first_name'               =>  'required',
-            			'middle_name'          =>  'required',
-            			'last_name'               =>   'required',
-            			'guardian_name'      =>   'required',
-            			'roll_number'           =>   'required|unique',
-            			'gender'              	    =>   'required',
-            			'dob'                         =>   'required|date',
-            			'contact_number'     =>   'required|digits:15',
-            			'address'                   =>   'required|max:300',
-                        'graduated_year'      =>   'year'
+                    'first_name'               =>  'required',
+                    'last_name'               =>   'required',
+                    'guardian_name'      =>   'required',
+                    'roll_number'           =>   'required|unique',
+                    'gender'              	    =>   'required',
+                    'dob'                         =>   'required|date',
+                    'contact_number'     =>   'required|digits:10',
+                    'address'                   =>   'required|max:300',
+                    'graduated_year'      =>   'year'
             ]);
-            
+
             $student = new Student;
             $student->first_name =  Input::get('first_name');
             $student->middle_name =  Input::get('middle_name');
@@ -65,8 +64,9 @@ class StudentController extends Controller
             $student->contact_number = Input::get('contact_number');
             $student->address =  Input::get('address');
             $student->graduated_year =  Input::get('graduated_year');
-            
             $student->save();
+
+            return $student;
     }
 
     /**

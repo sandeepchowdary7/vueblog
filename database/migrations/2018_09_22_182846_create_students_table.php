@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->string('roll_number')->unique()->nullable();
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('guardian_name');
             $table->enum('gender', array ('Male', 'Female', 'Other'));

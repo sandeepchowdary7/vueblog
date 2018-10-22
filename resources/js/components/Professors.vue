@@ -162,7 +162,6 @@
                     confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                     if (result.value) {
-                        console.log(this.result);
                         this.form.delete('/professor/'+id).then(() => {
                             swal(
                             'Deleted!',

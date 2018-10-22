@@ -43,7 +43,7 @@
                         <a href="#">
                             <i class="fa fa-edit blue"></i>
                         </a>
-                        <a href="#">
+                        <a  @click="deleteStudent(student.Id)">
                             <i class="fa fa-trash red"></i>
                         </a>
                     </td>
@@ -64,7 +64,7 @@
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form @submit="createStudent">
+                        <form @submit.prevent="createStudent">
                             <div class="modal-body">
                                 
                                 <div class="form-group">
@@ -163,6 +163,9 @@
             }
         },
         methods: {
+            deleteStudent () {
+
+            },
             displayStudents () {
                 axios.get('/student').then (data => (this.students = data.data));
             },
@@ -170,7 +173,10 @@
                 //Progress bar starts before request
                 this.$Progress.start();
                     //Sending a POST rqst
-                    this.form.post('/student');
+                    this.form.post('/student')
+                      .then(() => {
+                        //Custom Vue Event Firing after a student POST request
+                        Fire.$emit('AfterCreate');
                         //Hiding a modal after rqst
                         $('#addStudent').modal('hide')
                         // toasting a model after rqst
@@ -178,14 +184,19 @@
                             type: 'success',
                             title: 'Student Added successfully'
                         })
-                 //Progress bar ends after request
-                 this.$Progress.finish();
+                        //Progress bar ends after request
+                        this.$Progress.finish();
+                    });
             }
         },
         created() {
            this.displayStudents ();
+           //Custom Vue Event calling after creating a student
+            Fire.$on('AfterCreate', () => {
+                this.displayStudents();
+            });
             //send reqst for evry 3sec to update data
-           setInterval(() => this.displayStudents(), 3000);
+        //    setInterval(() => this.displayStudents(), 3000);
         }
     }
 </script>
