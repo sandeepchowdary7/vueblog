@@ -73357,6 +73357,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        editStudent: function editStudent(student) {
+            this.form.reset();
+            $('#addStudent').modal('show');
+            this.form.fill(student);
+        },
+        newModal: function newModal() {
+            this.form.reset();
+            $('#addStudent').modal('show');
+        },
         deleteStudent: function deleteStudent(id) {
             var _this = this;
 
@@ -73431,14 +73440,27 @@ var render = function() {
   return _c("div", { staticClass: "row mt-4" }, [
     _c("div", { staticClass: "col-md-12" }, [
       _c("div", { staticClass: "card" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "card-header" }, [
+          _c("h3", { staticClass: "card-title" }, [_vm._v("Students")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-tools" }, [
+            _c(
+              "button",
+              { staticClass: "btn btn-success", on: { click: _vm.newModal } },
+              [
+                _vm._v("Add Student "),
+                _c("i", { staticClass: "fa fa-user-plus fa-fw" })
+              ]
+            )
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body table-responsive p-0" }, [
           _c("table", { staticClass: "table table-hover" }, [
             _c(
               "tbody",
               [
-                _vm._m(1),
+                _vm._m(0),
                 _vm._v(" "),
                 _vm._l(_vm.students, function(student) {
                   return _c("tr", { key: student.id }, [
@@ -73475,7 +73497,18 @@ var render = function() {
                     _c("td", [_vm._v(_vm._s(student.GraduatedYear))]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._m(2, true),
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              _vm.editStudent(student)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-edit blue" })]
+                      ),
                       _vm._v(" "),
                       _c(
                         "a",
@@ -73521,7 +73554,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "form",
@@ -73953,7 +73986,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(4)
+                  _vm._m(2)
                 ]
               )
             ])
@@ -73964,28 +73997,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Students")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-tools" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success",
-            attrs: { "data-toggle": "modal", "data-target": "#addStudent" }
-          },
-          [
-            _vm._v("Add Student "),
-            _c("i", { staticClass: "fa fa-user-plus fa-fw" })
-          ]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -74014,14 +74025,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Graduated Year")]),
       _vm._v(" "),
       _c("th", [_c("span", [_vm._v("Actions")])])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fa fa-edit blue" })
     ])
   },
   function() {

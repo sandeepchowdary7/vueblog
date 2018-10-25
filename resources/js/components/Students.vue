@@ -6,7 +6,7 @@
                 <h3 class="card-title">Students</h3>
 
                 <div class="card-tools">
-                    <button class="btn btn-success" data-toggle="modal" data-target="#addStudent">Add Student <i class="fa fa-user-plus fa-fw"></i></button>
+                    <button class="btn btn-success" @click="newModal">Add Student <i class="fa fa-user-plus fa-fw"></i></button>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -40,7 +40,7 @@
                     <td>{{ student.Address }}</td>
                     <td>{{ student.GraduatedYear }}</td>
                     <td>
-                        <a href="#">
+                        <a href="#" @click="editStudent(student)">
                             <i class="fa fa-edit blue"></i>
                         </a>
                         <a  href="#" @click="deleteStudent(student.Id)">
@@ -163,6 +163,15 @@
             }
         },
         methods: {
+            editStudent(student) {
+                this.form.reset();
+                 $('#addStudent').modal('show');
+                 this.form.fill(student);
+            },
+            newModal() {
+                this.form.reset();
+                 $('#addStudent').modal('show')
+            },
             deleteStudent (id) {
                 swal({
                     title: 'Are you sure?',
