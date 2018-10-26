@@ -43,30 +43,29 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-                    'first_name'               =>  'required',
-                    'last_name'               =>   'required',
-                    'guardian_name'      =>   'required',
-                    'roll_number'           =>   'required|unique',
-                    'gender'              	    =>   'required',
-                    'dob'                         =>   'required|date',
-                    'contact_number'     =>   'required|digits:10',
-                    'address'                   =>   'required|max:300',
-                    'graduated_year'      =>   'year'
-            ]);
+            'first_name' => 'required',
+            'last_name'  => 'required',
+            'guardian_name' => 'required',
+            'roll_number' => 'required|unique',
+            'gender' => 'required',
+            'dob' => 'required|date',
+            'contact_number' => 'required|digits:10',
+            'address' => 'required|max:300',
+            'graduated_year' => 'year'
+        ]);
 
-            $student = new Student;
-            $student->first_name =  Input::get('first_name');
-            $student->middle_name =  Input::get('middle_name');
-            $student->last_name =  Input::get('last_name');
-            $student->guardian_name =  Input::get('guardian_name');
-            $student->gender =  Input::get('gender');
-            $student->dob =  Input::get('dob');
-            $student->contact_number = Input::get('contact_number');
-            $student->address =  Input::get('address');
-            $student->graduated_year =  Input::get('graduated_year');
-            $student->save();
+        $student = Student::create([
+            'first_name' => request('first_name'),
+            'middle_name' => request('middle_name'),
+            'last_name' => request('last_name'),
+            'gender' => request('gender'),
+            'dob' => request('dob'),
+            'contact_number' => request('contact_number'),
+            'address' => request('address'),
+            'graduated_year' => request('graduated_year'),
+        ]);
 
-            return $student;
+        return $student;
     }
 
     /**
