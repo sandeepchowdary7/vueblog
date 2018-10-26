@@ -73358,9 +73358,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         editStudent: function editStudent(student) {
-            this.form.reset();
             $('#addStudent').modal('show');
-            this.form.fill(student);
+            this.form.first_name = student.FirstName;
+            this.form.middle_name = student.MiddleName;
+            this.form.last_name = student.LastName;
+            this.form.guardian_name = student.GaurdianName;
+            this.form.gender = student.Gender;
+            this.form.dob = student.DateofBirth;
+            this.form.is_active = student.is_active;
+            this.form.contact_number = student.ContactNumber;
+            this.form.address = student.Address;
+            this.form.graduated_year = student.GraduatedYear;
         },
         newModal: function newModal() {
             this.form.reset();
@@ -73791,15 +73799,15 @@ var render = function() {
                               [_vm._v("Select Gender")]
                             ),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "male" } }, [
+                            _c("option", { attrs: { value: "Male" } }, [
                               _vm._v("Male")
                             ]),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "female" } }, [
+                            _c("option", { attrs: { value: "Female" } }, [
                               _vm._v("Female")
                             ]),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "other" } }, [
+                            _c("option", { attrs: { value: "Other" } }, [
                               _vm._v("Other")
                             ])
                           ]
@@ -73913,7 +73921,7 @@ var render = function() {
                             "is-invalid": _vm.form.errors.has("graduated_year")
                           },
                           attrs: {
-                            type: "number",
+                            type: "date",
                             min: "2018",
                             max: "2030",
                             id: "Graduated Year",

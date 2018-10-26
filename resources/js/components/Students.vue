@@ -97,9 +97,9 @@
                                     <select v-model="form.gender" id="gender" name="gender"
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('gender') }">
                                         <option value="" selected>Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
                                     </select>
                                     <has-error :form="form" field="gender"></has-error>
                                 </div>
@@ -119,7 +119,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input v-model="form.graduated_year" type="number"  min="2018" max="2030" id="Graduated Year"
+                                    <input v-model="form.graduated_year" type="date"  min="2018" max="2030" id="Graduated Year"
                                     placeholder = "Expected Graduated Year" rows="4" cols="50"
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('graduated_year') }">
                                     <has-error :form="form" field="graduated_year"></has-error>
@@ -163,10 +163,18 @@
             }
         },
         methods: {
-            editStudent(student) {
-                this.form.reset();
+            editStudent(student) {        
                  $('#addStudent').modal('show');
-                 this.form.fill(student);
+                 this.form.first_name=student.FirstName;
+                 this.form.middle_name=student.MiddleName;
+                 this.form.last_name=student.LastName;
+                 this.form.guardian_name=student.GaurdianName;
+                 this.form.gender=student.Gender;
+                 this.form.dob= student.DateofBirth;
+                 this.form.is_active=student.is_active;
+                 this.form.contact_number=student.ContactNumber;
+                 this.form.address=student.Address;
+                 this.form.graduated_year=student.GraduatedYear;
             },
             newModal() {
                 this.form.reset();
