@@ -168,9 +168,7 @@
         },
         methods: {
             updateStudent() {
-                 this.$Progress.start();
-                 console.log(this.form.id);
-                 
+                 this.$Progress.start();                 
                  this.form.put('/student/'+ this.form.id).then(() => {
                             swal(
                             'Updated!',
