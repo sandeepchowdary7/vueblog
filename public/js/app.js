@@ -73337,12 +73337,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            editmode: false,
             students: {},
             form: new Form({
+                id: '',
                 first_name: '',
                 middle_name: '',
                 last_name: '',
@@ -73357,8 +73361,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        updateStudent: function updateStudent() {
+            var _this = this;
+
+            this.$Progress.start();
+            console.log(this.form.id);
+
+            this.form.put('/student/' + this.form.id).then(function () {
+                swal('Updated!', 'Student Record has been updated.', 'success');
+                $('#addStudent').modal('hide');
+                _this.$Progress.finish();
+                Fire.$emit('AfterCreate');
+            }).catch(function () {
+                swal("Failed!", "There is something wrong", "warning");
+                _this.$Progress.fail();
+            });
+        },
         editStudent: function editStudent(student) {
+            this.editmode = true;
             $('#addStudent').modal('show');
+            this.form.id = student.Id;
             this.form.first_name = student.FirstName;
             this.form.middle_name = student.MiddleName;
             this.form.last_name = student.LastName;
@@ -73371,11 +73393,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.form.graduated_year = student.GraduatedYear;
         },
         newModal: function newModal() {
+            this.editmode = false;
             this.form.reset();
             $('#addStudent').modal('show');
         },
         deleteStudent: function deleteStudent(id) {
-            var _this = this;
+            var _this2 = this;
 
             swal({
                 title: 'Are you sure?',
@@ -73387,7 +73410,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 confirmButtonText: 'Yes, delete it!'
             }).then(function (result) {
                 if (result.value) {
-                    _this.form.delete('/student/' + id).then(function () {
+                    _this2.form.delete('/student/' + id).then(function () {
                         swal('Deleted!', 'Student Record has been deleted.', 'success');
                         Fire.$emit('AfterCreate');
                     }).catch(function () {
@@ -73397,14 +73420,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         displayStudents: function displayStudents() {
-            var _this2 = this;
+            var _this3 = this;
 
             axios.get('/student').then(function (data) {
-                return _this2.students = data.data;
+                return _this3.students = data.data;
             });
         },
         createStudent: function createStudent() {
-            var _this3 = this;
+            var _this4 = this;
 
             //Progress bar starts before request
             this.$Progress.start();
@@ -73420,17 +73443,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     title: 'Student Added successfully'
                 });
                 //Progress bar ends after request
-                _this3.$Progress.finish();
+                _this4.$Progress.finish();
             });
         }
     },
     created: function created() {
-        var _this4 = this;
+        var _this5 = this;
 
         this.displayStudents();
         //Custom Vue Event calling after creating a student
         Fire.$on('AfterCreate', function () {
-            _this4.displayStudents();
+            _this5.displayStudents();
         });
         //send reqst for evry 3sec to update data
         //    setInterval(() => this.displayStudents(), 3000);
@@ -73562,7 +73585,43 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.editmode,
+                        expression: "!editmode"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addStudentLabel" }
+                  },
+                  [_vm._v("Add Student")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editmode,
+                        expression: "editmode"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addStudentLabel" }
+                  },
+                  [_vm._v("Update Student")]
+                ),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
               _vm._v(" "),
               _c(
                 "form",
@@ -73570,7 +73629,7 @@ var render = function() {
                   on: {
                     submit: function($event) {
                       $event.preventDefault()
-                      return _vm.createStudent($event)
+                      _vm.editmode ? _vm.updateStudent() : _vm.createStudent()
                     }
                   }
                 },
@@ -73994,7 +74053,50 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Close")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.editmode,
+                            expression: "editmode"
+                          }
+                        ],
+                        staticClass: "btn btn-success",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Update")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.editmode,
+                            expression: "!editmode"
+                          }
+                        ],
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Create")]
+                    )
+                  ])
                 ]
               )
             ])
@@ -74039,47 +74141,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "addStudentLabel" } },
-        [_vm._v("Add Student")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Create")]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   }
 ]
 render._withStripped = true

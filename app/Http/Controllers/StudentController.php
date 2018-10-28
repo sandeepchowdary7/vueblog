@@ -92,20 +92,20 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $student = Student::findOrFail($id);
-
-        $student = new Student;
-        $student->first_name =  Input::get('first_name');
-        $student->middle_name =  Input::get('middle_name');
-        $student->last_name =  Input::get('last_name');
-        $student->guardian_name =  Input::get('guardian_name');
-        $student->gender =  Input::get('gender');
-        $student->dob =  Input::get('dob');
-        $student->is_active =  Input::get('is_active');
-        $student->contact_number = Input::get('contact_number');
-        $student->address =  Input::get('address');
-        $student->graduated_year =  Input::get('graduated_year');
         
-        $student->save();
+        $this->validate ($request,  [
+            'first_name'               =>  'required',
+            'last_name'               =>   'required',
+            'guardian_name'      =>   'required',
+            'gender'              	    =>   'required',
+            'dob'                         =>   'required|date',
+            'contact_number'     =>   'required',
+            'address'                   =>   'required|max:300',
+            'graduated_year'      =>   'required'
+        ]);
+
+        $student->update($request->all());
+        return ['message' => 'Student Data Updated'];
     }
 
     /**

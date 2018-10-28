@@ -59,12 +59,13 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addStudentLabel">Add Student</h5>
+                            <h5 class="modal-title"  v-show = "!editmode" id="addStudentLabel">Add Student</h5>
+                            <h5 class="modal-title" v-show = "editmode" id="addStudentLabel">Update Student</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form @submit.prevent="createStudent">
+                        <form @submit.prevent="editmode ? updateStudent() : createStudent()">
                             <div class="modal-body">
                                 
                                 <div class="form-group">
@@ -135,7 +136,8 @@
                             </div> 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
+                                <button v-show="!editmode" type="submit" class="btn btn-primary">Create</button>
                             </div>
                         </form>
                     </div>
@@ -148,8 +150,10 @@
     export default {
         data () {
             return {
+                editmode: false,
                 students:{},
                 form: new Form ({
+                    id: '',
                     first_name: '',
                     middle_name: '',
                     last_name: '',
@@ -163,8 +167,28 @@
             }
         },
         methods: {
-            editStudent(student) {        
+            updateStudent() {
+                 this.$Progress.start();
+                 console.log(this.form.id);
+                 
+                 this.form.put('/student/'+ this.form.id).then(() => {
+                            swal(
+                            'Updated!',
+                            'Student Record has been updated.',
+                            'success'
+                            )
+                            $('#addStudent').modal('hide')
+                             this.$Progress.finish();
+                            Fire.$emit('AfterCreate');
+                        }).catch(() => {
+                            swal("Failed!", "There is something wrong", "warning");
+                            this.$Progress.fail();
+                        });
+            },
+            editStudent(student) {      
+                this.editmode = true;  
                  $('#addStudent').modal('show');
+                 this.form.id=student.Id;
                  this.form.first_name=student.FirstName;
                  this.form.middle_name=student.MiddleName;
                  this.form.last_name=student.LastName;
@@ -177,6 +201,7 @@
                  this.form.graduated_year=student.GraduatedYear;
             },
             newModal() {
+                this.editmode = false;
                 this.form.reset();
                  $('#addStudent').modal('show')
             },
