@@ -713,21 +713,26 @@
         },
         {
             "name": "freshbitsweb/laratables",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/freshbitsweb/laratables.git",
-                "reference": "5528864b1d15696bf75169d7122831c2b8ab0b02"
+                "reference": "a321261f5ba0074c6334070d0aa91904ea5eb252"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/freshbitsweb/laratables/zipball/5528864b1d15696bf75169d7122831c2b8ab0b02",
-                "reference": "5528864b1d15696bf75169d7122831c2b8ab0b02",
+                "url": "https://api.github.com/repos/freshbitsweb/laratables/zipball/a321261f5ba0074c6334070d0aa91904ea5eb252",
+                "reference": "a321261f5ba0074c6334070d0aa91904ea5eb252",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "5.5.*|5.6.*|5.7.*",
                 "php": ">=7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "^7"
             },
             "type": "library",
             "extra": {
@@ -756,7 +761,7 @@
                 }
             ],
             "description": "Ajax support of DataTables for Laravel 5.5+",
-            "time": "2018-10-06T07:39:43+00:00"
+            "time": "2018-10-27T05:49:22+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -1380,16 +1385,16 @@
         },
         {
             "name": "marvinlabs/laravel-luhn",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/marvinlabs/laravel-luhn.git",
-                "reference": "69fe1a59e908ff88103fc0526857749d3c9f1ee9"
+                "reference": "5ce265527fa994dc435b5968ce1e6f595eed1189"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marvinlabs/laravel-luhn/zipball/69fe1a59e908ff88103fc0526857749d3c9f1ee9",
-                "reference": "69fe1a59e908ff88103fc0526857749d3c9f1ee9",
+                "url": "https://api.github.com/repos/marvinlabs/laravel-luhn/zipball/5ce265527fa994dc435b5968ce1e6f595eed1189",
+                "reference": "5ce265527fa994dc435b5968ce1e6f595eed1189",
                 "shasum": ""
             },
             "require": {
@@ -1409,7 +1414,7 @@
                         "MarvinLabs\\Luhn\\LuhnServiceProvider"
                     ],
                     "aliases": {
-                        "Menu": "MarvinLabs\\Luhn\\Facades\\Luhn"
+                        "Luhn": "MarvinLabs\\Luhn\\Facades\\Luhn"
                     }
                 }
             },
@@ -1438,7 +1443,7 @@
                 "laravel",
                 "luhn"
             ],
-            "time": "2018-10-18T22:19:31+00:00"
+            "time": "2018-10-27T13:46:27+00:00"
         },
         {
             "name": "monolog/monolog",
