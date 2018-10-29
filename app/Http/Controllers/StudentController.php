@@ -42,17 +42,17 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-                    'first_name'               =>  'required',
-                    'last_name'               =>   'required',
-                    'guardian_name'      =>   'required',
-                    'roll_number'           =>   'required|unique',
-                    'gender'              	    =>   'required',
-                    'dob'                         =>   'required|date',
-                    'contact_number'     =>   'required|digits:10',
-                    'address'                   =>   'required|max:300',
-                    'graduated_year'      =>   'year'
-            ]);
+        $this->validate ($request,  [
+            'first_name'               =>  'required',
+            'last_name'               =>   'required',
+            'guardian_name'      =>   'required',
+            'roll_number'           =>   'required|unique',
+            'gender'              	    =>   'required',
+            'dob'                         =>   'required|date',
+            'contact_number'     =>   'required',
+            'address'                   =>   'required|max:300',
+            'graduated_year'      =>   'year'
+        ]);
 
             $student = new Student;
             $student->first_name =  Input::get('first_name');
