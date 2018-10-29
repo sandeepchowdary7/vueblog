@@ -44,14 +44,14 @@ class ProfessorController extends Controller
     public function store(Request $request)
     { 
         $request->validate ([
-					'first_name'            =>  'required|max:20',
-					'middle_name'       =>  'required|max:20',
-					'last_name'             =>   'required|max:20',
-					'gender'              	  =>   'required',
-					'dob'                       =>   'required|date',
-					'email'                    =>   'required',
-					'phone_number'     =>   'required',
-					'address'                 =>   'required|max:300'
+            'first_name'            =>  'required|max:20',
+            'middle_name'       =>  'required|max:20',
+            'last_name'             =>   'required|max:20',
+            'gender'              	  =>   'required',
+            'dob'                       =>   'required|date',
+            'email'                    =>   'required',
+            'phone_number'     =>   'required',
+            'address'                 =>   'required|max:300'
         ]);
         
 		$professor = new Professor;
@@ -92,18 +92,19 @@ class ProfessorController extends Controller
     {
 		$professor = Professor::findOrFail($id);
 		
-		$professor = new Professor;
-        $professor->first_name = $request['first_name'];
-        $professor->middle_name = $request['middle_name'];
-        $professor->last_name = $request['last_name'];
-        $professor->gender = $request['gender'];
-        $professor->dob = $request('dob');
-        $professor->email = $request('email');
-        $professor->phone_number = $request('phone_number');
-		$professor->address = $request('address');
-		$professor->update();
-		
-		return $this->ResultFormatter($professor);
+		$this->validate ($request,  [
+            'first_name'            =>  'required|max:20',
+            'middle_name'       =>  'required|max:20',
+            'last_name'             =>   'required|max:20',
+            'gender'              	  =>   'required',
+            'dob'                       =>   'required|date',
+            'email'                    =>   'required',
+            'phone_number'     =>   'required',
+            'address'                 =>   'required|max:300'
+        ]);
+
+        $professor->update($request->all());
+        return ['message' => 'Professor Data Updated'];
     }
 
     /**

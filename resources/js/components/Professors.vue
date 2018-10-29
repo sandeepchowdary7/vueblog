@@ -6,7 +6,7 @@
                 <h3 class="card-title">Professors</h3>
 
                 <div class="card-tools">
-                    <button class="btn btn-success" data-toggle="modal" data-target="#addProfessor">Add Professor <i class="fa fa-user-plus fa-fw"></i></button>
+                    <button class="btn btn-success" @click="newModal">Add Professor <i class="fa fa-user-plus fa-fw"></i></button>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -36,7 +36,7 @@
                     <td>{{ professor.PhoneNumber }}</td>
                     <td>{{ professor.Address }}</td>
                     <td>
-                        <a href="#">
+                        <a href="#" @click="editProfessor(professor)">
                             <i class="fa fa-edit blue"></i>
                         </a>
                         <a href="#" @click="deleteProfessor(professor.Id)">
@@ -55,12 +55,13 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addProfessorLabel">Add Professor</h5>
+                            <h5 class="modal-title" v-show="!editmode" id="addProfessorLabel">Add Professor</h5>
+                            <h5 class="modal-title" v-show="editmode" id="addProfessorLabel">Update Professor</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form @submit.prevent="createProfessor">
+                        <form @submit.prevent="editProfessor ? updateProfessor() : createProfessor()">
                             <div class="modal-body">
                                 
                                 <div class="form-group">
@@ -124,7 +125,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" v-show="!editmode" class="btn btn-primary">Create</button>
+                                <button type="submit" v-show= "editmode" class="btn btn-success">Update</button>
                             </div>
                         </form>
                     </div>
@@ -137,8 +139,10 @@
     export default {
         data () {
             return {
+                editmode: false,
                 professors:{},
                 form: new Form ({
+                    id:'',
                     first_name: '',
                     middle_name: '',
                     last_name: '',
@@ -151,6 +155,40 @@
             }
         },
         methods: {
+            updateProfessor() {
+                this.$Progress.start();
+                this.form.put('/professor/'+this.form.id).then(() => {
+                            swal(
+                            'Updated!',
+                            'Professor Record has been updated.',
+                            'success'
+                            )
+                            $('#addProfessor').modal('hide');
+                            Fire.$emit('AfterCreate');
+                            this.$Progress.finish();
+                        }).catch(() => {
+                            swal("Failed!", "There is something wrong", "warning");
+                            this.$Progress.fail();
+                        });
+            },
+            editProfessor(professor) {
+                this.editmode = true;
+                 $('#addProfessor').modal('show');
+                 this.form.id=professor.Id;
+                 this.form.first_name=professor.FirstName;
+                 this.form.middle_name=professor.MiddleName;
+                 this.form.last_name=professor.LastName;
+                 this.form.gender=professor.Gender;
+                 this.form.dob= professor.DateofBirth;
+                 this.form.email=professor.Email;
+                 this.form.phone_number=professor.PhoneNumber;
+                 this.form.address=professor.Address;
+            },
+            newModal() {
+                this.editmode = false;
+                 this.form.reset();
+                 $('#addProfessor').modal('show');
+            },
             deleteProfessor(id) {
                 swal({
                     title: 'Are you sure?',

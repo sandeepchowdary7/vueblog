@@ -72459,12 +72459,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            editmode: false,
             professors: {},
             form: new Form({
+                id: '',
                 first_name: '',
                 middle_name: '',
                 last_name: '',
@@ -72478,8 +72482,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        deleteProfessor: function deleteProfessor(id) {
+        updateProfessor: function updateProfessor() {
             var _this = this;
+
+            this.$Progress.start();
+            this.form.put('/professor/' + this.form.id).then(function () {
+                swal('Updated!', 'Professor Record has been updated.', 'success');
+                $('#addProfessor').modal('hide');
+                Fire.$emit('AfterCreate');
+                _this.$Progress.finish();
+            }).catch(function () {
+                swal("Failed!", "There is something wrong", "warning");
+                _this.$Progress.fail();
+            });
+        },
+        editProfessor: function editProfessor(professor) {
+            this.editmode = true;
+            $('#addProfessor').modal('show');
+            this.form.id = professor.Id;
+            this.form.first_name = professor.FirstName;
+            this.form.middle_name = professor.MiddleName;
+            this.form.last_name = professor.LastName;
+            this.form.gender = professor.Gender;
+            this.form.dob = professor.DateofBirth;
+            this.form.email = professor.Email;
+            this.form.phone_number = professor.PhoneNumber;
+            this.form.address = professor.Address;
+        },
+        newModal: function newModal() {
+            this.editmode = false;
+            this.form.reset();
+            $('#addProfessor').modal('show');
+        },
+        deleteProfessor: function deleteProfessor(id) {
+            var _this2 = this;
 
             swal({
                 title: 'Are you sure?',
@@ -72491,7 +72527,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 confirmButtonText: 'Yes, delete it!'
             }).then(function (result) {
                 if (result.value) {
-                    _this.form.delete('/professor/' + id).then(function () {
+                    _this2.form.delete('/professor/' + id).then(function () {
                         swal('Deleted!', 'Professor Record has been deleted.', 'success');
                         Fire.$emit('AfterCreate');
                     }).catch(function () {
@@ -72501,14 +72537,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         displayProfessors: function displayProfessors() {
-            var _this2 = this;
+            var _this3 = this;
 
             axios.get('/professor').then(function (data) {
-                return _this2.professors = data.data;
+                return _this3.professors = data.data;
             });
         },
         createProfessor: function createProfessor() {
-            var _this3 = this;
+            var _this4 = this;
 
             //Progress bar starts before request
             this.$Progress.start();
@@ -72523,18 +72559,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     title: 'Professor Created successfully'
                 });
                 //Progress bar ends after request
-                _this3.$Progress.finish();
+                _this4.$Progress.finish();
             }).catch(function () {});
         }
     },
     created: function created() {
-        var _this4 = this;
+        var _this5 = this;
 
         this.displayProfessors();
 
         //Custom Vue Event calling after creating a professor
         Fire.$on('AfterCreate', function () {
-            _this4.displayProfessors();
+            _this5.displayProfessors();
         });
         //send reqst for evry 3sec to update data
         //    setInterval(() => this.displayProfessors(), 3000);
@@ -72552,14 +72588,27 @@ var render = function() {
   return _c("div", { staticClass: "row mt-4" }, [
     _c("div", { staticClass: "col-md-12" }, [
       _c("div", { staticClass: "card" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "card-header" }, [
+          _c("h3", { staticClass: "card-title" }, [_vm._v("Professors")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-tools" }, [
+            _c(
+              "button",
+              { staticClass: "btn btn-success", on: { click: _vm.newModal } },
+              [
+                _vm._v("Add Professor "),
+                _c("i", { staticClass: "fa fa-user-plus fa-fw" })
+              ]
+            )
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body table-responsive p-0" }, [
           _c("table", { staticClass: "table table-hover" }, [
             _c(
               "tbody",
               [
-                _vm._m(1),
+                _vm._m(0),
                 _vm._v(" "),
                 _vm._l(_vm.professors, function(professor) {
                   return _c("tr", { key: professor.id }, [
@@ -72590,7 +72639,18 @@ var render = function() {
                     _c("td", [_vm._v(_vm._s(professor.Address))]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._m(2, true),
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              _vm.editProfessor(professor)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-edit blue" })]
+                      ),
                       _vm._v(" "),
                       _c(
                         "a",
@@ -72636,7 +72696,43 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.editmode,
+                        expression: "!editmode"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addProfessorLabel" }
+                  },
+                  [_vm._v("Add Professor")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editmode,
+                        expression: "editmode"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addProfessorLabel" }
+                  },
+                  [_vm._v("Update Professor")]
+                ),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
               _vm._v(" "),
               _c(
                 "form",
@@ -72644,7 +72740,9 @@ var render = function() {
                   on: {
                     submit: function($event) {
                       $event.preventDefault()
-                      return _vm.createProfessor($event)
+                      _vm.editProfessor
+                        ? _vm.updateProfessor()
+                        : _vm.createProfessor()
                     }
                   }
                 },
@@ -73015,7 +73113,50 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(4)
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Close")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.editmode,
+                            expression: "!editmode"
+                          }
+                        ],
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Create")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.editmode,
+                            expression: "editmode"
+                          }
+                        ],
+                        staticClass: "btn btn-success",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Update")]
+                    )
+                  ])
                 ]
               )
             ])
@@ -73026,28 +73167,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Professors")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-tools" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success",
-            attrs: { "data-toggle": "modal", "data-target": "#addProfessor" }
-          },
-          [
-            _vm._v("Add Professor "),
-            _c("i", { staticClass: "fa fa-user-plus fa-fw" })
-          ]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -73078,55 +73197,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fa fa-edit blue" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "addProfessorLabel" } },
-        [_vm._v("Add Professor")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Create")]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   }
 ]
 render._withStripped = true
@@ -73365,8 +73447,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.$Progress.start();
-            console.log(this.form.id);
-
             this.form.put('/student/' + this.form.id).then(function () {
                 swal('Updated!', 'Student Record has been updated.', 'success');
                 $('#addStudent').modal('hide');
