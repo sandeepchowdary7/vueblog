@@ -87,9 +87,9 @@
                                     <select v-model="form.gender" id="gender" name="gender"
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('gender') }">
                                         <option value="" selected>Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
                                     </select>
                                     <has-error :form="form" field="gender"></has-error>
                                 </div>

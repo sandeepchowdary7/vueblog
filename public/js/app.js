@@ -72927,15 +72927,15 @@ var render = function() {
                               [_vm._v("Select Gender")]
                             ),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "male" } }, [
+                            _c("option", { attrs: { value: "Male" } }, [
                               _vm._v("Male")
                             ]),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "female" } }, [
+                            _c("option", { attrs: { value: "Female" } }, [
                               _vm._v("Female")
                             ]),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "other" } }, [
+                            _c("option", { attrs: { value: "Other" } }, [
                               _vm._v("Other")
                             ])
                           ]
