@@ -49,7 +49,7 @@ class StudentController extends Controller
             'roll_number'           =>   'required|unique',
             'gender'              	    =>   'required',
             'dob'                         =>   'required|date',
-            'contact_number'     =>   'required',
+            'contact_number'     =>   'required|max:12',
             'address'                   =>   'required|max:300',
             'graduated_year'      =>   'year'
         ]);

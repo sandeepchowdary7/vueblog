@@ -50,7 +50,7 @@ class ProfessorController extends Controller
             'gender'              	  =>   'required',
             'dob'                       =>   'required|date',
             'email'                    =>   'required',
-            'phone_number'     =>   'required',
+            'phone_number'     =>   'required|max:12',
             'address'                 =>   'required|max:300'
         ]);
         

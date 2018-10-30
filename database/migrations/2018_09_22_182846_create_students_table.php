@@ -23,7 +23,7 @@ class CreateStudentsTable extends Migration
             $table->enum('gender', array ('Male', 'Female', 'Other'));
             $table->string('dob');
             $table->boolean('is_active')->default(true);
-            $table->integer('contact_number');
+            $table->string('contact_number');
             $table->string('address', 300);
             $table->date('graduated_year')->nullable();
             $table->timestamps();
