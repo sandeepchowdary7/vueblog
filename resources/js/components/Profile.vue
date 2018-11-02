@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 mt-3">
+    <div class="container-fluid">
+      <div class="row card justify-content-center mt-3">
+        <div class="col-md-12 mt-3">
                 <div class="card card-widget widget-user">
               <!-- Add the bg color to the header using any of the bg-* classes -->
               <div class="widget-user-header bg-info-active">
@@ -40,12 +40,16 @@
                 </div>
                 <!-- /.row -->
               </div>
-               <ul class="nav nav-pills">
+                  </div>
+            </div>
+        </div>
+        <div class="row card mt-3">
+            <ul class="card-header nav nav-pills">
                   <li class="nav-item"><a class="nav-link active show" href="#activity" data-toggle="tab">Activity</a></li>
                   <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
                   <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
-                </ul>
-                <div class="card-body">
+            </ul>
+              <div class="card-body col-md-12">
                   <div class="tab-content">
                     <div class="tab-pane active show" id="activity">
                       <!-- Post -->
@@ -237,9 +241,6 @@
                   </div>
                 <!-- /.tab-content -->
               </div>
-
-                  </div>
-            </div>
         </div>
     </div>
 </template>
