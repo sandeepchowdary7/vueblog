@@ -187,38 +187,39 @@
                     <div class="tab-pane" id="settings">
                       <form class="form-horizontal">
                         <div class="form-group">
-                          <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                          <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputName" placeholder="Name">
+                          <label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
+                          <div class="col-sm-12">
+                            <input type="email" class="form-control" id="inputFirstName" placeholder="Enter First Name">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputLastName2" class="col-sm-2 control-label">Last Name</label>
+                          <div class="col-sm-12">
+                            <input type="text" class="form-control" id="inputLastName2" placeholder="Enter Last Name">
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                          <div class="col-sm-10">
+                          <div class="col-sm-12">
                             <input type="email" class="form-control" id="inputEmail" placeholder="Email">
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="inputName2" class="col-sm-2 control-label">Name</label>
-
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                          </div>
-                        </div>
-                        <div class="form-group">
                           <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
-                          <div class="col-sm-10">
+                          <div class="col-sm-12">
                             <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-
-                          <div class="col-sm-10">
+                          <div class="col-sm-12">
                             <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="fileUpload" class="col-sm-2 control-label">File Upload</label>
+                          <div class="col-sm-12">
+                          <input type="file" class="form-control-file" id="fileUpload" placeholder="Upload File">
                           </div>
                         </div>
                         <div class="form-group">
@@ -231,8 +232,8 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-danger">Submit</button>
+                          <div class="col-sm-offset-4 col-sm-12">
+                            <button type="submit" class="btn btn-success">Submit</button>
                           </div>
                         </div>
                       </form>
