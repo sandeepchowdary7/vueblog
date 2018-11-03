@@ -184,7 +184,7 @@
                     </div>
                     <!-- /.tab-pane -->
 
-                    <div class="tab-pane" id="settings">
+                    <div class="tab-pane col-md-12" id="settings">
                       <form class="form-horizontal">
                         <div class="form-group">
                           <label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
