@@ -187,37 +187,35 @@
                     <div class="tab-pane col-md-12" id="settings">
                       <form class="form-horizontal">
                         <div class="form-group">
-                          <label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
+                          <label for="inputName" class="col-sm-2 control-label">Name</label>
                           <div class="col-sm-12">
-                            <input type="email" class="form-control" id="inputFirstName" placeholder="Enter First Name">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="inputLastName2" class="col-sm-2 control-label">Last Name</label>
-                          <div class="col-sm-12">
-                            <input type="text" class="form-control" id="inputLastName2" placeholder="Enter Last Name">
+                            <input type="text" v-model="form.name" class="form-control" id="inputName" placeholder="Enter Name">
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                           <div class="col-sm-12">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                            <input type="email" v-model="form.email" class="form-control" id="inputEmail" placeholder="Email">
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+                          <label for="inputBio" class="col-sm-2 control-label">Bio</label>
                           <div class="col-sm-12">
-                            <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                            <input type="text" v-model="form.bio" class="form-control" id="inputBio" placeholder="Bio">
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+                          <label for="inputType" class="col-sm-2 control-label">Type</label>
                           <div class="col-sm-12">
-                            <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                            <select name="myvalue">
+                              <option value=" " selected="selected">--select type--</option>
+                              <option value="user" >user</option>
+                              <option value="admin">admin</option>
+                            </select>
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="fileUpload" class="col-sm-2 control-label">File Upload</label>
+                          <label for="fileUpload" class="col-sm-2 control-label">File Upload -- (optional)</label>
                           <div class="col-sm-12">
                           <input type="file" class="form-control-file" id="fileUpload" placeholder="Upload File">
                           </div>
@@ -248,8 +246,26 @@
 
 <script>
     export default {
+        data() {
+            return {
+              users:{},
+              form: new Form ({
+                    id: '',
+                    name: '',
+                    email: '',
+                    bio: '',
+                    type: '',
+                    photo: '',
+              })
+            }
+        },
         mounted() {
-            console.log('Profile Component mounted.')
+            console.log('profile Component mounted.')
+        },
+        created() {
+          //  axios.get('/user').then (data => (this.users = data.data));
+          //  this.form.get('/user')
+          //               .then(({ data }) => (this.users = data.data));
         }
     }
 </script>
