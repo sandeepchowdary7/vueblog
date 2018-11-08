@@ -263,7 +263,7 @@
             console.log('profile Component mounted.')
         },
         created() {
-          //  axios.get('/user').then (data => (this.users = data.data));
+           axios.get('/user').then (data => (this.users = data.data));
           //  this.form.get('/user')
           //               .then(({ data }) => (this.users = data.data));
         }
