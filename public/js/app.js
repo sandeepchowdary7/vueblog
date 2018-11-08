@@ -71810,9 +71810,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log('profile Component mounted.');
     },
     created: function created() {
-        //  axios.get('/user').then (data => (this.users = data.data));
-        //  this.form.get('/user')
-        //               .then(({ data }) => (this.users = data.data));
+        var _this = this;
+
+        axios.get('/profile').then(function (_ref) {
+            var data = _ref.data;
+            return _this.form.fill(data);
+        });
     }
 });
 

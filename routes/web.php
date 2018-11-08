@@ -23,6 +23,7 @@ Route::resource('/courseGroup', 'CourseGroupController');
 Route::resource('/courseSection', 'CourseSectionController');
 Route::resource('/subject', 'SubjectController');
 Route::resource('/studentGroupDetail', 'StudentGroupDetailController');
+Route::get('/profile', 'ProfileController@profile');
 
 Auth::routes();
 

@@ -82,6 +82,11 @@ class ProfileController extends Controller
         //
     }
 
+    public function profile()
+    {
+        return auth('api')->user();
+    }
+
      /**
      * Give you the specific reponse from resource.
      *
