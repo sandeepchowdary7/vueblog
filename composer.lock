@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "933c9e7a56639f27ff0a8a9cbbb4d388",
+    "content-hash": "aca1c07549713116e591901309dd783e",
     "packages": [
         {
             "name": "bensampo/laravel-enum",
@@ -2189,6 +2189,88 @@
                 "social"
             ],
             "time": "2018-10-11T13:44:46+00:00"
+        },
+        {
+            "name": "rinvex/country",
+            "version": "v4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rinvex/renamed-country.git",
+                "reference": "f2e79a278858eb03e61987dc2863fcebfff17970"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rinvex/renamed-country/zipball/f2e79a278858eb03e61987dc2863fcebfff17970",
+                "reference": "f2e79a278858eb03e61987dc2863fcebfff17970",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "codedungeon/phpunit-result-printer": "^0.20.0",
+                "phpunit/phpunit": "^7.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Rinvex\\Country\\Providers\\CountryServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Rinvex\\Country\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rinvex LLC",
+                    "email": "help@rinvex.com",
+                    "homepage": "https://rinvex.com"
+                },
+                {
+                    "name": "Abdelrahman Omran",
+                    "email": "me@omranic.com",
+                    "homepage": "https://omranic.com",
+                    "role": "Project Lead"
+                },
+                {
+                    "name": "The Generous Laravel Community",
+                    "homepage": "https://github.com/rinvex/country/contributors"
+                }
+            ],
+            "description": "Rinvex Country is a simple and lightweight package for retrieving country details with flexibility. A whole bunch of data including name, demonym, capital, iso codes, dialling codes, geo data, currencies, flags, emoji, and other attributes for all 250 countries worldwide at your fingertips.",
+            "homepage": "https://rinvex.com",
+            "keywords": [
+                "Flexible",
+                "Simple",
+                "countries",
+                "country",
+                "currencies",
+                "demonym",
+                "dialling",
+                "emoji",
+                "flags",
+                "geographic",
+                "languages",
+                "laravel",
+                "rinvex",
+                "svg"
+            ],
+            "abandoned": "rinvex/countries",
+            "time": "2018-09-29T12:25:30+00:00"
         },
         {
             "name": "spatie/laravel-view-models",

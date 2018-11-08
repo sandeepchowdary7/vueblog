@@ -18,6 +18,7 @@
         "maatwebsite/excel": "^3.0",
         "marvinlabs/laravel-luhn": "^1.0",
         "rennokki/befriended": "^1.2",
+        "rinvex/country": "^4.0",
         "spatie/laravel-view-models": "^1.0"
     },
     "require-dev": {
