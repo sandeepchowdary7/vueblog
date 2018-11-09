@@ -24,6 +24,7 @@ Route::resource('/courseSection', 'CourseSectionController');
 Route::resource('/subject', 'SubjectController');
 Route::resource('/studentGroupDetail', 'StudentGroupDetailController');
 Route::get('/profile', 'ProfileController@profile');
+Route::get('email', 'ProfessorController@sendEmail');
 
 Auth::routes();
 

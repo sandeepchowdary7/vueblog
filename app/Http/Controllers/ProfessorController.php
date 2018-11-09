@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 use App\Professor;
 use App\ProfessorDetail;
+use App\Jobs\sendEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;
 
 class ProfessorController extends Controller
 {
@@ -102,8 +105,11 @@ class ProfessorController extends Controller
             'phone_number'     =>   'required',
             'address'                 =>   'required|max:300'
         ]);
+        
+        $update = $professor->update($request->all());
+        if($update)
+            dispatch(new sendEmail());
 
-        $professor->update($request->all());
         return ['message' => 'Professor Data Updated'];
     }
 
@@ -119,6 +125,12 @@ class ProfessorController extends Controller
 	   $professor->delete();
 
 		return ['message' => 'Professor Deleted'];
+    }
+
+    public function sendEmail()
+    {
+        dispatch(new sendEmail());
+        echo 'email sent';
     }
 
     /**
