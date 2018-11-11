@@ -61,7 +61,7 @@
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form @submit.prevent="editProfessor ? updateProfessor() : createProfessor()">
+                        <form @submit.prevent="editmode ? updateProfessor() : createProfessor()">
                             <div class="modal-body">
                                 
                                 <div class="form-group">

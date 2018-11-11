@@ -46,12 +46,12 @@ class StudentController extends Controller
             'first_name'               =>  'required',
             'last_name'               =>   'required',
             'guardian_name'      =>   'required',
-            'roll_number'           =>   'required|unique',
+            // 'roll_number'           =>   'required|unique',
             'gender'              	    =>   'required',
             'dob'                         =>   'required|date',
             'contact_number'     =>   'required|max:12',
             'address'                   =>   'required|max:300',
-            'graduated_year'      =>   'year'
+            'graduated_year'      =>   'required'
         ]);
 
             $student = new Student;

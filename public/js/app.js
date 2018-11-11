@@ -73516,7 +73516,7 @@ var render = function() {
                   on: {
                     submit: function($event) {
                       $event.preventDefault()
-                      _vm.editProfessor
+                      _vm.editmode
                         ? _vm.updateProfessor()
                         : _vm.createProfessor()
                     }
