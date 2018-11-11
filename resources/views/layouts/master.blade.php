@@ -40,7 +40,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="http://vueblogg.test:8000" class="brand-link">
         <img src="./img/startup.png" alt="Vueblog Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
         <span class="brand-text font-weight-light">Vue Blog</span>
@@ -96,6 +96,24 @@
                   <router-link to="/students" class="nav-link active">
                   <i class="fas fa-user-graduate indigo"></i>
                     <p>Students</p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link to="/course-years" class="nav-link active">
+                  <i class="fas fa-school black"></i>
+                    <p>Course Years</p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link to="/course-groups" class="nav-link active">
+                  <i class="fas fa-layer-group blue bounce"></i>
+                    <p>Course Groups</p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link to="/course-sections" class="nav-link active">
+                  <i class="fas fa-puzzle-piece silver fa-spin"></i>
+                    <p>Course Sections</p>
                   </router-link>
                 </li>
               </ul>
