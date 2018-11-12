@@ -30446,7 +30446,7 @@ Vue.component(__WEBPACK_IMPORTED_MODULE_1_vform__["AlertError"].name, __WEBPACK_
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_4_vue_router__["a" /* default */]);
 
-var routes = [{ path: '/dashboard', component: __webpack_require__(170) }, { path: '/profile', component: __webpack_require__(173) }, { path: '/users', component: __webpack_require__(176) }, { path: '/professors', component: __webpack_require__(179) }, { path: '/students', component: __webpack_require__(182) }];
+var routes = [{ path: '/dashboard', component: __webpack_require__(170) }, { path: '/profile', component: __webpack_require__(173) }, { path: '/users', component: __webpack_require__(176) }, { path: '/professors', component: __webpack_require__(179) }, { path: '/students', component: __webpack_require__(182) }, { path: '/courseYears', component: __webpack_require__(202) }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_4_vue_router__["a" /* default */]({
     routes: routes
@@ -75025,6 +75025,535 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(203)
+/* template */
+var __vue_template__ = __webpack_require__(204)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/CourseYears.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-af946440", Component.options)
+  } else {
+    hotAPI.reload("data-v-af946440", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 203 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            editmode: false,
+            CourseYear: {},
+            form: new Form({
+                id: '',
+                year: ''
+            })
+        };
+    },
+
+    methods: {
+        updateProfessor: function updateProfessor() {
+            var _this = this;
+
+            this.$Progress.start();
+            this.form.put('/professor/' + this.form.id).then(function () {
+                swal('Updated!', 'Professor Record has been updated.', 'success');
+                $('#addProfessor').modal('hide');
+                Fire.$emit('AfterCreate');
+                _this.$Progress.finish();
+            }).catch(function () {
+                swal("Failed!", "There is something wrong", "warning");
+                _this.$Progress.fail();
+            });
+        },
+        editProfessor: function editProfessor(professor) {
+            this.editmode = true;
+            $('#addProfessor').modal('show');
+            this.form.id = professor.Id;
+            this.form.first_name = professor.FirstName;
+            this.form.middle_name = professor.MiddleName;
+            this.form.last_name = professor.LastName;
+            this.form.gender = professor.Gender;
+            this.form.dob = professor.DateofBirth;
+            this.form.email = professor.Email;
+            this.form.phone_number = professor.PhoneNumber;
+            this.form.address = professor.Address;
+        },
+        newModal: function newModal() {
+            this.editmode = false;
+            this.form.reset();
+            $('#addProfessor').modal('show');
+        },
+        deleteProfessor: function deleteProfessor(id) {
+            var _this2 = this;
+
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) {
+                if (result.value) {
+                    _this2.form.delete('/professor/' + id).then(function () {
+                        swal('Deleted!', 'Professor Record has been deleted.', 'success');
+                        Fire.$emit('AfterCreate');
+                    }).catch(function () {
+                        swal("Failed!", "There is something wrong", "warning");
+                    });
+                }
+            });
+        },
+        displayProfessors: function displayProfessors() {
+            var _this3 = this;
+
+            axios.get('/course-years').then(function (data) {
+                return _this3.professors = data.data;
+            });
+        },
+        createProfessor: function createProfessor() {
+            var _this4 = this;
+
+            //Progress bar starts before request
+            this.$Progress.start();
+            this.form.post('/professor').then(function () {
+                //Custom Vue Event Firing after a professor POST request
+                Fire.$emit('AfterCreate');
+                //Hiding a modal after rqst
+                $('#addProfessor').modal('hide');
+                // toasting a model after rqst
+                toast({
+                    type: 'success',
+                    title: 'Professor Created successfully'
+                });
+                //Progress bar ends after request
+                _this4.$Progress.finish();
+            }).catch(function () {});
+        }
+    },
+    created: function created() {
+        var _this5 = this;
+
+        this.displayProfessors();
+
+        //Custom Vue Event calling after creating a professor
+        Fire.$on('AfterCreate', function () {
+            _this5.displayProfessors();
+        });
+        //send reqst for evry 3sec to update data
+        //    setInterval(() => this.displayProfessors(), 3000);
+    }
+});
+
+/***/ }),
+/* 204 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row mt-4" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _c("h3", { staticClass: "card-title" }, [_vm._v("Course Years")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-tools" }, [
+            _c(
+              "button",
+              { staticClass: "btn btn-success", on: { click: _vm.newModal } },
+              [
+                _vm._v("Add Course Year "),
+                _c("i", { staticClass: "fa fa-user-plus fa-fw" })
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body table-responsive p-0" }, [
+          _c("table", { staticClass: "table table-hover" }, [
+            _c(
+              "tbody",
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._l(_vm.courseYears, function(courseYear) {
+                  return _c("tr", { key: courseYear.id }, [
+                    _c("td", [_vm._v(_vm._s(courseYear.Id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(courseYear.Year))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              _vm.editCourseYear(courseYear)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-edit blue" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              _vm.deleteCourseYear(courseYear.Id)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-trash red" })]
+                      )
+                    ])
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "addCourseYear",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addCourseYearLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.editmode,
+                        expression: "!editmode"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addCourseYearLabel" }
+                  },
+                  [_vm._v("Add Course Year")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editmode,
+                        expression: "editmode"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addCourseYearLabel" }
+                  },
+                  [_vm._v("Update Add Course Year")]
+                ),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.editmode
+                        ? _vm.updateCourseYear()
+                        : _vm.createCourseYear()
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.year,
+                              expression: "form.year"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form.errors.has("phone_number")
+                          },
+                          attrs: {
+                            type: "tel",
+                            name: "phone_number",
+                            placeholder: "123-456-7890",
+                            pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                          },
+                          domProps: { value: _vm.form.year },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "year", $event.target.value)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form, field: "phone_number" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Close")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.editmode,
+                            expression: "!editmode"
+                          }
+                        ],
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Create")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.editmode,
+                            expression: "editmode"
+                          }
+                        ],
+                        staticClass: "btn btn-success",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Update")]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("ID")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Year")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-af946440", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

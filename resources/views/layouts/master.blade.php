@@ -73,7 +73,7 @@
             </li>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link active">
-                <i class="nav-icon  fas fa-cog green"></i>
+                <i class="nav-icon  fas fa-cog green fa-spin"></i>
                 <p>
                   Management
                   <i class="right fa fa-angle-left"></i>
@@ -82,25 +82,25 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <router-link to="/users" class="nav-link active">
-                    <i class="fas fa-users nav-icon cyan"></i>
+                    <i class="fas fa-users nav-icon cyan fa-spin"></i>
                     <p>Users</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
                   <router-link to="/professors" class="nav-link active">
-                  <i class="fas fa-chalkboard-teacher teal"></i>
+                  <i class="fas fa-chalkboard-teacher teal bounce"></i>
                     <p>Professors</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
                   <router-link to="/students" class="nav-link active">
-                  <i class="fas fa-user-graduate indigo"></i>
+                  <i class="fas fa-user-graduate indigo bounce"></i>
                     <p>Students</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
                   <router-link to="/course-years" class="nav-link active">
-                  <i class="fas fa-school black"></i>
+                  <i class="fas fa-school black bounce"></i>
                     <p>Course Years</p>
                   </router-link>
                 </li>
@@ -130,7 +130,7 @@
               <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
-                   <i class="nav-icon fas fa-power-off red"></i>
+                   <i class="nav-icon fas fa-power-off red fa-spin"></i>
                     <p> {{ __('Logout') }} </p>
                 </a>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
