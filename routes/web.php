@@ -29,3 +29,7 @@ Route::get('email', 'ProfessorController@sendEmail');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/homes', function () {
+    return view('starter');
+});
