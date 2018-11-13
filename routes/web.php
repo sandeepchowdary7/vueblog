@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('starter');
 });
 
 Route::resource('/professor', 'ProfessorController');
@@ -28,8 +28,8 @@ Route::get('email', 'ProfessorController@sendEmail');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin-home', 'HomeController@index')->name('home');
 
-Route::get('/homes', function () {
+Route::get('/home', function () {
     return view('starter');
 });
