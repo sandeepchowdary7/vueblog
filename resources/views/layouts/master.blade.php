@@ -107,7 +107,7 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link to="/course-years" class="nav-link active">
+                  <router-link to="/getStudents" class="nav-link active">
                   <i class="fas fa-school black bounce"></i>
                     <p>Course Years</p>
                   </router-link>

@@ -44,9 +44,6 @@ class CourseYearController extends Controller
         $validator = Validator::make($request->all(), [
             	'year'   =>  'required|year',
         ]);
-        // CourseYear::create($request->all());
-        // return redirect()->route('courseYears.index')
-        //                 ->with('success','courseYear created successfully.');
 
         $courseYear = new CourseYear;
         $courseYear->year =  Input::get('year');
@@ -97,6 +94,11 @@ class CourseYearController extends Controller
 		return response()->json([
 			"message" => "Success"
 		]);
+    }
+
+    public function getStudents()
+    {
+        dd('sandeep here');
     }
 
     /**
