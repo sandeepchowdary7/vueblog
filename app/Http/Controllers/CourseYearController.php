@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\CourseYear;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\Input;
+use App\StudentGroupDetail;
+use App\Student;
 
 class CourseYearController extends Controller
 {
@@ -96,9 +99,25 @@ class CourseYearController extends Controller
 		]);
     }
 
+    /**
+     * Dispaly the students by selection of course year.
+     */
     public function getStudents()
     {
-        dd('sandeep here');
+        $year = Input::get();
+
+        //TODO FIX MEEEEE
+        if (!ctype_digit( $year['year']) && strlen($year['year']) !== 4) 
+            return "Please Enter a valid year.";
+
+        $courseYearId = CourseYear::where('year', $year)->first()->id;
+        $studentGroupDetails = StudentGroupDetail::where('course_year_id', $courseYearId)->orderBy('student_id')->get()->toArray();
+        $studentIds = array_column($studentGroupDetails, 'student_id');
+
+        foreach ($studentIds as $studentId) {
+           $student [] = Student::find($studentId);
+        }
+        return $student;
     }
 
     /**
