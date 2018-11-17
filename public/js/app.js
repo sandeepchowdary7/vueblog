@@ -30446,7 +30446,7 @@ Vue.component(__WEBPACK_IMPORTED_MODULE_1_vform__["AlertError"].name, __WEBPACK_
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_4_vue_router__["a" /* default */]);
 
-var routes = [{ path: '/dashboard', component: __webpack_require__(170) }, { path: '/profile', component: __webpack_require__(173) }, { path: '/users', component: __webpack_require__(176) }, { path: '/professors', component: __webpack_require__(179) }, { path: '/students', component: __webpack_require__(182) }, { path: '/getStudents', component: __webpack_require__(185) }];
+var routes = [{ path: '/dashboard', component: __webpack_require__(170) }, { path: '/profile', component: __webpack_require__(173) }, { path: '/users', component: __webpack_require__(176) }, { path: '/professors', component: __webpack_require__(179) }, { path: '/students', component: __webpack_require__(182) }, { path: '/courseYears', component: __webpack_require__(185) }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_4_vue_router__["a" /* default */]({
     routes: routes
@@ -75112,17 +75112,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    methods: {
-        displaygetStudents: function displaygetStudents() {
-            var _this = this;
+  data: function data() {
+    return {
+      year: 0,
+      years: ''
+    };
+  },
 
-            axios.get('/getStudents').then(function (data) {
-                return _this.getStudents = data.data;
-            });
-        }
+  methods: {
+    getCourseYears: function getCourseYears() {
+      var _this = this;
+
+      axios.get('/courseYears').then(function (data) {
+        return _this.courseYears = data.data;
+      });
     }
+  }
 });
 
 /***/ }),
@@ -75133,58 +75141,94 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "row mt-4" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-tools col-md-8" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.year,
+                    expression: "year"
+                  }
+                ],
+                staticStyle: { width: "320px", height: "42px" },
+                attrs: { id: "selectedYear", name: "selectedYear" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.year = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "0", selected: "" } }, [
+                  _vm._v("Select Course Year")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.years, function(year) {
+                  return _c(
+                    "option",
+                    { key: year.id, domProps: { value: year.year } },
+                    [_vm._v(_vm._s(year.year))]
+                  )
+                })
+              ],
+              2
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(1)
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mt-4" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("h3", { staticClass: "card-title" }, [
-              _vm._v("Display Students by Course Years "),
-              _c("i", { staticClass: "fas fa-calendar-check fa-lg green" })
-            ]),
+    return _c("h3", { staticClass: "card-title" }, [
+      _vm._v("Display Students by Course Years "),
+      _c("i", { staticClass: "fas fa-calendar-check fa-lg green" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body table-responsive p-0" }, [
+      _c("table", { staticClass: "table table-hover" }, [
+        _c("tbody", [
+          _c("tr", [
+            _c("th", [_vm._v("ID")]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-tools col-md-8" }, [
-              _c(
-                "select",
-                {
-                  staticStyle: { width: "320px", height: "42px" },
-                  attrs: { id: "gender", name: "gender" }
-                },
-                [
-                  _c("option", { attrs: { value: "", selected: "" } }, [
-                    _vm._v("Select Course Year")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Male" } }, [_vm._v("Male")])
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body table-responsive p-0" }, [
-            _c("table", { staticClass: "table table-hover" }, [
-              _c("tbody", [
-                _c("tr", [
-                  _c("th", [_vm._v("ID")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("First Name")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Last Name")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Roll Number")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Course Group")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Course Year")])
-                ])
-              ])
-            ])
+            _c("th", [_vm._v("First Name")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Last Name")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Roll Number")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Course Group")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Course Year")])
           ])
         ])
       ])

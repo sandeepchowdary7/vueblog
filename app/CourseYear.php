@@ -7,6 +7,8 @@ class CourseYear extends Model
 {
     protected $table = 'course_years';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'year'
     ];

@@ -52,7 +52,8 @@ let routes = [
     { path: '/users',  component: require('./components/Users.vue') },
     { path: '/professors',  component: require('./components/Professors.vue') },
     { path: '/students',  component: require('./components/Students.vue') },
-    { path: '/getStudents',  component: require('./components/CourseYears.vue') },
+    { path: '/courseYears',  component: require('./components/CourseYears.vue') },
+    // { path: '/getStudents',  component: require('./components/CourseYears.vue') },
 ];
 
 const router = new VueRouter({

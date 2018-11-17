@@ -21,4 +21,5 @@ Route::apiResource( 'professors', 'ProfessorController' );
 Route::apiResource( 'students', 'StudentController' );
 Route::apiResource('users', 'ProfileController');
 Route::get( 'profile', 'ProfileController@profile' );
-Route::get( 'getStudents', 'CourseYearController@getStudents' );
+// Route::get( 'getStudents', 'CourseYearController@getStudents' );
+Route::apiResource( 'courseYears', 'CourseYearController' );
