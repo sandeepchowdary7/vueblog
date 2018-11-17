@@ -6,11 +6,13 @@
                 <h3 class="card-title">Display Students by Course Years <i class="fas fa-calendar-check fa-lg green"></i></h3>
 
                 <div class="card-tools col-md-8"> 
-                   <select v-model="year" id="selectedYear" name="selectedYear" style="width: 320px; height: 42px;">
-                        <option value="0" selected>Select Course Year</option>
-                        <option v-for="year in years" :key="year.id" :value="year.year">{{ year.year }}</option>
+                   <select v-model="selectedYear" @change="userSelectedYear" id="selectedYear" name="selectedYear" style="width: 320px; height: 42px;">
+                        <option value="0">Select Course Year</option>
+                        <option v-for="year in years" :key="year.id" :value="year.Year" >{{ year.Year }}</option>
                     </select>
                 </div>
+
+                <!-- <button @click="clickMe">submit</button> -->
               </div>
 
               <!-- /.card-header -->
@@ -24,11 +26,6 @@
                     <th>Course Group</th>
                     <th>Course Year</th>
                   </tr>
-
-                  <!-- <tr v-for=" courseYear in courseYears" :key="courseYear.id">
-                    <td>{{ courseYear.Id }}</td>
-                    <td>{{ courseYear.Year }}</td>
-                  </tr> -->
                 </tbody></table>
               </div>
               <!-- /.card-body -->
@@ -43,16 +40,23 @@
       data() {
         return {
           year: 0,
-          years: ''
+          years: {},
+          selectedYear: "",
+          selected: {},
         }
       },
-        methods: {
-          getCourseYears (){
-            axios.get('/courseYears').then(data => (this.courseYears = data.data));
-          },
-          // displaygetStudents () {
-          //     axios.get('/getStudents').then(data => (this.getStudents = data.data));
-          // }
+    mounted() {
+      this.getCourseYears();
+      },
+
+    methods: {
+        getCourseYears() {
+        axios.get('/courseYear').then(data => this.years =data.data).catch(error => console.log(error))         
+         },
+         userSelectedYear() {
+          this.selected.year=this.selectedYear;
+          axios.post('/getStudents', this.selected).then(selectedYearStudents => console.log(selectedYearStudents));
+         }
       }
     }
 </script>

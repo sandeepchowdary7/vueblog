@@ -75110,24 +75110,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       year: 0,
-      years: ''
+      years: {},
+      selectedYear: "",
+      selected: {}
     };
   },
+  mounted: function mounted() {
+    this.getCourseYears();
+  },
+
 
   methods: {
     getCourseYears: function getCourseYears() {
       var _this = this;
 
-      axios.get('/courseYears').then(function (data) {
-        return _this.courseYears = data.data;
+      axios.get('/courseYear').then(function (data) {
+        return _this.years = data.data;
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    },
+    userSelectedYear: function userSelectedYear() {
+      this.selected.year = this.selectedYear;
+      axios.post('/getStudents', this.selected).then(function (selectedYearStudents) {
+        return console.log(selectedYearStudents);
       });
     }
   }
@@ -75155,38 +75166,41 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.year,
-                    expression: "year"
+                    value: _vm.selectedYear,
+                    expression: "selectedYear"
                   }
                 ],
                 staticStyle: { width: "320px", height: "42px" },
                 attrs: { id: "selectedYear", name: "selectedYear" },
                 on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.year = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.selectedYear = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    _vm.userSelectedYear
+                  ]
                 }
               },
               [
-                _c("option", { attrs: { value: "0", selected: "" } }, [
+                _c("option", { attrs: { value: "0" } }, [
                   _vm._v("Select Course Year")
                 ]),
                 _vm._v(" "),
                 _vm._l(_vm.years, function(year) {
                   return _c(
                     "option",
-                    { key: year.id, domProps: { value: year.year } },
-                    [_vm._v(_vm._s(year.year))]
+                    { key: year.id, domProps: { value: year.Year } },
+                    [_vm._v(_vm._s(year.Year))]
                   )
                 })
               ],

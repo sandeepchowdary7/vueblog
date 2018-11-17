@@ -104,11 +104,11 @@ class CourseYearController extends Controller
      */
     public function getStudents()
     {
-        $year = Input::get();
+        $year = Input::all();
 
         //TODO FIX MEEEEE
-        if (!ctype_digit( $year['year']) && strlen($year['year']) !== 4) 
-            return "Please Enter a valid year.";
+        // if (!ctype_digit( $year['year']) && strlen($year['year']) !== 4) 
+        //     return "Please Enter a valid year.";
 
         $courseYearId = CourseYear::where('year', $year)->first()->id;
         $studentGroupDetails = StudentGroupDetail::where('course_year_id', $courseYearId)->orderBy('student_id')->get()->toArray();
