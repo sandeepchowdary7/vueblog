@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": "^7.1.3",
+        "barryvdh/laravel-dompdf": "^0.8.3",
         "bensampo/laravel-enum": "^1.14",
         "beyondcode/laravel-self-diagnosis": "^1.0",
         "binarytorch/larecipe": "^1.2",
@@ -15,7 +16,7 @@
         "fzaninotto/faker": "^1.8",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
-        "maatwebsite/excel": "^3.0",
+        "maatwebsite/excel": "^3.1",
         "marvinlabs/laravel-luhn": "^1.0",
         "rennokki/befriended": "^1.2",
         "rinvex/country": "^4.0",

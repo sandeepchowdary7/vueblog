@@ -7,7 +7,7 @@
 
                 <div class="card-tools col-md-8"> 
                    <select v-model="selectedYear" @change="userSelectedYear(selectedYear)" id="selectedYear" name="selectedYear" style="width: 320px; height: 42px;">
-                        <option value="0" selected>Select Course Year</option>
+                        <option value="0" :selected="true">Select Course Year</option>
                         <option v-for="year in years" :key="year.Id">{{ year.Year }}</option>
                     </select>
                 </div>

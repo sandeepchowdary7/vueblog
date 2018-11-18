@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Validator;
 use App\Student;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Validator;
 
 class StudentController extends Controller
 {
@@ -120,6 +121,15 @@ class StudentController extends Controller
         $student->delete();
         
         return ['message' => 'Student Deleted'];
+    }
+
+
+    public function studentsPdf()
+    {
+        $student = Student::all();
+        $pdf = PDF::loadView('studentPdf', $student);
+  
+        return $pdf->download('student.pdf');
     }
 
      /**

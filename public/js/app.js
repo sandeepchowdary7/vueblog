@@ -74197,6 +74197,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -74301,6 +74302,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //Progress bar ends after request
                 _this4.$Progress.finish();
             });
+        },
+        exportStudents: function exportStudents() {
+            axios.get('/generate-pdf');
         }
     },
     created: function created() {
@@ -74337,6 +74341,18 @@ var render = function() {
               [
                 _vm._v("Add Student "),
                 _c("i", { staticClass: "fa fa-user-plus fa-fw" })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-info",
+                on: { click: _vm.exportStudents }
+              },
+              [
+                _vm._v("Download"),
+                _c("i", { staticClass: "fa fa-file-download fa-fw" })
               ]
             )
           ])
@@ -75208,9 +75224,11 @@ var render = function() {
                 }
               },
               [
-                _c("option", { attrs: { value: "0", selected: "" } }, [
-                  _vm._v("Select Course Year")
-                ]),
+                _c(
+                  "option",
+                  { attrs: { value: "0" }, domProps: { selected: true } },
+                  [_vm._v("Select Course Year")]
+                ),
                 _vm._v(" "),
                 _vm._l(_vm.years, function(year) {
                   return _c("option", { key: year.Id }, [

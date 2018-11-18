@@ -7,6 +7,7 @@
 
                 <div class="card-tools">
                     <button class="btn btn-success" @click="newModal">Add Student <i class="fa fa-user-plus fa-fw"></i></button>
+                    <button class="btn btn-info" @click="exportStudents">Download<i class="fa fa-file-download fa-fw"></i></button>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -248,6 +249,9 @@
                         //Progress bar ends after request
                         this.$Progress.finish();
                     });
+            },
+            exportStudents() {
+                axios.get('/generate-pdf');
             }
         },
         created() {
