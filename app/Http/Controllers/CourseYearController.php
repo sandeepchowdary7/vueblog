@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\CourseYear;
-use Illuminate\Http\Request;
 use Validator;
-use Illuminate\Support\Facades\Input;
-use App\StudentGroupDetail;
 use App\Student;
+use ArrayObject;
+use App\CourseYear;
+use App\CourseGroup;
+use App\StudentGroupDetail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class CourseYearController extends Controller
 {
@@ -113,11 +115,14 @@ class CourseYearController extends Controller
         $courseYearId = CourseYear::where('year', $year)->first()->id;
         $studentGroupDetails = StudentGroupDetail::where('course_year_id', $courseYearId)->orderBy('student_id')->get()->toArray();
         $studentIds = array_column($studentGroupDetails, 'student_id');
+        $courseGroupIds = array_column($studentGroupDetails, 'course_group_id');
 
-        foreach ($studentIds as $studentId) {
-           $student [] = Student::find($studentId);
+        foreach (array_combine($studentIds, $courseGroupIds) as $studentId => $courseGroupId) {
+           $student = Student::find($studentId);
+           $courseGroup = CourseGroup::find($courseGroupId);
+           $result [] = $this->GetStudentResultFormatter($student, $courseGroup);
         }
-        return $student;
+        return $result;
     }
 
     /**
@@ -130,6 +135,30 @@ class CourseYearController extends Controller
 		return [
 			'Id' => $courseYear->id,
 			'Year' => $courseYear->year
+		];
+    }
+    
+     /**
+     * Give you the specific reponse from resource.
+     *
+     * @param  \App\Student  $student
+     * @return \Illuminate\Http\Response
+     */
+    protected function GetStudentResultFormatter($student, $courseGroup) {
+		return [
+			'Id' => $student->id,
+			'FirstName' => $student->first_name,
+			'MiddleName' => $student->middle_name,
+            'LastName' => $student->last_name,
+            'GaurdianName' => $student->guardian_name,
+			'RollNumber' => $student->roll_number,
+			'Gender' => $student->gender,
+			'DateofBirth' => $student->dob,
+			'is_active' => $student->is_active,
+			'ContactNumber' => $student->contact_number,
+			'Address' => $student->address,
+            'GraduatedYear' => $student->graduated_year,
+            'GroupName'     => $courseGroup->group_name
 		];
 	}
 }

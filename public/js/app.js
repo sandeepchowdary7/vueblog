@@ -75110,14 +75110,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       year: 0,
       years: {},
-      selectedYear: "",
-      selected: {}
+      selectedYear: {},
+      selected: {},
+      students: {},
+      groupname: {}
     };
   },
   mounted: function mounted() {
@@ -75135,10 +75145,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return console.log(error);
       });
     },
-    userSelectedYear: function userSelectedYear() {
+    userSelectedYear: function userSelectedYear(obj) {
+      var _this2 = this;
+
       this.selected.year = this.selectedYear;
       axios.post('/getStudents', this.selected).then(function (selectedYearStudents) {
-        return console.log(selectedYearStudents);
+        return _this2.students = selectedYearStudents.data;
+      }).catch(function (error) {
+        return console.log(error);
       });
     }
   }
@@ -75187,21 +75201,21 @@ var render = function() {
                         ? $$selectedVal
                         : $$selectedVal[0]
                     },
-                    _vm.userSelectedYear
+                    function($event) {
+                      _vm.userSelectedYear(_vm.selectedYear)
+                    }
                   ]
                 }
               },
               [
-                _c("option", { attrs: { value: "0" } }, [
+                _c("option", { attrs: { value: "0", selected: "" } }, [
                   _vm._v("Select Course Year")
                 ]),
                 _vm._v(" "),
                 _vm._l(_vm.years, function(year) {
-                  return _c(
-                    "option",
-                    { key: year.id, domProps: { value: year.Year } },
-                    [_vm._v(_vm._s(year.Year))]
-                  )
+                  return _c("option", { key: year.Id }, [
+                    _vm._v(_vm._s(year.Year))
+                  ])
                 })
               ],
               2
@@ -75209,7 +75223,37 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _c("div", { staticClass: "card-body table-responsive p-0" }, [
+          _c("table", { staticClass: "table table-hover" }, [
+            _c(
+              "tbody",
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._l(_vm.students, function(student) {
+                  return _c("tr", { key: student.id }, [
+                    _c("td", [_vm._v(_vm._s(student.Id))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("capitalize")(student.FirstName)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("capitalize")(student.LastName)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(student.RollNumber))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(student.GroupName))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.selectedYear))])
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ])
       ])
     ])
   ])
@@ -75228,24 +75272,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body table-responsive p-0" }, [
-      _c("table", { staticClass: "table table-hover" }, [
-        _c("tbody", [
-          _c("tr", [
-            _c("th", [_vm._v("ID")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("First Name")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Last Name")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Roll Number")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Course Group")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Course Year")])
-          ])
-        ])
-      ])
+    return _c("tr", [
+      _c("th", [_vm._v("ID")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("First Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Last Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Roll Number")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Course Group")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Course Year")])
     ])
   }
 ]
