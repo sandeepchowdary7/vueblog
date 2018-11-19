@@ -1504,16 +1504,16 @@
         },
         {
             "name": "marvinlabs/laravel-luhn",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/marvinlabs/laravel-luhn.git",
-                "reference": "5ce265527fa994dc435b5968ce1e6f595eed1189"
+                "reference": "1c2b36c4b4e9ed79344d2157e0825a12df70c8a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marvinlabs/laravel-luhn/zipball/5ce265527fa994dc435b5968ce1e6f595eed1189",
-                "reference": "5ce265527fa994dc435b5968ce1e6f595eed1189",
+                "url": "https://api.github.com/repos/marvinlabs/laravel-luhn/zipball/1c2b36c4b4e9ed79344d2157e0825a12df70c8a6",
+                "reference": "1c2b36c4b4e9ed79344d2157e0825a12df70c8a6",
                 "shasum": ""
             },
             "require": {
@@ -1562,7 +1562,7 @@
                 "laravel",
                 "luhn"
             ],
-            "time": "2018-10-27T13:46:27+00:00"
+            "time": "2018-11-07T13:47:10+00:00"
         },
         {
             "name": "monolog/monolog",
