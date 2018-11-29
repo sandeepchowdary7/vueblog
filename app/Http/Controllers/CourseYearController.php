@@ -109,7 +109,7 @@ class CourseYearController extends Controller
         $year = Input::get();
 
        if(!preg_match('/\d{4}/', implode(",", $year)))
-            return "Enter Year only [YYYY]";
+            return "Enter Year only [Format:YYYY]";
 
         $courseYearId = CourseYear::where('year', $year)->first()->id;
         $studentGroupDetails = StudentGroupDetail::where('course_year_id', $courseYearId)->orderBy('student_id')->get()->toArray();
