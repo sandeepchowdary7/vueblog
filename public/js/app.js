@@ -74198,6 +74198,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -74344,17 +74345,7 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-info",
-                on: { click: _vm.exportStudents }
-              },
-              [
-                _vm._v("Download"),
-                _c("i", { staticClass: "fa fa-file-download fa-fw" })
-              ]
-            )
+            _vm._m(0)
           ])
         ]),
         _vm._v(" "),
@@ -74363,7 +74354,7 @@ var render = function() {
             _c(
               "tbody",
               [
-                _vm._m(0),
+                _vm._m(1),
                 _vm._v(" "),
                 _vm._l(_vm.students, function(student) {
                   return _c("tr", { key: student.id }, [
@@ -74492,7 +74483,7 @@ var render = function() {
                   [_vm._v("Update Student")]
                 ),
                 _vm._v(" "),
-                _vm._m(1)
+                _vm._m(2)
               ]),
               _vm._v(" "),
               _c(
@@ -74979,6 +74970,19 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn btn-info", attrs: { href: "/download" } },
+      [
+        _c("i", { staticClass: "fa fa-file-download fa-fw" }),
+        _vm._v(" Download Pdf ")
+      ]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

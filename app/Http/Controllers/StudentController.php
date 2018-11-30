@@ -124,12 +124,12 @@ class StudentController extends Controller
     }
 
 
-    public function studentsPdf()
+    public function getDownload()
     {
-        $student = Student::all();
-        $pdf = PDF::loadView('studentPdf', $student);
-  
-        return $pdf->download('student.pdf');
+        FIXME:
+        //PDF file is stored under project/public/download/info.pdf
+    //    $download_path = ( storage_path() . '/download/students_'.date('m-d-Y_hia').'.pdf' );
+        return response()->download(public_path() . '/1.pdf' );
     }
 
      /**

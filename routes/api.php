@@ -23,3 +23,4 @@ Route::apiResource('users', 'ProfileController');
 Route::get( 'profile', 'ProfileController@profile' );
 // Route::get( 'getStudents', 'CourseYearController@getStudents' );
 Route::apiResource( 'courseYears', 'CourseYearController' );
+Route::get( 'download', 'StudentController@getDownload' );

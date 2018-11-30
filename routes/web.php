@@ -27,6 +27,7 @@ Route::get('/profile', 'ProfileController@profile');
 Route::get('email', 'ProfessorController@sendEmail');
 Route::post('/getStudents', 'CourseYearController@getStudents');
 Route::get('/generate-pdf', 'StudentController@studentsPdf');
+Route::get('/download', 'StudentController@getDownload');
 
 Auth::routes();
 

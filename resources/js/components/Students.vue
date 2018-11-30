@@ -7,7 +7,8 @@
 
                 <div class="card-tools">
                     <button class="btn btn-success" @click="newModal">Add Student <i class="fa fa-user-plus fa-fw"></i></button>
-                    <button class="btn btn-info" @click="exportStudents">Download<i class="fa fa-file-download fa-fw"></i></button>
+                    <!-- <button class="btn btn-info" @click="exportStudents">Download<i class="fa fa-file-download fa-fw"></i></button> -->
+                    <a href="/download" class="btn btn-info"><i class="fa fa-file-download fa-fw"> </i> Download Pdf </a>
                 </div>
               </div>
               <!-- /.card-header -->
