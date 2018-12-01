@@ -113,7 +113,7 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link to="/course-groups" class="nav-link active">
+                  <router-link to="/courseGroups" class="nav-link active">
                   <i class="fas fa-layer-group blue bounce"></i>
                     <p>Course Groups</p>
                   </router-link>

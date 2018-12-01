@@ -27,6 +27,7 @@ class VerifyCsrfToken extends Middleware
         '/subject',
         '/studentGroupDetail',
         '/getStudents',
+        '/getStudentsByGroup',
         '/generate-pdf',
         '/download'
     ];

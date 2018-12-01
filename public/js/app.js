@@ -30380,7 +30380,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(139);
-module.exports = __webpack_require__(188);
+module.exports = __webpack_require__(191);
 
 
 /***/ }),
@@ -30446,7 +30446,7 @@ Vue.component(__WEBPACK_IMPORTED_MODULE_1_vform__["AlertError"].name, __WEBPACK_
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_4_vue_router__["a" /* default */]);
 
-var routes = [{ path: '/dashboard', component: __webpack_require__(170) }, { path: '/profile', component: __webpack_require__(173) }, { path: '/users', component: __webpack_require__(176) }, { path: '/professors', component: __webpack_require__(179) }, { path: '/students', component: __webpack_require__(182) }, { path: '/courseYears', component: __webpack_require__(185) }];
+var routes = [{ path: '/dashboard', component: __webpack_require__(170) }, { path: '/profile', component: __webpack_require__(173) }, { path: '/users', component: __webpack_require__(176) }, { path: '/professors', component: __webpack_require__(179) }, { path: '/students', component: __webpack_require__(182) }, { path: '/courseYears', component: __webpack_require__(185) }, { path: '/courseGroups', component: __webpack_require__(188) }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_4_vue_router__["a" /* default */]({
     routes: routes
@@ -75320,6 +75320,284 @@ if (false) {
 
 /***/ }),
 /* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(189)
+/* template */
+var __vue_template__ = __webpack_require__(190)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/CourseGroups.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0463da3a", Component.options)
+  } else {
+    hotAPI.reload("data-v-0463da3a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 189 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      groupname: {},
+      groupnames: {},
+      selectedGroup: {},
+      selected: {},
+      students: {},
+      year: {}
+    };
+  },
+  mounted: function mounted() {
+    this.getCourseGroups();
+  },
+
+
+  methods: {
+    getCourseGroups: function getCourseGroups() {
+      var _this = this;
+
+      axios.get('/courseGroup').then(function (data) {
+        return _this.groupnames = data.data;
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    },
+    userSelectedGroupName: function userSelectedGroupName(obj) {
+      var _this2 = this;
+
+      this.selected.groupname = this.selectedGroup;
+      axios.post('/getStudentsByGroup', this.selected).then(function (selectedGroupStudents) {
+        return _this2.students = selectedGroupStudents.data;
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row mt-4" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-tools col-md-8" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selectedGroup,
+                    expression: "selectedGroup"
+                  }
+                ],
+                staticStyle: { width: "320px", height: "42px" },
+                attrs: { id: "selectedGroup", name: "selectedGroup" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.selectedGroup = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      _vm.userSelectedGroupName(_vm.selectedGroup)
+                    }
+                  ]
+                }
+              },
+              [
+                _c(
+                  "option",
+                  { attrs: { value: "0" }, domProps: { selected: true } },
+                  [_vm._v("Select Course Group")]
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.groupnames, function(groupname) {
+                  return _c("option", { key: groupname.Id }, [
+                    _vm._v(_vm._s(groupname.Group))
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body table-responsive p-0" }, [
+          _c("table", { staticClass: "table table-hover" }, [
+            _c(
+              "tbody",
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._l(_vm.students, function(student) {
+                  return _c("tr", { key: student.id }, [
+                    _c("td", [_vm._v(_vm._s(student.Id))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("capitalize")(student.FirstName)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("capitalize")(student.LastName)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(student.RollNumber))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.selectedGroup))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(student.CourseYear))])
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "card-title" }, [
+      _vm._v("Display Students by Course Groups "),
+      _c("i", { staticClass: "fas fa-calendar-check fa-lg green" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("ID")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("First Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Last Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Roll Number")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Course Group")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Course Year")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0463da3a", module.exports)
+  }
+}
+
+/***/ }),
+/* 191 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
