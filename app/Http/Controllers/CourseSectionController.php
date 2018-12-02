@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Validator;
 use App\CourseSection;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Input;
 
 class CourseSectionController extends Controller
 {
@@ -18,7 +19,7 @@ class CourseSectionController extends Controller
         $result = [];
 
         foreach ($courseSections as $courseSection) {
-            $result []= $this->ResultFormmater($courseSection);
+            $result []= $this->ResultFormatter($courseSection);
         }
         return $result;
     }
@@ -44,9 +45,6 @@ class CourseSectionController extends Controller
         $validator = Validator::make($request->all(), [
             'section_name'   =>  'required'
         ]);
-        // CourseYear::create($request->all());
-        // return redirect()->route('courseSection.index')
-        //                 ->with('success','courseSection created successfully.');
 
         $courseSection = new CourseSection;
         $courseSection->section_name =  Input::get('section_name');
@@ -77,11 +75,12 @@ class CourseSectionController extends Controller
     public function update(Request $request, $id)
     {
        $courseSection =  CourseSection::findOrFail($id);
+       $this->validate ($request,  [
+            'section_name'               =>  'required',
+        ]);
 
-       $courseSection = new CourseSection;
-       $courseSection->section_name = $request('section_name');
-
-       $courseSection->update();
+        $courseSection->update($request->all());
+        return ['message' => 'Section Data Updated'];
     }
 
     /**
@@ -96,8 +95,8 @@ class CourseSectionController extends Controller
        $courseSection->delete();
 
        return response()->json([
-        "message" => "Success"
-    ]);
+            "message" => "Success"
+        ]);
     }
 
      /**
@@ -109,7 +108,7 @@ class CourseSectionController extends Controller
     protected function ResultFormatter($courseSection) {
 		return [
 			'Id' => $courseSection->id,
-			'Section Name' => $courseSection->section_name
+			'SectionName' => $courseSection->section_name
 		];
 	}
 }

@@ -119,7 +119,7 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link to="/course-sections" class="nav-link active">
+                  <router-link to="/courseSections" class="nav-link active">
                   <i class="fas fa-puzzle-piece silver fa-spin"></i>
                     <p>Course Sections</p>
                   </router-link>

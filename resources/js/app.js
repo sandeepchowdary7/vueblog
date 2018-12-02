@@ -54,6 +54,7 @@ let routes = [
     { path: '/students',  component: require('./components/Students.vue') },
     { path: '/courseYears',  component: require('./components/CourseYears.vue') },
     { path: '/courseGroups',  component: require('./components/CourseGroups.vue') },
+    { path: '/courseSections',  component: require('./components/courseSections.vue') },
     // { path: '/getStudents',  component: require('./components/CourseYears.vue') },
 ];
 
@@ -63,6 +64,10 @@ const router = new VueRouter({
 
 Vue.filter('capitalize', function(text) {
     return text[0].toUpperCase() + text.slice(1);
+});
+
+Vue.filter('capitals', function(text) {
+    return text.toUpperCase()+ text.slice(1);
 });
 
 Vue.filter('myDate', function(created){
