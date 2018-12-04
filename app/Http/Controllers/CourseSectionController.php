@@ -5,6 +5,7 @@ use Validator;
 use App\CourseSection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Rules\Uppercase;
 
 class CourseSectionController extends Controller
 {
@@ -42,8 +43,8 @@ class CourseSectionController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'section_name'   =>  'required'
+        $request->validate([
+            'section_name' => ['required', 'string', new Uppercase],
         ]);
 
         $courseSection = new CourseSection;
@@ -75,8 +76,8 @@ class CourseSectionController extends Controller
     public function update(Request $request, $id)
     {
        $courseSection =  CourseSection::findOrFail($id);
-       $this->validate ($request,  [
-            'section_name'               =>  'required',
+       $request->validate([
+         'section_name' => ['required', 'string', new Uppercase],
         ]);
 
         $courseSection->update($request->all());
