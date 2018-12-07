@@ -19,8 +19,8 @@
         "maatwebsite/excel": "^3.1",
         "marvinlabs/laravel-luhn": "^1.0",
         "rennokki/befriended": "^1.2",
-        "rinvex/country": "^4.0",
-        "spatie/laravel-view-models": "^1.0"
+        "spatie/laravel-view-models": "^1.0",
+        "wildside/userstamps": "^0.5.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
