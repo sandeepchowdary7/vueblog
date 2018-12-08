@@ -25,6 +25,7 @@ class VerifyCsrfToken extends Middleware
         '/courseGroup',
         '/courseSection',
         '/subject',
+        '/exam',
         '/studentGroupDetail',
         '/getStudents',
         '/getStudentsByGroup',

@@ -25,4 +25,5 @@ Route::get( 'profile', 'ProfileController@profile' );
 Route::apiResource( 'courseYears', 'CourseYearController' );
 Route::apiResource( 'courseGroups', 'CourseGroupController' );
 Route::apiResource( 'courseSections', 'CourseSectionController' );
+Route::apiResource( 'exams', 'ExamController' );
 Route::get( 'download', 'StudentController@getDownload' );

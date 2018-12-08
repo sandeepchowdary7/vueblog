@@ -12,6 +12,8 @@ class Exam extends Model
         'exam_date',
     ];
 
+    protected $dates = ['created_at', 'updated_at'];
+
     /**
      * Each exam date belongsTo one subject
      */
@@ -26,5 +28,13 @@ class Exam extends Model
     public function CourseYear()
     {
         return $this->belongsTo('App\CourseYear');
+    }
+
+    /**
+     * Each exam date belongsTo one course-year
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

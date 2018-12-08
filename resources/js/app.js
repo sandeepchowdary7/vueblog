@@ -55,6 +55,7 @@ let routes = [
     { path: '/courseYears',  component: require('./components/CourseYears.vue') },
     { path: '/courseGroups',  component: require('./components/CourseGroups.vue') },
     { path: '/courseSections',  component: require('./components/courseSections.vue') },
+    { path: '/exams',  component: require('./components/Exams.vue') },
     // { path: '/getStudents',  component: require('./components/CourseYears.vue') },
 ];
 

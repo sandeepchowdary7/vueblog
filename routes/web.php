@@ -22,6 +22,7 @@ Route::resource('/courseYear', 'CourseYearController');
 Route::resource('/courseGroup', 'CourseGroupController');
 Route::resource('/courseSection', 'CourseSectionController');
 Route::resource('/subject', 'SubjectController');
+Route::resource('/exam', 'ExamController');
 Route::resource('/studentGroupDetail', 'StudentGroupDetailController');
 Route::get('/profile', 'ProfileController@profile');
 Route::get('email', 'ProfessorController@sendEmail');
