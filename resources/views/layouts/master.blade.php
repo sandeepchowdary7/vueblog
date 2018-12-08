@@ -124,6 +124,12 @@
                     <p>Course Sections</p>
                   </router-link>
                 </li>
+                <li class="nav-item">
+                  <router-link to="/exams" class="nav-link active">
+                  <i class="fas fa-book-reader orange"></i>
+                    <p>Exams</p>
+                  </router-link>
+                </li>
               </ul>
             </li>
             <li class="nav-item">

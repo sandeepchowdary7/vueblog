@@ -1,5 +1,4 @@
 <?php
-
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Wildside\Userstamps\Userstamps;
@@ -14,10 +13,18 @@ class Exam extends Model
     ];
 
     /**
-     * Get the ProfessorDetail record associated with the Professor.
+     * Each exam date belongsTo one subject
      */
-    public function professor_detail()
+    public function subject()
     {
-        return $this->hasOne('App\ProfessorDetail');
+        return $this->belongsTo('App\Subject');
+    }
+
+    /**
+     * Each exam date belongsTo one course-year
+     */
+    public function CourseYear()
+    {
+        return $this->belongsTo('App\CourseYear');
     }
 }

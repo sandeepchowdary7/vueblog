@@ -20,10 +20,9 @@ class CreateExamsTable extends Migration
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->unsignedInteger('course_year_id');
             $table->foreign('course_year_id')->references('id')->on('course_years');
+            $table -> unsignedInteger('created_by') -> nullable() ->default(null);
+            $table -> unsignedInteger('updated_by') -> nullable() ->default(null);
             $table->timestamps();
-            $table -> unsignedInteger('created_by') -> nullable() -> default(null) -> after('created_at');
-            $table -> unsignedInteger('updated_by') -> nullable() -> default(null) -> after('updated_at');
-            $table -> unsignedInteger('deleted_by') -> nullable() -> default(null) -> after('updated_by');
         });
     }
 
