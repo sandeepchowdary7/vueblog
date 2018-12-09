@@ -17,10 +17,10 @@ class StudentControllerTest extends TestCase
      */
     public function testIndex()
     {
-        $student = Student::all();
-     
+        $student = Student::find(1);
+        
+        $this->assertEquals('sandeep', $student->first_name);
         $this->assertNotNull($student);
-       $this->assertCount(30, $student);
     }
 
     /**
@@ -31,9 +31,7 @@ class StudentControllerTest extends TestCase
     public function testShow()
     {
         $student = Student::find(1);
-        
-        $this->assertNotNull($student);
-        $this->assertEquals('Hyman', $student->first_name);
+        $this->assertEquals('8167455196', $student->contact_number);
     }
     
     /**
@@ -59,10 +57,10 @@ class StudentControllerTest extends TestCase
     public function testCreate()
     {
         $student = new Student;
-        $student->first_name = 'firstName';
-        $student->middle_name = 'guardianName';
-        $student->last_name = 'guardianName';
-        $student->guardian_name = 'guardianName';
+        $student->first_name = 'sandeep';
+        $student->middle_name = 'k';
+        $student->last_name = 'choudary';
+        $student->guardian_name = 'knr';
         $student->gender = 'Male';
         $student->dob = '2015-09-06';
         $student->contact_number = 8167455196;
@@ -70,8 +68,7 @@ class StudentControllerTest extends TestCase
         $student->save();
 
         $this->assertNotNull($student->roll_number);
-        $student = Student::all();
-        $this->assertCount(31, $student);
+        $this->assertContains('knr', $student->guardian_name);
     }
 
     /**
@@ -81,10 +78,10 @@ class StudentControllerTest extends TestCase
      */
     public function testDelete()
     {
-        $student = Student::latest()->first();
+        $student = Student::find(1);
         $student->delete();
 
         $student = Student::all();
-        $this->assertCount(30, $student);
+        $this->assertCount(0, $student);
     }
 }
