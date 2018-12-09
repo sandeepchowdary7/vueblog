@@ -5,8 +5,9 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
+ * @group controllers
  * @group students
- * @group students-controllers
+ * @group students-controller
  */
 class StudentControllerTest extends TestCase
 {
