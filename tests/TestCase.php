@@ -22,7 +22,6 @@ abstract class TestCase extends BaseTestCase
         
     public function tearDown(){
         Artisan::call('migrate:reset');
-        $this->seeddb();
     }
 
     public function call($method, $uri, $parameters = [], $files = [], $server = [], $content = null, $changeHistory = true)
@@ -33,24 +32,25 @@ abstract class TestCase extends BaseTestCase
         return parent::call($method, $uri, $parameters, $files, $server, $content, $changeHistory);
     }
     
-    public function seeddb()
-    {
-        if ($this->seeds) {
-            $dir = $this->seedDataDirectory();
-            foreach ($this->seeds as $seed) {
-                $seed = trim($seed, '.php');
-                $filepath = DIRECTORY_SEPERATOR . trim($dor, '/') . DIRECTORY_SEPERATOR . $seed . '.php';
-                Seed::populateDatabase(require('test-data.php'));
-            }
-            return;
-        }
-        if ($this->shouldFallbackToDefaultSeed) {
-            // \Artisan::call('seed:test');
-        }
-    }
+    //We are not using this method currently
+    // public function seeddb()
+    // {
+    //     if ($this->seeds) {
+    //         $dir = $this->seedDataDirectory();
+    //         foreach ($this->seeds as $seed) {
+    //             $seed = trim($seed, '.php');
+    //             $filepath = DIRECTORY_SEPERATOR . trim($dor, '/') . DIRECTORY_SEPERATOR . $seed . '.php';
+    //             Seed::populateDatabase(require('test-data.php'));
+    //         }
+    //         return;
+    //     }
+    //     if ($this->shouldFallbackToDefaultSeed) {
+    //         // \Artisan::call('seed:test');
+    //     }
+    // }
 
-    public function seedDataDirectory()
-    {
-        return __DIR__;
-    }
+    // public function seedDataDirectory()
+    // {
+    //     return __DIR__;
+    // }
 }
