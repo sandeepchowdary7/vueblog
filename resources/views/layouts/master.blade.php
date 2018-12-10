@@ -132,8 +132,8 @@
                 </li>
                 <li class="nav-item">
                   <a href="/areaChart" class="nav-link active">Charts</a>
-                  <!-- <i class="fas fa-book-reader orange"></i> -->
-                    <!-- <p>Charts</p>
+                  <!-- <i class="fas fa-book-reader orange"></i>  -->
+                    <!-- <!-- <p>Charts</p>
                   </router-link> -->
                 </li>
               </ul>

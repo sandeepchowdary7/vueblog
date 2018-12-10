@@ -30,6 +30,7 @@ Route::post('/getStudents', 'CourseYearController@getStudents');
 Route::post('/getStudentsByGroup', 'CourseGroupController@getStudents');
 Route::get('/generate-pdf', 'StudentController@studentsPdf');
 Route::get('/download', 'StudentController@getDownload');
+Route::get('/areaChart', 'StudentController@areaChart');
 
 Auth::routes();
 
@@ -38,5 +39,3 @@ Route::get('/admin-home', 'HomeController@index')->name('home');
 Route::get('/home', function () {
     return view('starter');
 });
-
-Route::get('/areaChart', 'StudentController@areaChart');
