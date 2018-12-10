@@ -130,6 +130,12 @@
                     <p>Exams</p>
                   </router-link>
                 </li>
+                <li class="nav-item">
+                  <a href="/areaChart" class="nav-link active">Charts</a>
+                  <!-- <i class="fas fa-book-reader orange"></i> -->
+                    <!-- <p>Charts</p>
+                  </router-link> -->
+                </li>
               </ul>
             </li>
             <li class="nav-item">

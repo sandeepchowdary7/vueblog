@@ -38,3 +38,5 @@ Route::get('/admin-home', 'HomeController@index')->name('home');
 Route::get('/home', function () {
     return view('starter');
 });
+
+Route::get('/areaChart', 'StudentController@areaChart');
