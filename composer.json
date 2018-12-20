@@ -37,6 +37,10 @@
         "phpunit/phpunit": "^7"
     },
     "autoload": {
+        "files": [
+            "app/helpers.php",
+            "app/errors.php"
+        ],
         "classmap": [
             "database/seeds",
             "database/factories"
