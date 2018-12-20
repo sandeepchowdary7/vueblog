@@ -11,7 +11,7 @@ class CleanUpRunnerCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'clean-up';
+    protected $signature = 'make:clean-up';
 
     /**
      * The console command description.
@@ -21,9 +21,9 @@ class CleanUpRunnerCommand extends Command
     protected $description = 'Run the clean up command that have not run - only for Data changes';
 
     /**
-     * Create a new command instance.
+     * Execute the console command.
      *
-     * @return void
+     * @return mixed
      */
     public function handle()
     {
@@ -45,16 +45,6 @@ class CleanUpRunnerCommand extends Command
             \DB::table('__clean_ups')->insert([ 'name' => $file ]);
             $this->info('Completed running ' . $file);
         }
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handless()
-    {
-        //
     }
 
     protected function getArguments()
