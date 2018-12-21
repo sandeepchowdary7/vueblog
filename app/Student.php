@@ -1,10 +1,13 @@
 <?php
 
 namespace App;
+use App\Events\StudentDeleted;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Student extends Model
 {
+    use Notifiable;
     protected $table = 'students';
 
     protected $fillable = [
@@ -20,5 +23,14 @@ class Student extends Model
         'contact_number', 
         'address', 
         'graduated_year',
+    ];
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'deleted' => StudentDeleted::class
     ];
 }

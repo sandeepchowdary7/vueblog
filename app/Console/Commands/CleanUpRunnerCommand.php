@@ -11,7 +11,7 @@ class CleanUpRunnerCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:clean-up';
+    protected $signature = 'clean-up';
 
     /**
      * The console command description.
@@ -27,7 +27,6 @@ class CleanUpRunnerCommand extends Command
      */
     public function handle()
     {
-        parent::__construct();
         $filesRun = \DB::table('__clean_ups')->lists('name');
         $files = scandir(\app_path() . '/database/clean-up');
         $filesToRun = array_filter($files, function($file) use ($filesRun) {
