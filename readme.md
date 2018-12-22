@@ -2,7 +2,7 @@
 
 
 <p align="center">
-Powered Laravel-Vue 
+    built by Laravel-Vue.Js
 </p>
 
 ## About Laravel-Vue College Record Management Dashboard Application
@@ -12,5 +12,9 @@ Laravel-Vue College Record is a web application dashboard to manage the students
 ## NOTE: Still In Development Stage.
 
 ## Author
-Sandeep
+Sandeep - 
 Full-Stack Web Developer
+</br>
+<a href="ksandeeptech07@gmail.com">Email Me For More</a>
+</br>
+php-pool.review
