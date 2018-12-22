@@ -15,6 +15,6 @@ Laravel-Vue College Record is a web application dashboard to manage the students
 Sandeep - 
 Full-Stack Web Developer
 </br>
-<a href="ksandeeptech07@gmail.com">Email Me For More</a>
+<a href="mailto:ksandeeptech07@gmail.com">Email Me</a>
 </br>
 php-pool.review
