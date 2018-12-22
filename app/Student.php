@@ -25,12 +25,4 @@ class Student extends Model
         'graduated_year',
     ];
 
-    /**
-     * The event map for the model.
-     *
-     * @var array
-     */
-    protected $dispatchesEvents = [
-        'deleted' => StudentDeleted::class
-    ];
 }

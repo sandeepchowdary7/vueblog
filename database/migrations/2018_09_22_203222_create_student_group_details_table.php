@@ -16,7 +16,7 @@ class CreateStudentGroupDetailsTable extends Migration
         Schema::create('student_group_details', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('student_id');
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->unsignedInteger('course_year_id');
             $table->foreign('course_year_id')->references('id')->on('course_years');
             $table->unsignedInteger('course_group_id');
