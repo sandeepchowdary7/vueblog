@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Events\ProfessorDetailDelete;
 use Illuminate\Database\Eloquent\Model;
 
 class Professor extends Model
@@ -26,4 +27,8 @@ class Professor extends Model
     {
         return $this->hasOne('App\ProfessorDetail');
     }
+
+    protected $dispatchesEvents = [
+        'deleted' => ProfessorDetailDelete::class
+    ];
 }

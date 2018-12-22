@@ -17,7 +17,7 @@ class CreateProfessorDetailsTable extends Migration
             $table->increments('id');
             $table->enum('Role', array ('Techincal', 'Non-Technical', 'Other'));
             $table->unsignedInteger('professor_id');
-            $table->foreign('professor_id')->references('id')->on('professors');
+            $table->foreign('professor_id')->references('id')->on('professors')->onDelete('cascade');
             $table->double('salary', 10, 2);
             $table->boolean('is_active')->default(true);
             $table->timestamp('joined_on');

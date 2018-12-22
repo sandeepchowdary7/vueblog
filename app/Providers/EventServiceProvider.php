@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Events\StudentDeleted;
+use App\Events\ProfessorDetailDelete;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use App\Listeners\StudentDeletedNotification;
+use App\Listeners\ProfessorDetailDeleteNotification;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -18,7 +20,11 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            SendEmailVerificationNotification::class
+        ],
+        ProfessorDetailDelete::class => [
+            ProfessorDetailDeleteNotification::class
+        ]
     ];
 
     /**
