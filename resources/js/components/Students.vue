@@ -53,6 +53,9 @@
                 </tbody></table>
               </div>
               <!-- /.card-body -->
+              <div class="card-footer">
+                    <pagination :data="students" @pagination-change-page="getResults"></pagination>
+              </div>
             </div>
             <!-- /.card -->
           </div>
@@ -169,6 +172,12 @@
             }
         },
         methods: {
+            getResults(page = 1) {
+			axios.get('api/student?page=' + page)
+				.then(response => {
+					this.students = response.data;
+				});
+		},
             updateStudent() {
                  this.$Progress.start();                 
                  this.form.put('/student/'+ this.form.id).then(() => {

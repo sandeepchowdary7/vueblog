@@ -11,6 +11,7 @@ import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
 import  VueProgressBar from 'vue-progressbar';
 import  swal from 'sweetalert2';
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 const options = {
     color: '#bffaf3',
@@ -43,19 +44,20 @@ window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
+
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue') },
     { path: '/profile',  component: require('./components/Profile.vue') },
-    { path: '/users',  component: require('./components/Users.vue') },
-    { path: '/professors',  component: require('./components/Professors.vue') },
-    { path: '/students',  component: require('./components/Students.vue') },
-    { path: '/courseYears',  component: require('./components/CourseYears.vue') },
-    { path: '/courseGroups',  component: require('./components/CourseGroups.vue') },
-    { path: '/courseSections',  component: require('./components/courseSections.vue') },
-    { path: '/exams',  component: require('./components/Exams.vue') },
+    { path: '/users',  component: require('./components/Users.vue').default },
+    { path: '/professors',  component: require('./components/Professors.vue').default },
+    { path: '/students',  component: require('./components/Students.vue').default },
+    { path: '/courseYears',  component: require('./components/CourseYears.vue').default },
+    { path: '/courseGroups',  component: require('./components/CourseGroups.vue').default },
+    { path: '/courseSections',  component: require('./components/courseSections.vue').default },
+    { path: '/exams',  component: require('./components/Exams.vue').default },
     // { path: '/getStudents',  component: require('./components/CourseYears.vue') },
 ];
 
