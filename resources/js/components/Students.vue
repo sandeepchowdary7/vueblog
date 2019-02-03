@@ -29,7 +29,7 @@
                     <th><span>Actions</span></th>
                   </tr>
 
-                  <tr v-for="student in students" :key="student.id">
+                  <tr v-for="student in students.data" :key="student.id">
                     <td>{{ student.Id }}</td>
                     <td>{{ student.FirstName | capitalize }}</td>
                     <td>{{ student.MiddleName | capitalize }}</td>
@@ -230,7 +230,7 @@
                 })
             },
             displayStudents () {
-                axios.get('/student').then (data => (this.students = data.data));
+                axios.get('api/students').then (data => (this.students = data));
             },
             createStudent () {
                 //Progress bar starts before request
