@@ -13030,7 +13030,7 @@ label:not(.form-check-label):not(.custom-file-label) {
 }
 
 .widget-user .widget-user-image > img {
-  width: 70px;
+  width: 90px;
   height: auto;
   border: 3px solid #ffffff;
 }
