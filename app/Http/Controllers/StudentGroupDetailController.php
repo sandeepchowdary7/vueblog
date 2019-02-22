@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Student;
 use App\StudentGroupDetail;
 use Illuminate\Http\Request;
-use App\Student;
+use Illuminate\Support\Facades\Input;
 
 class StudentGroupDetailController extends Controller
 {
@@ -83,6 +84,47 @@ class StudentGroupDetailController extends Controller
          return response()->json([
              "message" => "Success"
          ]);
+    }
+
+    public function getStudents($ids)
+    {   
+        if(!$ids) 
+            return "Please enter a valid student id";
+
+        $studentIds = explode(':', $ids);
+
+        $students = Student::whereIn('id', $studentIds)->get();
+        $data = [];
+        if(!$students){
+            return "No Students are found with this . '$studentId' .";
+        }else{
+
+            foreach ($students as $student) {
+                $studentId = $student->id;
+                $studentData=[];
+                
+                $studentData['roll_nuber'] = $student->roll_number;
+                $studentData['first_name'] = $student->first_name;
+                $studentData['last_name'] = $student->last_name;
+                $studentData['gender'] = $student->gender;
+                $studentData['graduated_year'] = $student->graduated_year;
+                array_push($data, $studentId);
+                array_push($data, $studentData);
+            }
+        }
+
+    return response(['success' => true, 'data' => $data], 200);
+}
+
+    protected function StudentFormatter($student){
+        return [
+            'SeriesId' => '',
+                'Student' => [
+                            'id'   => $student->id,
+                            'name' => $student->first_name,
+                            'path' => $student->last_name,
+                ],
+        ];
     }
 
      /**

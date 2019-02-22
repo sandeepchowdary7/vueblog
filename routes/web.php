@@ -31,6 +31,7 @@ Route::post('/getStudentsByGroup', 'CourseGroupController@getStudents');
 Route::get('/generate-pdf', 'StudentController@studentsPdf');
 Route::get('/download', 'StudentController@getDownload');
 Route::get('/areaChart', 'StudentController@areaChart');
+Route::get('/getStudents/{ids}', 'StudentGroupDetailController@getStudents');
 
 Auth::routes();
 
